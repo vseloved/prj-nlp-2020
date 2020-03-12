@@ -46,6 +46,6 @@ For summarization I didn't find some relevant data sources right now
   the sentiment of each separate word. Such approach, when we averaging word polarity through sentence doesn't seem to me
   to be good enough
   
-##### Text summarization
-  * after speech recognition I would like to summarize text to extract key information from it
+##### Keyword extraction
+  * after speech recognition I would like to extract key information from it
   * maybe custom NER will be enough, I don't know
