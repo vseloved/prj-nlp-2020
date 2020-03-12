@@ -1,12 +1,32 @@
 ## Speech summarization and sentiment system for Vietnamese and Russian
-The idea is to build speech recognition system that will process natural language. Key problem, that we can face here is
-that languages we are building it has not so many free available data to train asr, so not always decoded text will be
-the same what person said. In a future, such system can be improved for making voice assistant.
 
-More details and possibility of implementing such project should be discussed with Mariana/Seva
+### Reason:
+Vietnamese asr is one of my tasks on my current job. But plain asr is not interesting, so I would like to extend this
+task by extracting main sense from decoded text, especially when it wasn't well decoded. That's why I want to do it 
+also for Russian. The reason why not Ukrainian - almost no available speech corpus. But, these languages are pretty
+similar in sense of pronunciation, so maybe it will be possible to make multi-language model. Solving this problem can
+be further extended in making a simple voice assistant
+
+### Data:
+Vietnamese speech corpus:
+1. https://catalog.ldc.upenn.edu/LDC2017S01
+2. https://ailab.hcmus.edu.vn/vivos
+
+Russian speech corpus:
+1. https://towardsdatascience.com/russian-open-speech-to-text-stt-asr-dataset-4c4e5d6a292c
+
+Vietnamese sentiment corpus:
+1. https://github.com/undertheseanlp/NLP-Vietnamese-progress/blob/master/tasks/sentiment_analysis.md
+
+Russian sentiment corpus:
+1. https://www.kaggle.com/c/sentiment-analysis-in-russian/data
+
+In case of sentiment, it's always can be scrapped some more data from web
+
+For summarization I didn't find some relevant data sources right now
 
 
-Problems to solve:
+### Problems to solve
 
 ##### Grapheme To Phoneme Conversion
   * required for better speech recognition
