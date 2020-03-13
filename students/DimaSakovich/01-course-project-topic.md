@@ -49,3 +49,18 @@ For summarization I didn't find some relevant data sources right now
 ##### Keyword extraction
   * after speech recognition I would like to extract key information from it
   * maybe custom NER will be enough, I don't know
+
+##### Question answering
+In case if keyword extraction will not be enough complex for this task I propose to extend it by question answering topic.
+
+Question-answering is a deep and wide problem, which I would like to dig deeper. 
+In case of this project it will be applied to speech text to get answers on basic questions.
+
+For russian language I can use:
+http://nlpprogress.com/russian/question_answering.html
+
+For vietnamese:
+https://github.com/mailong25/bert-vietnamese-question-answering
+
+in both cases I suppose Wikipedia corpus also can be useful
+  
