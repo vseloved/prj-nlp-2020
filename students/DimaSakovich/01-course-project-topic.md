@@ -1,11 +1,18 @@
 ## Speech summarization and sentiment system for Vietnamese and Russian
 
+### tl;dr
+**`intermediate nlp task`**: g2p for Vietnamese and Russian
+
+**`main nlp task`**: question answering for Vietnamese and Russian, sentiment and keyword extraction can be part of it,
+if necessary
+
+
+
 ### Reason:
 Vietnamese asr is one of my tasks on my current job. But plain asr is not interesting, so I would like to extend this
 task by extracting main sense from decoded text, especially when it wasn't well decoded. That's why I want to do it 
 also for Russian. The reason why not Ukrainian - almost no available speech corpus. But, these languages are pretty
-similar in sense of pronunciation, so maybe it will be possible to make multi-language model. Solving this problem can
-be further extended in making a simple voice assistant
+similar in sense of pronunciation, so maybe it will be possible to make multi-language model.
 
 ### Data:
 Vietnamese speech corpus:
@@ -63,4 +70,3 @@ For vietnamese:
 https://github.com/mailong25/bert-vietnamese-question-answering
 
 in both cases I suppose Wikipedia corpus also can be useful
-  
