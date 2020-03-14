@@ -26,7 +26,7 @@ The more sophisticated version of the system should be able to infer the answers
 are not explicitly written in the text. I plan to experiment with an approach based on
 semantic networks.
 
-I plan to use open source textbooks like https://openstax.org/details/books/biology-2e
+I plan to use the open source textbooks like https://openstax.org/details/books/biology-2e
 
 Text Example:
 31.2 The Soil
