@@ -1,0 +1,35 @@
+Topic: "Reasoning-Driven Question-Answering for Natural Language Understanding"
+
+This topic is inspired by the works of Daniel Khashabi
+http://danielkhashabi.com/
+https://arxiv.org/abs/1908.04926
+
+I am excited about the idea of building a system that can answer the factual 
+questions not probabalistically, but based on the knowledge that it has extracted 
+from the natural language sources like books or wikipedia articles.
+
+The initial version should be able to answer the fact-based questions 
+when the answers are already in the text (extractive).
+
+Let's take a look at an example:
+
+Text: The city developed around the Roman settlement Pons Aelius and was named after the
+castle built in 1080 by Robert Curthose, William the Conqueror’s eldest son. The city grew
+as an important centre for the wool trade in the 14th century, and later became a major
+coal mining area. The port developed in the 16th century and, along with the shipyards
+lower down the River Tyne, was amongst the world’s largest shipbuilding and ship-repairing
+centres.
+Question: Who built a castle in Newcastle in 1080?
+Answers: “Robert Curthose”
+
+The more sophisticated version of the system should be able to infer the answers that 
+are not explicitly written in the text. I plan to experiment with an approach based on
+semantic networks.
+
+I plan to use open source textbooks like https://openstax.org/details/books/biology-2e
+
+Text Example:
+31.2 The Soil
+Plants obtain mineral nutrients from the soil. Soil is the outer loose layer that covers the surface of Earth. Soil quality depends on the chemical composition of the soil, the topography, the presence of living organisms, the climate, and time. Agricultural practice and history may also modify the characteristics and fertility of soil. Soil consists of four major components: 1) inorganic mineral matter, 2) organic matter, 3) water and air, and 4) living matter. The organic material of soil is made of humus, which improves soil structure and provides water and minerals. Soil inorganic material consists of rock slowly broken down into smaller particles that vary in size, such as sand, silt, and loam.
+Soil formation results from a combination of biological, physical, and chemical processes. Soil is not homogenous because its formation results in the production of layers called a soil profile. Factors that affect soil formation include: parent material, climate, topography, biological factors, and time. Soils are classified based on their horizons, soil particle size, and proportions. Most soils have four distinct horizons: O, A, B, and C.
+
