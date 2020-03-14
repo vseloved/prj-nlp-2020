@@ -1,0 +1,17 @@
+Topic: "Identifying Subjective Statements in News"
+
+Reason:
+
+I’m interested in studying how factive and non-factive verbs of opinion attribution can bias people’s perceptions of reported opinions and beliefs. 
+
+Problems to solve:
+Collect verbs:
+- Verbs of opinion attribution - verbs that are used to embed the opinion as its complement clause. 
+- Factive verbs is related to presupposition, namely that they presuppose the truth of the complement. 
+
+Data:
+
+Data taken from the media coverage of one particular topic, which is a coronavirus. This is a domain that’s rich in reported opinions: journalists are quoting from entities like scientists, organizations and the like to sample from the range of differing opinions that compose a given debate. 
+
+Papers:
+http://web.stanford.edu/class/linguist130a/materials/ling130a-handout-03-03-framing.pdf
