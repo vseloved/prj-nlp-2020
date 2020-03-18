@@ -5,7 +5,7 @@
 Найбільш підтримувані та розвинені:
 - [Spacy](https://spacy.io/) (7 languages; Python)
 - [StanfordNLP](https://stanfordnlp.github.io/stanfordnlp/) (53 languages; Python)
-- [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/) (6 languages; Java + wrappers for 10+ programming languages) + [Stanford parser demo](http://nlp.stanford.edu:8080/parser/)
+- [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/) (6 languages; Java + wrappers for 10+ programming languages)
 - [Emory NLP](https://github.com/emorynlp/) (English; Java)
 - [OpenNLP](https://opennlp.apache.org/) (7 languages; Java)
 - [AllenNLP](https://allennlp.org/) (English; Python)
@@ -31,8 +31,12 @@ pip install git+https://github.com/kmike/pymorphy2.git pymorphy2-dicts-uk
 Стеммер:
 - [SnowballStem](http://snowballstem.org/download.html) (English, Russian, and 16 more languages)
 
-Розмітка семантичних ролей:
-- [Semantic Role Labeling Demo](http://cogcomp.org/page/demo_view/srl)
+Демки:
+- [Ukr stemmer](http://www.senyk.poltava.ua/projects/ukr_stemming/demo.html)
+- [Stanford syntactic parsers](http://nlp.stanford.edu:8080/parser/)
+- [spaCy dependency parser](https://explosion.ai/demos/displacy)
+- [AllenNLP demos](https://demo.allennlp.org/)
+- [Cognitive Computation Group semantic role labeling](http://cogcomp.org/page/demo_view/srl)
 
 ### Нотація частин мови та зв'язків залежностей
 
