@@ -18,9 +18,7 @@ Options:
   --help 
 ```
 
-You can find the output of current 
-
-###Running an evaluation on a test set
+#### Running an evaluation on a test set
 ```
 python -m headlines --evalset
 ```
@@ -33,7 +31,7 @@ total : 100
 Total score on evalset 95/100 = 0.950%
 ```
 
-###Running an evaluation on examiner-headlines corpus
+#### Running an evaluation on examiner-headlines corpus
 ```
 python -m headlines --corpus
 ```
