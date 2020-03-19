@@ -20,14 +20,28 @@ Options:
 
 You can find the output of current 
 
-####Running an evaluation on a test set
+###Running an evaluation on a test set
 ```
 python -m headlines --evalset
 ```
 Results: [evalset-output.txt](evalset-output.txt)
 
-####Running an evaluation on examiner-headlines corpus
+```
+Passed : 95
+Failed : 5
+total : 100
+Total score on evalset 95/100 = 0.950%
+```
+
+###Running an evaluation on examiner-headlines corpus
 ```
 python -m headlines --corpus
 ```
 Results: [examiner-headlines-output.txt](examiner-headlines-output.txt)
+
+```
+Passed : 643
+Failed : 4357
+total : 5000
+Total score on examiner-headlines corpus 643/5000 = 0.129%
+```
