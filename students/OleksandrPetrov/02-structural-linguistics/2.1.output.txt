@@ -1,0 +1,5 @@
+   Input: AX Armani Exchange launches its first-ever AX PopDown Shop in NYC!
+  Output: AX Armani Exchange Launches its First-Ever AX PopDown Shop in NYC!
+Expected: AX Armani Exchange Launches Its First-Ever AX PopDown Shop in NYC!
+
+Total samples: 100, Errors: 1, Success ratio: 0.99
