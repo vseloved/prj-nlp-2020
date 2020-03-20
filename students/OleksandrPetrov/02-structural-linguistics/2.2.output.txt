@@ -1,0 +1,14 @@
+starting...
+processed: 1000
+processed: 2000
+processed: 3000
+processed: 4000
+processed: 5000
+finished.
+================================================================================
+prominent: 2636 from 5000, ratio: 0.5272
+sentiment: 535 from 5000, ratio: 0.107
+superlativeness: 236 from 5000, ratio: 0.0472
+================================================================================
+prominence_stats: Counter({0: 2364, 1: 1719, 2: 700, 3: 176, 4: 33, 5: 6, 6: 1, 7: 1})
+superlativeness_stats: Counter({0: 4764, 1: 226, 2: 9, 3: 1})
