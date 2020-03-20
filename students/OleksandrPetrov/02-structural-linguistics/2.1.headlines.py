@@ -188,6 +188,14 @@ def main():
             "You don't stop me now.",
             "You Don't Stop me now.",
         ),
+        (
+            "Do as you want",
+            "Do As You Want",
+        ),
+        (
+            "How to use a Macbook as a table",
+            "How to Use a Macbook as a Table",
+        ),
     ]
     validation_samples = load_validation_texts()
     examiner_samples = load_examiner_texts()
