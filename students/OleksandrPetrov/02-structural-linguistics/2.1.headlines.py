@@ -3,7 +3,6 @@
 import os
 import io
 import json
-import collections
 
 import spacy
 
