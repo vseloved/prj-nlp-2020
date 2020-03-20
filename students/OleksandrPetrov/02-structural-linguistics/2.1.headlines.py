@@ -84,7 +84,7 @@ def format_as_headline(doc):
     for i in range(n):
         token = doc[i]
 
-        curr_has_traling_whitespace = len(token.whitespace_) > 0 or (i == (n - 1))
+        curr_has_trailing_whitespace = len(token.whitespace_) > 0 or (i == (n - 1))
 
         if token.text == '-':
             curr_token_type = HYPHEN
@@ -98,7 +98,7 @@ def format_as_headline(doc):
         elif prev_token_type == HYPHEN and curr_token_type == WORD:
             hyphenated_word_positions.append(i)
 
-        need_to_break = curr_token_type == BREAK or curr_has_traling_whitespace
+        need_to_break = curr_token_type == BREAK or curr_has_trailing_whitespace
         if need_to_break:
             if len(hyphenated_word_positions) > 1:
                 hyphenated_words_groups.append(tuple(hyphenated_word_positions))
