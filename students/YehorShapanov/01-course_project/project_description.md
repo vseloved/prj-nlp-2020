@@ -2,7 +2,7 @@ Train my own conversational model!
 
 Choose an approach and implement it.
 
-It's hard to evaluate the conversation quality objectively. Maybe I should take some popular chat bot as a baseline and try to obtain a comparable quality. Also, I'm expenting course mentors to provide me with some good for a set of questions and a set of aspects for evaluation.
+It's hard to evaluate the conversation quality objectively. Maybe I should take some popular chat bot as a baseline and try to obtain a comparable quality. Also, I'm expenting course mentors to provide me with some good ideas for a set of questions and a set of aspects for evaluation.
 
 Following approaches is considered:
 
