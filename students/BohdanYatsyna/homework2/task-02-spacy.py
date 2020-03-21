@@ -38,7 +38,6 @@ class pureHeader:
                 continue
 
             # chek if word have couple of cappital letters
-
             if len(re.findall(r'[A-Z]',token.text))>1:
                 modified_text += token.text + token.whitespace_
                 continue
