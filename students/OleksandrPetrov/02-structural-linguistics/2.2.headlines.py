@@ -70,9 +70,11 @@ def analyze_headline(doc):
 
     def aggregate_sentiments(sentiments):
         result = 0
-        for s in sentiments:
-            pos, __, neg = s
-            result += (pos - neg)
+        for pos, obj, neg in sentiments:
+            # a) pos + obj + neg == 1
+            # b) we are interested only in degree in of emotion
+            # c) more emotional words => more emotional degree => let it be additive
+            result += pos + neg
         return result
 
     sentiment = aggregate_sentiments(sentiments)
@@ -99,7 +101,7 @@ def superlativeness_classifier(v):
 
 
 def sentiment_classifier(v):
-    return abs(v) >= 0.3  # some rather arbitrary estimation from histogram
+    return v >= 0.5  # some rather arbitrary estimation from histogram
 
 
 def process_samples(nlp, samples):
