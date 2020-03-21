@@ -1,0 +1,40 @@
+Topic: "Identifying reader's perceptions of reported opinions due to presence of verbs of opinion attribution in Medical News."
+
+Reason:
+------------------------
+
+I'm interested in studying how factive and non-factive verbs of opinion attribution can bias people's perceptions of reported opinions and beliefs. 
+
+Problems to solve:
+------------------------
+Collect verbs:
+
+- Verbs of opinion attribution - verbs that are used to embed the opinion as its complement clause.
+
+- Factive verbs are related to presupposition, namely that they presuppose the truth of the complement. 
+
+Data:
+------------------------
+
+Input - data taken from the media coverage of a medical category. A medical domain is rich in reported opinions. In essence, journalists are quoting from entities like scientists, organizations and the like to sample from the range of differing views that compose a given debate. 
+
+Output:
+------------------------ 
+
+Analyze comments of a given article. Does the presence of factive vs nonfactive verbs change the attitude of the reader?
+
+How to analyze? - The sentiment of the comments. 
+
+Data set of comments:
+------------------------
+
+For example, Kaggle - https://www.kaggle.com/aashita/nyt-comments#CommentsMarch2018.csv
+
+Excerpt: "New York Times has a wide audience and plays a prominent role in shaping people's opinion and outlook on current affairs and also in setting the tone of the public discourse, especially in the USA. The comment section in the articles is very active, and it gives a glimpse of readers' take on the matters concerning the articles.
+
+The data set is rich in information containing comments' texts, that are largely very well written, along with contextual information such as section/topic of the article, as well as features indicating how well the comment was received by the readers such as editorsSelection and recommendations. This data can serve the purpose of understanding and analyzing the public mood."
+
+
+Papers:
+------------------------
+http://web.stanford.edu/class/linguist130a/materials/ling130a-handout-03-03-framing.pdf
