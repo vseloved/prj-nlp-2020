@@ -1,18 +1,14 @@
 import spacy
-from spacy import displacy
-import en_core_web_lg
-import helpers
 import json
-import os
 from tqdm import tqdm
 import re
+
 
 class pureHeader:
     nlp = spacy.load("en_core_web_md")
 
     def __init__(self, text):
         self.modified_text = self.rules(text)
-
 
     def rules(self, text):
         '''
@@ -38,11 +34,11 @@ class pureHeader:
                 continue
 
             # chek if word have couple of cappital letters
-            if len(re.findall(r'[A-Z]',token.text))>1:
+            if len(re.findall(r'[A-Z]', token.text)) > 1:
                 modified_text += token.text + token.whitespace_
                 continue
 
-            #rule_rule_capFirstLast check
+            # rule_rule_capFirstLast check
             if i == len(doc) - 1 or i == 0:
                 is_capitalize = True
 
@@ -56,8 +52,8 @@ class pureHeader:
             if token.pos_ == "VERB": is_capitalize = True
             if token.pos_ == "ADJ": is_capitalize = True
             if token.pos_ == "ADV": is_capitalize = True
-            if token.pos_ == "SCONJ" and token.dep_ != 'prep' : is_capitalize = True
-            if token.pos_ == "NUM" : is_capitalize = True
+            if token.pos_ == "SCONJ" and token.dep_ != 'prep': is_capitalize = True
+            if token.pos_ == "NUM": is_capitalize = True
 
             if token.shape_ == "'x":
                 modified_text += token.text + token.whitespace_
@@ -66,10 +62,6 @@ class pureHeader:
             if token.lemma_ == 'be':
                 modified_text += token.text.capitalize() + token.whitespace_
                 continue
-            # rule fo 'Is' -
-            if token.pos_ == "AUX":
-                t=1
-
 
             # rule for ''s' - case
             if token.pos_ == "AUX" and token.dep_ == 'case':
@@ -94,7 +86,6 @@ class pureHeader:
                 else:
                     is_lowercased = True
 
-
             if token.pos_ == "INTJ": is_lowercased = True
 
             # применение правил
@@ -111,10 +102,8 @@ class pureHeader:
 
         return modified_text
 
-def accuracy(file):
 
-    modified_text = ""
-    data = {}
+def accuracy(file):
     correct_headers = 0
 
     with open(file) as json_file:
@@ -125,9 +114,7 @@ def accuracy(file):
         if h.modified_text == d[1]:
             correct_headers += 1
 
-
-    print('Header accuracy  {:2.2%}'.format(correct_headers/len(data)))
-
+    print('Header accuracy  {:2.2%}'.format(correct_headers / len(data)))
 
 
 accuracy('../tasks/02-structural-linguistics/data/headlines-test-set.json')
@@ -144,8 +131,6 @@ for i, d in enumerate(data):
     if h.modified_text == d[1]:
         correct_headers += 1
     else:
-        print('number {}\tbase text     \t\t{}'.format(i,d[0]))
-        print('number {}\tcorrect header\t\t{}'.format(i,d[1]))
-        print('number {}\tpure header \t\t{}'.format(i,h.modified_text))
-
-
+        print('number {}\tbase text     \t\t{}'.format(i, d[0]))
+        print('number {}\tcorrect header\t\t{}'.format(i, d[1]))
+        print('number {}\tpure header \t\t{}'.format(i, h.modified_text))

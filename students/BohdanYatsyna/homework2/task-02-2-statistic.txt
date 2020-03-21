@@ -1,0 +1,1 @@
+examiner-headlines.txt - statistic entities: 49.62% most lvl: 2.26% polarity: 5.74%
