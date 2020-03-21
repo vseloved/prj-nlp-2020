@@ -137,22 +137,22 @@ def process_samples(nlp, samples):
     print('prominence_stats:', prominence_stats)
     plt.figure()
     plt.hist(prominence_items, bins=len(prominence_stats))
-    plt.savefig('prominence.hist.png')
+    plt.savefig('2.2.prominence.hist.png')
 
     superlativeness_stats = collections.Counter(superlativeness_items)
     print('superlativeness_stats:', superlativeness_stats)
     plt.figure()
     plt.hist(superlativeness_items, bins=len(superlativeness_stats))
-    plt.savefig('superlativeness.hist.png')
+    plt.savefig('2.2.superlativeness.hist.png')
 
     sentiment_items_all = sentiment_items
     sentiment_items_classified = list(filter(sentiment_classifier, sentiment_items))
     plt.figure()
     plt.hist(sentiment_items_all, bins=16)
-    plt.savefig('sentiment.hist.all.png')
+    plt.savefig('2.2.sentiment.hist.all.png')
     plt.figure()
     plt.hist(sentiment_items_classified, bins=16)
-    plt.savefig('sentiment.hist.classified.png')
+    plt.savefig('2.2.sentiment.hist.classified.png')
 
 
 def main():
