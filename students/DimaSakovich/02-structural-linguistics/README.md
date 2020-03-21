@@ -39,7 +39,7 @@ Notebook with results [2-headlines.ipynb](2-headlines.ipynb)
 * Titles with no changes The Examiner: 0.1482 
 
 #### Viral News
-* Percentage of titles with NER: 78.24%
+* Percentage of titles with NER: 52.70%
 * Percentage of titles with positive sentiment: 37.54%
 * Percentage of titles with negative sentiment: 22.58%
 * Percentage of titles with neutral sentiment: 39.88%
