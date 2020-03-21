@@ -101,3 +101,19 @@
 [Headlines Sentiment](./headlines_sentiment.ipynb)
 
 Дуже перепрошую, часу на креативність і експеримнти не було :|
+
+
+## Колокації
+
+### 1. Англійська мова
+
+"say", "tell", "speak", "claim", "communicate", "announce", "declare", "inform", "notify", "chat", "shout", "voice", "whisper", "utter", "interact"
+
+[Collocation English](./collocation_en.ipynb)
+
+### 2. Українська мова
+
+У цьому завданні вам потрібно дослідити сполучуваність іменників-істот з прикметниками.
+
+[Collocation Ukrainian](./collocation_ua.ipynb)
+
