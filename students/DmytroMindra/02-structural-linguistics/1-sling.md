@@ -3,12 +3,16 @@
 #### 1. Перевірте роботу [SnowballStem](http://snowballstem.org/) для спільнокореневих слів. Напишіть ваші спостереження.
 
 1. truth, truthful, truthfulness, countertruth, untruthful, truthology
+
 ```	truth, truth, truth, countertruth, untruth, trutholog```
 2. flaw, flaws, flawed, flawless, flawlessness, flawlessly
+
 ```	flaw, flaw, flaw, flawless, flawless, flawless ```
 3. лес, лесной, лесник, лесничий, лесничество, пролесье
+
 ```лес, лесн, лесник, леснич, лесничеств, пролес```
 4. окно, окошко, подоконник, оконный, окнище
+
 ```окн, окошк, подоконник, окон, окнищ```
 
 Наблюдения: В русском не всегда может отделить суффикс.
@@ -21,16 +25,16 @@ I {like} turtles.: verb, ROOT
 I like {turtles}.: noun, like
 ```
 
-1. We can {but} hope that everything will be fine.: coordinating conjunction, hope
-2. It's sad {but} true.: coordinating conjunction, sad
-3. Jack brings nothing {but} trouble.: subordinating conjunctions, nothing
-4. Let's do it this {way}!: noun, this
-5. This is {way} too much!: adverb, much
-6. The prices are going {down}.: adverb, going
-7. Someone pushed him and he fell {down} the stairs.: preposition, fell
-8. I’ve been feeling rather {down} lately.: adverb, feeling
-9. It's not easy to {down} a cup of coffee in one gulp.: verb, root
-10. Bring a {down} jacket and a pair of gloves, and you'll be fine.: adjective, jacket
+1. We can {but} hope that everything will be fine.: **coordinating conjunction, hope**
+2. It's sad {but} true.: coordinating **conjunction, sad**
+3. Jack brings nothing {but} trouble.: **subordinating conjunctions, nothing**
+4. Let's do it this {way}!: **noun, this**
+5. This is {way} too much!: **adverb, much**
+6. The prices are going {down}.: **adverb, going**
+7. Someone pushed him and he fell {down} the stairs.: **preposition, fell**
+8. I’ve been feeling rather {down} lately.: **adverb, feeling**
+9. It's not easy to {down} a cup of coffee in one gulp.: **verb, root**
+10. Bring a {down} jacket and a pair of gloves, and you'll be fine.: **adjective, jacket**
 
 #### 3. Визначте частину мови виділеного слова і слово, яке є його батьком (за зразком):
 
@@ -40,24 +44,35 @@ I like {turtles}.: noun, like
 Я люблю {черепашок}.: іменник, люблю  
 ```
 
-1. Рада міністрів Європейського союзу затвердила угоду про спрощений порядок видачі {віз} для України. ```іменник, видачі```
+1. Рада міністрів Європейського союзу затвердила угоду про спрощений порядок видачі {віз} для України. 
+
+```іменник, видачі```
 2. Батько Себастьяна {віз} на санях їх театральний гурт до Львова.
+
 ```дієслово, ROOT```
 3. А ще дивний елемент інтер’єру – {віз} із продукцією одного з херсонських виробників.
+
 ```іменник, елемент```
 4. У цю мить {повз} Євгена пролетів останній вагон товарняка.
+
 ```прийменник,  пролетів```
 5. Кліпнув очима і побачив малого песика, який саме пробігав {повз} у бік села.
+
 ```прийменник,  пробігав```
 6. Степанко перестав кричати, тільки ламкий стогін {повз} йому із грудей.
+
 ```дієслово,  тільки```
 7. Ось присіла на {край} ліжка.
+
 ```іменник, присіла```
 8. Поставив ту кузню не {край} дороги, як було заведено, а на Красній горі, біля Прадуба.
+
 ```прислівник, Поставив```
 9. Розповідаючи про передній {край} лінґвістики, фон Лібіх, як завжди, мислив широко і глобально.
+
 ```іменник, Розповідаючи```
 10. Не {край} мені серце.
+
 ```дієслово, ROOT```
 
 #### 4. Виберіть одне речення зі списку та побудуйте для нього дерево залежностей:
