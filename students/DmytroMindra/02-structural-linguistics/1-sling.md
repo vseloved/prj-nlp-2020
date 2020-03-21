@@ -5,17 +5,20 @@
 1. truth, truthful, truthfulness, countertruth, untruthful, truthology
 
 ```	truth, truth, truth, countertruth, untruth, trutholog```
+
 2. flaw, flaws, flawed, flawless, flawlessness, flawlessly
 
 ```	flaw, flaw, flaw, flawless, flawless, flawless ```
+
 3. лес, лесной, лесник, лесничий, лесничество, пролесье
 
 ```лес, лесн, лесник, леснич, лесничеств, пролес```
+
 4. окно, окошко, подоконник, оконный, окнище
 
 ```окн, окошк, подоконник, окон, окнищ```
 
-Наблюдения: В русском не всегда может отделить суффикс.
+**Наблюдения:** В русском [SnowballStem](http://snowballstem.org/) не всегда может отделить суффикс.
 
 #### 2. Визначте частину мови виділеного слова і слово, яке є його батьком (за зразком):
 
