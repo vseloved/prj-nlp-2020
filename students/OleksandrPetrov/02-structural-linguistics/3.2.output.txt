@@ -1,0 +1,53 @@
+Model loaded.
+Going to process lines: 2665
+[nlp] processing...
+[nlp] finished in 0:03:32.762507
+Error: <Word id=1;text=Сіркове;lemma=сірковий;upos=ADJ;xpos=Ao-nsns;feats=Case=Nom|Gender=Neut|Number=Sing;head=2;deprel=amod>
+Error: <Word id=1;text=Золоті;lemma=золотий;upos=ADJ;xpos=Ao--pns;feats=Case=Nom|Number=Plur;head=2;deprel=amod>
+Error: <Word id=1;text=Історична;lemma=історичний;upos=ADJ;xpos=Ao-fsns;feats=Case=Nom|Gender=Fem|Number=Sing;head=2;deprel=amod>
+Error: <Word id=2;text=лихими;lemma=лихий;upos=ADJ;xpos=Ao--pif;feats=Case=Ins|Number=Plur;head=3;deprel=amod>
+Error: <Word id=1;text=Весела;lemma=веселий;upos=ADJ;xpos=Afpfsns;feats=Case=Nom|Degree=Pos|Gender=Fem|Number=Sing;head=2;deprel=amod>
+Error: <Word id=2;text=великим;lemma=великий;upos=ADJ;xpos=Afpnsif;feats=Case=Ins|Degree=Pos|Gender=Neut|Number=Sing;head=3;deprel=amod>
+Error: <Word id=1;text=Смішні;lemma=смішний;upos=ADJ;xpos=Ao--pns;feats=Case=Nom|Number=Plur;head=4;deprel=amod>
+================================================================================
+3: перший Сибір
+1: легендарний Далай-ла
+1: найперший Сибір
+1: навіжений Аввакум
+1: черговий ВКП
+1: здоровий Грицько
+1: останній Григорій
+1: старий Бистро
+1: химерний Сіхоте
+1: рудолистий Григорій
+1: цибатий Морозенко
+1: другий Ганні
+1: справжній Григорій
+1: хитріший Сірко
+1: нашорошений Григорій
+1: безмежний Голуб
+1: славний Переяслава
+1: славний Сірковий
+1: зайнятий Григорій
+1: химерний Наталка
+1: лісовий Наталка
+1: широкий Арам
+1: зодягнений Григорій
+1: грицьковий Григорій
+1: дебелий Григорій
+1: сірковий Кім-Гі-Сун
+1: знайомий Кім-Гі-Сун
+1: добрий Кім
+1: давній Сірків
+1: знайомий Сірків
+1: смішний -Гі-Сун
+1: добрий Сірковий
+1: новий Гриць
+1: слабовольний Гриць
+1: розпалений Пишногруд
+1: цілий Бальзак
+1: крутий Сіхоте
+1: крайній Біробіджан
+1: цілий Амур
+1: правий Амур
+1: н-ський НКВД
