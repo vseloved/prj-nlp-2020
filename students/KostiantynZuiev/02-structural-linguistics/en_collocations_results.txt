@@ -1,0 +1,11 @@
+tell: ('recently', 24), ('reportedly', 14), ('privately', 10), ('basically', 9), ('only', 9), ('really', 8), ('repeatedly', 8), ('simply', 8), ('actually', 7), ('explicitly', 7)
+say: ('actually', 74), ('recently', 72), ('repeatedly', 55), ('simply', 45), ('explicitly', 39), ('publicly', 36), ('basically', 31), ('really', 30), ('only', 25), ('clearly', 21)
+claim: ('falsely', 50), ('Falsely', 30), ('previously', 8), ('repeatedly', 8), ('actually', 3), ('credibly', 3), ('initially', 3), ('laughably', 3), ('publicly', 3), ('recently', 3)
+speak: ('directly', 33), ('publicly', 15), ('fiercely', 12), ('only', 10), ('briefly', 9), ('recently', 8), ('loudly', 7), ('openly', 7), ('actually', 6), ('anonymously', 5)
+utter: ('actually', 2), ('casually', 1), ('only', 1), ('pejoratively', 1), ('really', 1)
+communicate: ('directly', 3), ('effectively', 3), ('Really', 1), ('actually', 1), ('apparently', 1), ('daily', 1), ('finally', 1), ('freely', 1), ('hopefully', 1), ('loudly', 1)
+interact: ('closely', 1), ('intensively', 1), ('negatively', 1), ('rarely', 1), ('really', 1), ('socially', 1)
+chat: ('coincidentally', 1), ('directly', 1)
+contact: ('quickly', 2), ('repeatedly', 2), ('Separately', 1), ('apparently', 1), ('independently', 1), ('recently', 1)
+converse:
+narrate:
