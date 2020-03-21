@@ -19,7 +19,6 @@ def fix_hyphen(text):
             replaced_text += f'{text_to_search[start_index:r.span()[0]]}{replacement}'
             start_index = r.span()[1]
             text_to_search = text_to_search[start_index:]
-            # print(text_to_search)
         else:
             is_hyphened = False
             replaced_text += text_to_search
@@ -30,31 +29,21 @@ def format_headline(text):
     doc = nlp(text)
 
     prepared_tokens = []
-    
-    #print("?????", doc)
+
     for token in doc:
         if token.whitespace_:
-            #print("LEN", len(token.text), token)
             token_text = token.text_with_ws.capitalize() if len(token.text) > 3 else token.text_with_ws
         else:
-            #print("LEN", len(token.text), token)
             token_text = token.text.capitalize() if len(token.text) > 3 else token.text
         
         if token.pos_ in ['NOUN', 'PROPN', "PRON", "ADJ", "ADV"]:
-            #print('POS', token)
             token_text = token_text.capitalize()
         elif token.pos_ == "SCONJ" and token.dep_ != "prep":
-            #print('POS', token)
             token_text = token_text.capitalize()
         elif token.pos_ == "DET" and token.tag_ == "PRP$":
             token_text = token_text.capitalize()
         elif token.pos_ == "VERB" or token.tag_ in ["VB", "VBD", "VBG", "VBN", "VBP", "VBZ"]:
             token_text = token_text.capitalize()
-        # if token.text == "-":
-        #     print(token.doc)
-        #     print(token.sent)
-            
-
 
         prepared_tokens.append(token_text)
 
@@ -71,7 +60,6 @@ def format_headline(text):
         else:
             continue
 
-    #print("######", "".join(prepared_tokens))
     prepared_text = "".join(prepared_tokens)
 
     prepared_text = fix_hyphen(prepared_text)
@@ -82,16 +70,26 @@ def format_headline(text):
 if __name__ == "__main__":
     with open('data/headlines-test-set.json', 'r') as f: 
         data = json.loads(f.read()) 
-    correct_count = 0
-    for raw, pure in data:
-        if format_headline(raw) == pure:
-            correct_count += 1
-        else:
-            print(len(format_headline(raw)), len(pure))
-            print(format_headline(raw))
-            print(pure)
 
+        correct_count = 0
+        for raw, pure in data:
+            if format_headline(raw) == pure:
+                correct_count += 1
 
-    print(f'{correct_count}/{len(data)}')
+        headline_test_set_result = f'Test set result: {correct_count}/{len(data)}'
+    with open('data/examiner-headlines.txt', 'r') as f:
+        correct_count = 0
+        processed_count = 0
+        for line in f:
+            if line == format_headline(line):
+                correct_count += 1
+            processed_count += 1
+        
+        examiner_headlines_result = f'Examiner headlines result: {correct_count}/{processed_count}'
+    with open('headlines_results.txt','w') as res_file:
+        res_file.write(headline_test_set_result)
+        res_file.write('\n')
+        res_file.write(examiner_headlines_result)
+
 
 

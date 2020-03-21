@@ -2,21 +2,16 @@ import spacy
 import re
 from nltk.corpus import sentiwordnet as swn
 
-# ORG, MONEY, PERSON, GPE, LOC
 nlp = spacy.load('en_core_web_md')
 
 def examine_headline(text):
     doc = nlp(text)
-    # print(text)
-    # print("NER: ",check_ne(doc))
-    # print("Sentiment: ",check_sentiment(doc))
-    # print("Comp/Sup: ",check_pos(doc))
+
     return check_ne(doc), check_sentiment(doc), check_pos(doc)
 
 def check_ne(doc):
     for ent in doc.ents:
         if ent.label_ in ('ORG', 'MONEY', 'PERSON', 'GPE', 'LOC'):
-            # print(doc.ents)
 
             return 1
     
@@ -55,4 +50,5 @@ if __name__ == "__main__":
             pos_checks += pos_check
             total += 1
         
-        print(f'NER: {ner_checks/total*100}%, Sentiment: {senti_checks/total*100}%, POS: {pos_checks/total*100}%')
+        with open('viral_news_results.txt','w') as res_file:
+            res_file.write(f'NER: {ner_checks/total*100}%, Sentiment: {senti_checks/total*100}%, POS: {pos_checks/total*100}%')
