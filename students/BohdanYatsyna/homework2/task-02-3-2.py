@@ -10,6 +10,7 @@ nlp = stanza.Pipeline('uk')
 with open("../tasks/02-structural-linguistics/data/tyhrolovy.txt") as file:
     data = file.readlines()
 
+
 cleaned_data = []
 word_bigram = {}
 for i, d in enumerate(data):
