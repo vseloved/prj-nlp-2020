@@ -3,7 +3,7 @@ from tqdm import tqdm
 from collections import OrderedDict
 from operator import itemgetter
 
-#stanza.download('uk')
+# stanza.download('uk')
 
 nlp = stanza.Pipeline('uk')
 
@@ -18,18 +18,17 @@ for i, d in enumerate(data):
         continue
     cleaned_data.append(d)
 
-
 for d in tqdm(cleaned_data):
     doc = nlp(d)
     for sentence in doc.sentences:
         for noun_i, word in enumerate(sentence.words):
             if word.text.lower() == "старий":
-                t =1
+                t = 1
             if word.pos == "PROPN" or word.upos == "NOUN":
                 if 'Animacy=Anim' in word.feats:
                     for w in sentence.words:
                         if w.upos == "ADJ":
-                            if w.head == noun_i +1:
+                            if w.head == noun_i + 1:
                                 try:
                                     word_bigram[word.text.lower() + ' ' + w.text.lower()] += 1
                                 except:
@@ -40,4 +39,4 @@ word_bigram = dict(OrderedDict(sorted(word_bigram.items(), key=itemgetter(1), re
 
 with open('../students/BohdanYatsyna/homework2/task-02-3-2-statistic.txt', 'w') as f:
     for key, value in word_bigram.items():
-        print('{}: {}'.format(value, key),file=f)
+        print('{}: {}'.format(value, key), file=f)
