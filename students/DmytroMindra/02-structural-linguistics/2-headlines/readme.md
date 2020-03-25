@@ -37,7 +37,7 @@ Total score on evalset 95/100 = 0.950%
 ```
 python -m headlines --corpus
 ```
-Results: [examiner-headlines-output.txt](examiner-headlines-output.txt)
+Results:
 
 ```
 Passed : 643
