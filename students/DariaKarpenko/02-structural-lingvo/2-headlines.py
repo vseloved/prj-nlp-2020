@@ -65,7 +65,22 @@ def accuracy(validation_set):
     return accuracy      
 
 
-res = accuracy('/home/prj-nlp-2020/tasks/02-structural-linguistics/data/headlines-test-set.json')
-res
+def test_corpus(corpus):
 
+    unchanged = 0
+    with open(corpus, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            formatted_line = format_headline(line)
+            if formatted_line == line:
+                unchanged += 1
+
+        result = (unchanged / len(lines))*100
+        return result
+    
+res1 = test_corpus('/home/dasha/Документы/курс/prj-nlp-2020/tasks/02-structural-linguistics/data/examiner-headlines.txt')
+print(res1)
+
+res = accuracy('/home/prj-nlp-2020/tasks/02-structural-linguistics/data/headlines-test-set.json')
+print(res)
 >>> 0.91
