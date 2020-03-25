@@ -1,0 +1,1 @@
+{'entities': 0.6578, 'sentiment': 0.0468, 'is_super_adj': 0.0242}
