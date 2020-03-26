@@ -2,43 +2,43 @@
     "add": [
         [
             "only",
-            38
-        ],
-        [
-            "really",
-            27
-        ],
-        [
-            "simply",
             13
         ],
         [
-            "certainly",
-            11
-        ],
-        [
-            "actually",
-            10
-        ],
-        [
-            "probably",
-            9
-        ],
-        [
             "quickly",
-            9
-        ],
-        [
-            "early",
-            8
-        ],
-        [
-            "currently",
             7
         ],
         [
-            "fully",
+            "really",
+            7
+        ],
+        [
+            "simply",
             5
+        ],
+        [
+            "recently",
+            3
+        ],
+        [
+            "airily",
+            2
+        ],
+        [
+            "hastily",
+            2
+        ],
+        [
+            "apparently",
+            2
+        ],
+        [
+            "certainly",
+            2
+        ],
+        [
+            "solely",
+            1
         ]
     ],
     "affirm": [
@@ -51,141 +51,75 @@
             2
         ],
         [
-            "falsely",
-            2
-        ],
-        [
             "constantly",
             1
         ],
         [
-            "traditionally",
-            1
-        ],
-        [
-            "hopelessly",
-            1
-        ],
-        [
-            "clearly",
-            1
-        ]
-    ],
-    "allege": [
-        [
-            "only",
-            4
-        ],
-        [
-            "subsequently",
-            3
-        ],
-        [
-            "officially",
-            2
-        ],
-        [
-            "potentially",
-            2
-        ],
-        [
-            "personally",
-            2
-        ],
-        [
-            "flatly",
-            2
-        ],
-        [
-            "wrongly",
-            2
-        ],
-        [
-            "directly",
-            2
-        ],
-        [
-            "primarily",
-            1
-        ],
-        [
-            "intimately",
+            "falsely",
             1
         ]
     ],
     "announce": [
         [
             "recently",
-            17
+            15
         ],
         [
             "officially",
-            12
+            11
         ],
         [
             "publicly",
-            9
-        ],
-        [
-            "early",
-            9
-        ],
-        [
-            "only",
             8
         ],
         [
-            "shortly",
-            6
-        ],
-        [
-            "finally",
+            "early",
             5
-        ],
-        [
-            "nearly",
-            4
         ],
         [
             "proudly",
             4
         ],
         [
-            "essentially",
+            "shortly",
             4
+        ],
+        [
+            "openly",
+            3
+        ],
+        [
+            "previously",
+            3
+        ],
+        [
+            "quickly",
+            3
+        ],
+        [
+            "newly",
+            3
         ]
     ],
     "answer": [
         [
             "directly",
-            10
-        ],
-        [
-            "actually",
-            9
-        ],
-        [
-            "only",
             8
-        ],
-        [
-            "really",
-            7
-        ],
-        [
-            "finally",
-            7
         ],
         [
             "honestly",
             6
         ],
         [
-            "exactly",
+            "finally",
             5
         ],
         [
-            "completely",
+            "really",
+            5
+        ],
+        [
+            "actually",
             4
         ],
         [
@@ -195,96 +129,108 @@
         [
             "definitively",
             3
+        ],
+        [
+            "eventually",
+            3
+        ],
+        [
+            "differently",
+            3
+        ],
+        [
+            "quickly",
+            2
         ]
     ],
     "assert": [
-        [
-            "only",
-            8
-        ],
-        [
-            "simply",
-            5
-        ],
         [
             "blithely",
             4
         ],
         [
-            "really",
-            4
+            "falsely",
+            2
         ],
         [
-            "scientifically",
-            3
+            "confidently",
+            2
+        ],
+        [
+            "repeatedly",
+            2
+        ],
+        [
+            "incorrectly",
+            1
+        ],
+        [
+            "publicly",
+            1
+        ],
+        [
+            "slowly",
+            1
         ],
         [
             "merely",
-            3
+            1
+        ],
+        [
+            "convincingly",
+            1
         ],
         [
             "forcefully",
-            3
-        ],
-        [
-            "probably",
-            2
-        ],
-        [
-            "apparently",
-            2
-        ],
-        [
-            "falsely",
-            2
+            1
         ]
     ],
     "claim": [
         [
             "falsely",
-            82
-        ],
-        [
-            "only",
-            66
-        ],
-        [
-            "actually",
-            23
-        ],
-        [
-            "simply",
-            18
-        ],
-        [
-            "really",
-            16
-        ],
-        [
-            "nearly",
-            14
-        ],
-        [
-            "repeatedly",
-            12
+            80
         ],
         [
             "previously",
-            10
-        ],
-        [
-            "merely",
-            10
-        ],
-        [
-            "apparently",
             9
+        ],
+        [
+            "repeatedly",
+            8
+        ],
+        [
+            "recently",
+            4
+        ],
+        [
+            "initially",
+            3
+        ],
+        [
+            "actually",
+            3
+        ],
+        [
+            "absurdly",
+            3
+        ],
+        [
+            "credibly",
+            3
+        ],
+        [
+            "publicly",
+            3
+        ],
+        [
+            "laughably",
+            3
         ]
     ],
     "communicate": [
         [
             "effectively",
-            4
+            3
         ],
         [
             "directly",
@@ -296,10 +242,6 @@
         ],
         [
             "really",
-            1
-        ],
-        [
-            "only",
             1
         ],
         [
@@ -321,11 +263,9 @@
         [
             "daily",
             1
-        ]
-    ],
-    "conjecture": [
+        ],
         [
-            "captivatingly",
+            "actually",
             1
         ]
     ],
@@ -333,10 +273,6 @@
         [
             "accurately",
             3
-        ],
-        [
-            "highly",
-            2
         ],
         [
             "usually",
@@ -347,112 +283,108 @@
             2
         ],
         [
-            "strongly",
-            2
-        ],
-        [
-            "relatively",
-            2
-        ],
-        [
-            "only",
-            2
-        ],
-        [
             "sharply",
             1
         ],
         [
-            "positively",
+            "clearly",
             1
         ],
         [
-            "directly",
+            "only",
+            1
+        ],
+        [
+            "privately",
+            1
+        ],
+        [
+            "strongly",
             1
         ]
     ],
     "declare": [
         [
             "publicly",
-            16
-        ],
-        [
-            "only",
-            16
-        ],
-        [
-            "finally",
-            7
-        ],
-        [
-            "immediately",
-            7
-        ],
-        [
-            "obviously",
-            6
-        ],
-        [
-            "recently",
-            6
-        ],
-        [
-            "repeatedly",
-            5
+            13
         ],
         [
             "falsely",
-            5
+            4
+        ],
+        [
+            "suddenly",
+            4
+        ],
+        [
+            "recently",
+            4
         ],
         [
             "officially",
-            4
+            3
         ],
         [
-            "absolutely",
-            4
+            "openly",
+            3
+        ],
+        [
+            "proudly",
+            3
+        ],
+        [
+            "triumphantly",
+            3
+        ],
+        [
+            "ominously",
+            2
+        ],
+        [
+            "famously",
+            2
         ]
     ],
     "deliver": [
         [
             "directly",
-            6
-        ],
-        [
-            "actually",
             5
         ],
         [
             "really",
-            5
-        ],
-        [
-            "nearly",
             4
         ],
         [
-            "only",
+            "actually",
             4
-        ],
-        [
-            "probably",
-            3
         ],
         [
             "obviously",
-            3
+            2
         ],
         [
             "recently",
-            3
+            2
+        ],
+        [
+            "finally",
+            2
         ],
         [
             "quickly",
-            3
+            2
         ],
         [
-            "simply",
-            3
+            "orally",
+            1
+        ],
+        [
+            "especially",
+            1
+        ],
+        [
+            "accurately",
+            1
         ]
     ],
     "disclose": [
@@ -462,23 +394,7 @@
         ],
         [
             "publicly",
-            8
-        ],
-        [
-            "only",
-            6
-        ],
-        [
-            "immediately",
-            4
-        ],
-        [
-            "recently",
-            3
-        ],
-        [
-            "previously",
-            3
+            7
         ],
         [
             "newly",
@@ -489,132 +405,102 @@
             2
         ],
         [
-            "properly",
+            "recently",
+            2
+        ],
+        [
+            "immediately",
             2
         ],
         [
             "anonymously",
             2
-        ]
-    ],
-    "divulge": [
+        ],
+        [
+            "frequently",
+            1
+        ],
+        [
+            "specifically",
+            1
+        ],
         [
             "directly",
-            1
-        ],
-        [
-            "exactly",
-            1
-        ],
-        [
-            "really",
-            1
-        ],
-        [
-            "currently",
             1
         ]
     ],
     "do": [
         [
-            "exactly",
-            48
-        ],
-        [
-            "only",
-            29
-        ],
-        [
             "actually",
-            29
+            21
         ],
         [
             "really",
-            15
+            11
         ],
         [
-            "probably",
-            13
-        ],
-        [
-            "nearly",
-            10
-        ],
-        [
-            "certainly",
-            9
-        ],
-        [
-            "simply",
-            9
-        ],
-        [
-            "poorly",
+            "only",
             9
         ],
         [
             "quickly",
             9
-        ]
-    ],
-    "estimate": [
+        ],
         [
-            "nearly",
+            "probably",
             8
         ],
         [
-            "only",
+            "poorly",
+            8
+        ],
+        [
+            "differently",
+            7
+        ],
+        [
+            "certainly",
             6
         ],
+        [
+            "lately",
+            6
+        ],
+        [
+            "exactly",
+            5
+        ]
+    ],
+    "estimate": [
         [
             "previously",
             3
         ],
         [
-            "actually",
-            2
-        ],
-        [
             "easily",
-            2
-        ],
-        [
-            "likely",
-            2
-        ],
-        [
-            "wrongly",
-            2
-        ],
-        [
-            "approximately",
             1
         ],
         [
-            "appallingly",
+            "reasonably",
             1
         ],
         [
-            "fully",
+            "initally",
+            1
+        ],
+        [
+            "privately",
+            1
+        ],
+        [
+            "cautiously",
             1
         ]
     ],
     "express": [
         [
-            "only",
-            9
-        ],
-        [
             "repeatedly",
             6
-        ],
-        [
-            "profoundly",
-            4
-        ],
-        [
-            "freely",
-            4
         ],
         [
             "actually",
@@ -625,251 +511,83 @@
             3
         ],
         [
-            "certainly",
+            "freely",
             3
         ],
         [
-            "really",
-            3
+            "openly",
+            2
         ],
         [
             "publicly",
-            3
+            2
         ],
         [
             "finally",
-            3
-        ]
-    ],
-    "guess": [
-        [
-            "only",
-            17
-        ],
-        [
-            "really",
-            9
-        ],
-        [
-            "actually",
-            9
-        ],
-        [
-            "simply",
-            5
-        ],
-        [
-            "finally",
-            4
-        ],
-        [
-            "politically",
-            4
-        ],
-        [
-            "absolutely",
-            3
-        ],
-        [
-            "probably",
-            3
-        ],
-        [
-            "apparently",
             2
         ],
         [
-            "merely",
-            2
-        ]
-    ],
-    "imagine": [
-        [
-            "only",
-            18
-        ],
-        [
-            "simply",
-            7
-        ],
-        [
-            "possibly",
-            7
-        ],
-        [
-            "especially",
-            5
-        ],
-        [
-            "really",
-            4
-        ],
-        [
-            "fundamentally",
-            3
-        ],
-        [
-            "mostly",
-            3
-        ],
-        [
-            "immediately",
-            3
-        ],
-        [
-            "perfectly",
-            2
-        ],
-        [
-            "truly",
-            2
-        ]
-    ],
-    "imply": [
-        [
-            "strongly",
-            7
-        ],
-        [
-            "only",
-            4
-        ],
-        [
-            "certainly",
-            3
-        ],
-        [
-            "really",
-            3
-        ],
-        [
-            "clearly",
-            2
-        ],
-        [
-            "broadly",
-            2
-        ],
-        [
-            "miserably",
-            2
-        ],
-        [
-            "partly",
+            "verbally",
             1
         ],
         [
-            "regionally",
+            "famously",
             1
         ],
         [
-            "differently",
-            1
-        ]
-    ],
-    "judge": [
-        [
-            "only",
-            7
-        ],
-        [
-            "kindly",
-            6
-        ],
-        [
-            "harshly",
-            5
-        ],
-        [
-            "solely",
-            4
-        ],
-        [
-            "accurately",
-            3
-        ],
-        [
-            "magically",
-            1
-        ],
-        [
-            "quickly",
-            1
-        ],
-        [
-            "sternly",
-            1
-        ],
-        [
-            "unanimously",
-            1
-        ],
-        [
-            "regularly",
+            "notoriously",
             1
         ]
     ],
     "maintain": [
         [
-            "only",
-            5
-        ],
-        [
             "actually",
-            3
+            2
         ],
         [
             "probably",
-            2
+            1
+        ],
+        [
+            "legally",
+            1
         ],
         [
             "consistently",
-            2
+            1
         ],
         [
-            "actively",
-            2
+            "merely",
+            1
         ],
         [
-            "perfectly",
-            2
+            "regularly",
+            1
+        ],
+        [
+            "carefully",
+            1
+        ],
+        [
+            "simultaneously",
+            1
+        ],
+        [
+            "oddly",
+            1
         ],
         [
             "properly",
-            2
-        ],
-        [
-            "rapidly",
-            1
-        ],
-        [
-            "certainly",
-            1
-        ],
-        [
-            "physically",
             1
         ]
     ],
     "mention": [
-        [
-            "only",
-            29
-        ],
-        [
-            "really",
-            9
-        ],
         [
             "barely",
             7
         ],
         [
             "specifically",
-            7
-        ],
-        [
-            "certainly",
             6
         ],
         [
@@ -877,7 +595,7 @@
             5
         ],
         [
-            "recently",
+            "only",
             5
         ],
         [
@@ -885,407 +603,117 @@
             4
         ],
         [
-            "hardly",
-            4
-        ],
-        [
-            "finally",
-            4
-        ]
-    ],
-    "opine": [
-        [
-            "similarly",
-            1
-        ],
-        [
-            "woderfully",
-            1
-        ],
-        [
-            "previously",
-            1
-        ],
-        [
-            "successfully",
-            1
-        ],
-        [
-            "utterly",
-            1
-        ],
-        [
-            "suddenly",
-            1
-        ],
-        [
-            "finally",
-            1
-        ],
-        [
-            "separately",
-            1
-        ],
-        [
-            "frankly",
-            1
-        ]
-    ],
-    "perform": [
-        [
-            "poorly",
-            6
-        ],
-        [
-            "only",
-            4
-        ],
-        [
-            "badly",
-            4
-        ],
-        [
-            "brilliantly",
+            "certainly",
             3
         ],
         [
-            "adequately",
+            "rarely",
+            3
+        ],
+        [
+            "hardly",
+            3
+        ],
+        [
+            "finally",
+            3
+        ],
+        [
+            "conspicuously",
             2
-        ],
-        [
-            "lately",
-            2
-        ],
-        [
-            "tacitly",
-            2
-        ],
-        [
-            "traditionally",
-            2
-        ],
-        [
-            "heroically",
-            2
-        ],
-        [
-            "expertly",
-            1
-        ]
-    ],
-    "pronounce": [
-        [
-            "ostentatiously",
-            1
-        ],
-        [
-            "routinely",
-            1
-        ],
-        [
-            "substantively",
-            1
-        ],
-        [
-            "nearly",
-            1
-        ],
-        [
-            "quickly",
-            1
-        ],
-        [
-            "similarly",
-            1
-        ],
-        [
-            "officially",
-            1
-        ],
-        [
-            "suddenly",
-            1
-        ],
-        [
-            "only",
-            1
-        ],
-        [
-            "certainly",
-            1
-        ]
-    ],
-    "rap": [
-        [
-            "particularly",
-            1
-        ],
-        [
-            "usually",
-            1
         ]
     ],
     "read": [
         [
             "actually",
-            28
-        ],
-        [
-            "simply",
-            13
+            18
         ],
         [
             "correctly",
-            11
-        ],
-        [
-            "recently",
-            11
-        ],
-        [
-            "really",
-            11
+            10
         ],
         [
             "apparently",
-            11
-        ],
-        [
-            "only",
             10
         ],
         [
-            "especially",
-            10
-        ],
-        [
-            "carefully",
-            8
+            "simply",
+            7
         ],
         [
             "widely",
             7
-        ]
-    ],
-    "recite": [
-        [
-            "sharply",
-            4
         ],
         [
-            "simply",
-            3
+            "recently",
+            6
         ],
-        [
-            "invariably",
-            2
-        ],
-        [
-            "robotically",
-            1
-        ],
-        [
-            "rapidly",
-            1
-        ],
-        [
-            "properly",
-            1
-        ]
-    ],
-    "rehearse": [
         [
             "carefully",
-            2
+            6
         ],
         [
-            "thoroughly",
-            1
-        ]
-    ],
-    "relate": [
-        [
-            "directly",
-            14
+            "regularly",
+            6
         ],
         [
-            "tangentially",
-            4
-        ],
-        [
-            "closely",
-            3
-        ],
-        [
-            "specifically",
-            3
-        ],
-        [
-            "especially",
-            2
+            "really",
+            5
         ],
         [
             "probably",
-            2
-        ],
-        [
-            "only",
-            2
-        ],
-        [
-            "actually",
-            2
-        ],
-        [
-            "recently",
-            2
-        ],
-        [
-            "clearly",
-            2
-        ]
-    ],
-    "remark": [
-        [
-            "really",
-            4
-        ],
-        [
-            "recently",
-            2
-        ],
-        [
-            "surely",
-            2
-        ],
-        [
-            "tartly",
-            1
-        ],
-        [
-            "finally",
-            1
-        ],
-        [
-            "essentially",
-            1
-        ],
-        [
-            "only",
-            1
-        ],
-        [
-            "consequently",
-            1
-        ],
-        [
-            "bitterly",
-            1
-        ],
-        [
-            "famously",
-            1
-        ]
-    ],
-    "render": [
-        [
-            "nearly",
-            2
-        ],
-        [
-            "immediately",
-            2
-        ],
-        [
-            "practically",
-            1
-        ],
-        [
-            "effectively",
-            1
-        ],
-        [
-            "vaguely",
-            1
-        ],
-        [
-            "properly",
-            1
-        ],
-        [
-            "politically",
-            1
-        ],
-        [
-            "artfully",
-            1
-        ],
-        [
-            "typically",
-            1
-        ],
-        [
-            "essentially",
-            1
+            5
         ]
     ],
     "repeat": [
         [
-            "only",
-            6
-        ],
-        [
             "merely",
-            5
-        ],
-        [
-            "actually",
             4
-        ],
-        [
-            "dutifully",
-            3
-        ],
-        [
-            "simply",
-            3
         ],
         [
             "frequently",
             3
         ],
         [
-            "clearly",
-            2
-        ],
-        [
-            "nearly",
-            2
-        ],
-        [
-            "probably",
+            "only",
             2
         ],
         [
             "unfortunately",
             2
+        ],
+        [
+            "dutifully",
+            2
+        ],
+        [
+            "endlessly",
+            2
+        ],
+        [
+            "recently",
+            2
+        ],
+        [
+            "loudly",
+            2
+        ],
+        [
+            "simply",
+            2
+        ],
+        [
+            "clearly",
+            1
         ]
     ],
     "reply": [
         [
             "simply",
-            12
+            9
         ],
         [
             "only",
-            6
-        ],
-        [
-            "really",
-            4
-        ],
-        [
-            "highly",
             3
         ],
         [
@@ -1293,231 +721,209 @@
             3
         ],
         [
-            "recently",
-            2
-        ],
-        [
-            "actually",
-            2
-        ],
-        [
-            "probably",
-            2
-        ],
-        [
-            "exactly",
-            2
-        ],
-        [
             "sarcastically",
             2
+        ],
+        [
+            "flatly",
+            2
+        ],
+        [
+            "immediately",
+            2
+        ],
+        [
+            "dismissively",
+            2
+        ],
+        [
+            "usually",
+            1
+        ],
+        [
+            "sternly",
+            1
+        ],
+        [
+            "pointedly",
+            1
         ]
     ],
     "report": [
         [
-            "only",
-            40
-        ],
-        [
             "recently",
-            40
-        ],
-        [
-            "previously",
-            23
-        ],
-        [
-            "actually",
-            21
+            30
         ],
         [
             "widely",
-            20
+            17
         ],
         [
-            "nearly",
-            14
-        ],
-        [
-            "directly",
+            "previously",
             13
+        ],
+        [
+            "breathlessly",
+            10
         ],
         [
             "finally",
-            13
+            8
         ],
         [
-            "apparently",
-            12
+            "directly",
+            7
         ],
         [
-            "early",
-            11
+            "only",
+            6
+        ],
+        [
+            "separately",
+            6
+        ],
+        [
+            "simply",
+            5
+        ],
+        [
+            "gleefully",
+            5
         ]
     ],
     "respond": [
         [
-            "only",
-            16
-        ],
-        [
             "quickly",
-            15
-        ],
-        [
-            "actually",
             12
         ],
         [
             "immediately",
-            11
-        ],
-        [
-            "simply",
-            9
-        ],
-        [
-            "really",
-            7
-        ],
-        [
-            "aggressively",
-            7
+            8
         ],
         [
             "forcefully",
             6
         ],
         [
-            "publicly",
+            "aggressively",
             6
-        ],
-        [
-            "directly",
-            5
-        ]
-    ],
-    "reveal": [
-        [
-            "only",
-            15
-        ],
-        [
-            "recently",
-            13
-        ],
-        [
-            "really",
-            9
-        ],
-        [
-            "truly",
-            7
-        ],
-        [
-            "previously",
-            5
-        ],
-        [
-            "nearly",
-            5
         ],
         [
             "finally",
             5
         ],
         [
-            "regularly",
+            "simply",
             4
         ],
         [
-            "exactly",
-            4
+            "promptly",
+            3
         ],
         [
-            "actually",
-            4
+            "personally",
+            3
+        ],
+        [
+            "directly",
+            3
+        ],
+        [
+            "effectively",
+            3
         ]
     ],
-    "rumor": [
+    "reveal": [
         [
-            "actually",
-            1
-        ],
-        [
-            "obviously",
-            1
+            "recently",
+            10
         ],
         [
             "publicly",
-            1
+            3
         ],
         [
-            "namely",
-            1
+            "unfortunately",
+            3
         ],
         [
-            "widely",
-            1
+            "unwittingly",
+            2
+        ],
+        [
+            "eventually",
+            2
+        ],
+        [
+            "only",
+            2
+        ],
+        [
+            "simply",
+            2
+        ],
+        [
+            "finally",
+            2
+        ],
+        [
+            "officially",
+            2
+        ],
+        [
+            "accidentally",
+            2
         ]
     ],
     "say": [
         [
-            "only",
-            445
-        ],
-        [
-            "really",
-            260
-        ],
-        [
             "actually",
-            207
-        ],
-        [
-            "simply",
-            136
+            75
         ],
         [
             "recently",
-            123
-        ],
-        [
-            "probably",
-            120
-        ],
-        [
-            "exactly",
-            98
+            73
         ],
         [
             "repeatedly",
-            78
+            55
+        ],
+        [
+            "simply",
+            46
+        ],
+        [
+            "explicitly",
+            39
         ],
         [
             "publicly",
-            76
+            36
         ],
         [
-            "absolutely",
-            69
-        ]
-    ],
-    "speak": [
+            "basically",
+            34
+        ],
         [
-            "directly",
-            37
+            "really",
+            31
         ],
         [
             "only",
             25
         ],
         [
-            "publicly",
+            "previously",
             22
+        ]
+    ],
+    "speak": [
+        [
+            "directly",
+            33
         ],
         [
-            "actually",
+            "publicly",
             15
         ],
         [
@@ -1525,7 +931,7 @@
             12
         ],
         [
-            "recently",
+            "only",
             11
         ],
         [
@@ -1533,7 +939,7 @@
             9
         ],
         [
-            "highly",
+            "recently",
             8
         ],
         [
@@ -1541,8 +947,16 @@
             8
         ],
         [
-            "really",
+            "openly",
             8
+        ],
+        [
+            "politically",
+            7
+        ],
+        [
+            "loudly",
+            7
         ]
     ],
     "state": [
@@ -1552,164 +966,126 @@
         ],
         [
             "clearly",
-            20
-        ],
-        [
-            "only",
-            14
-        ],
-        [
-            "unequivocally",
-            13
+            19
         ],
         [
             "explicitly",
             13
         ],
         [
-            "recently",
-            9
-        ],
-        [
-            "previously",
-            8
-        ],
-        [
-            "simply",
-            8
+            "unequivocally",
+            12
         ],
         [
             "bluntly",
             7
         ],
         [
+            "simply",
+            7
+        ],
+        [
             "flatly",
             7
+        ],
+        [
+            "previously",
+            6
+        ],
+        [
+            "recently",
+            6
+        ],
+        [
+            "repeatedly",
+            5
         ]
     ],
     "suggest": [
         [
             "strongly",
-            34
-        ],
-        [
-            "only",
             31
         ],
         [
-            "really",
-            18
-        ],
-        [
-            "actually",
-            16
-        ],
-        [
             "falsely",
-            11
-        ],
-        [
-            "directly",
-            10
-        ],
-        [
-            "probably",
-            10
-        ],
-        [
-            "certainly",
-            9
-        ],
-        [
-            "simply",
             8
         ],
         [
+            "certainly",
+            6
+        ],
+        [
+            "seriously",
+            4
+        ],
+        [
             "recently",
-            7
-        ]
-    ],
-    "tell": [
+            4
+        ],
+        [
+            "clearly",
+            3
+        ],
+        [
+            "publicly",
+            2
+        ],
         [
             "only",
-            83
+            2
         ],
-        [
-            "really",
-            71
-        ],
-        [
-            "actually",
-            41
-        ],
-        [
-            "exactly",
-            34
-        ],
-        [
-            "recently",
-            34
-        ],
-        [
-            "probably",
-            30
-        ],
-        [
-            "simply",
-            23
-        ],
-        [
-            "privately",
-            22
-        ],
-        [
-            "personally",
-            19
-        ],
-        [
-            "absolutely",
-            18
-        ]
-    ],
-    "utter": [
         [
             "actually",
             2
         ],
         [
-            "really",
-            1
+            "finally",
+            2
+        ]
+    ],
+    "tell": [
+        [
+            "recently",
+            25
         ],
         [
-            "verbally",
-            1
+            "reportedly",
+            14
         ],
         [
-            "deliciously",
-            1
-        ],
-        [
-            "casually",
-            1
-        ],
-        [
-            "pejoratively",
-            1
+            "privately",
+            12
         ],
         [
             "only",
-            1
+            9
         ],
         [
             "basically",
-            1
+            9
+        ],
+        [
+            "finally",
+            9
+        ],
+        [
+            "repeatedly",
+            8
+        ],
+        [
+            "actually",
+            8
+        ],
+        [
+            "really",
+            8
+        ],
+        [
+            "specifically",
+            8
         ]
     ],
     "voice": [
-        [
-            "recently",
-            3
-        ],
         [
             "openly",
             2
@@ -1719,15 +1095,7 @@
             1
         ],
         [
-            "apparently",
-            1
-        ],
-        [
-            "increasingly",
-            1
-        ],
-        [
-            "palpably",
+            "recently",
             1
         ],
         [
@@ -1735,15 +1103,27 @@
             1
         ],
         [
-            "quickly",
+            "infamously",
             1
         ],
         [
-            "nearly",
+            "consistently",
             1
         ],
         [
-            "hastily",
+            "reportedly",
+            1
+        ],
+        [
+            "rarely",
+            1
+        ],
+        [
+            "explicitly",
+            1
+        ],
+        [
+            "repeatedly",
             1
         ]
     ]
