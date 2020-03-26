@@ -37,3 +37,4 @@ word_bigram = dict(OrderedDict(sorted(word_bigram.items(), key=itemgetter(1), re
 with open('../students/BohdanYatsyna/homework2/task-02-3-2-statistic.txt', 'w') as f:
     for key, value in word_bigram.items():
         print('{}: {}'.format(value, key), file=f)
+
