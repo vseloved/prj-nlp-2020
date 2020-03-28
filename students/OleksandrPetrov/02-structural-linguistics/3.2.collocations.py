@@ -25,19 +25,13 @@ def find_collocations(doc):
         for w in s.words:
             if w.upos != 'ADJ':
                 continue
-            try:
-                head = s.words[w.head]
-            except IndexError:
-                # didn't come out how to resolve these errors
-                print('Error:', w.pretty_print())
+            head = s.words[w.head - 1]
+            if head.upos not in ('NOUN', 'PROPN'):
                 continue
-            else:
-                if head.upos not in ('NOUN', 'PROPN'):
-                    continue
-                feats = parse_feats(head.feats)
-                if feats.get('Animacy') != 'Anim':
-                    continue
-                yield (w.lemma, head.lemma)
+            feats = parse_feats(head.feats)
+            if feats.get('Animacy') != 'Anim':
+                continue
+            yield (w.lemma, head.lemma)
 
 
 def load_uk_text_lines():
