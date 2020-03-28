@@ -125,7 +125,7 @@ def process_samples(nlp, samples):
     def print_ratio(name, classifier_fn, items):
         n = len(items)
         nc = sum(1 for __ in filter(classifier_fn, items))
-        print('{}: {} from {}, ratio: {}'.format(name, nc, n, nc/n))
+        print('{}: {} from {}, ratio: {}'.format(name, nc, n, nc / n))
 
     print('=' * 80)
 
