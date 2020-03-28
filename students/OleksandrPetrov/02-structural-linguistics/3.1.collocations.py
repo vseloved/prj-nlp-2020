@@ -6,6 +6,7 @@ import collections
 import time
 import datetime as dt
 import itertools
+import re
 
 import spacy
 
@@ -58,15 +59,15 @@ def log_progress_iterator(name, n, iterable):
 def process_samples(nlp, interesting_verbs, samples):
 
     stats = collections.Counter()
-    docs = nlp.pipe(samples, batch_size=1000, n_process=6)
+    docs = nlp.pipe(samples, batch_size=10000, n_process=6)
     items = zip(samples, docs)
-    items = log_progress_iterator('nlp', 1000, items)
+    items = log_progress_iterator('nlp', 10000, items)
     for input_text, doc in items:
         events = find_collocations(interesting_verbs, doc)
         stats.update(events)
-    stats = dict(stats)
 
     stats = list(stats.items())
+    print('collocations found:', len(stats))
     # print(stats)
 
     print('=' * 80)
@@ -83,8 +84,8 @@ def process_samples(nlp, interesting_verbs, samples):
     for verb, group_it in itertools.groupby(stats, grouping_key):
         print()
         verb_stats_text = ', '.join(
-            '({}, {})'.format(s[0][1], s[1])
-            for s in group_it
+            '({}, {})'.format(adv, n)
+            for (verb, adv), n in group_it
         )
         print('{}: {}'.format(verb, verb_stats_text))
 
@@ -92,6 +93,7 @@ def process_samples(nlp, interesting_verbs, samples):
 def main():
     # nlp = spacy.load('en_core_web_sm')
     nlp = spacy.load('en_core_web_md')
+    print('Model loaded.')
 
     INTERESTING_VERBS = (
         'say',
@@ -110,6 +112,18 @@ def main():
 
     blog_samples = load_blog_texts()
     # blog_samples = blog_samples[:10000]
+
+    have_word_with_ly_ending_pattern = re.compile(r'ly\b')
+
+    def basic_preprocessing_filter(line):
+        search_result = have_word_with_ly_ending_pattern.search(line)
+        return search_result is not None
+
+    n = len(blog_samples)
+    blog_samples = [s for s in blog_samples if basic_preprocessing_filter(s)]
+    nf = len(blog_samples)
+    print('before filter:', n)
+    print(' after filter:', nf)
 
     process_samples(nlp, interesting_verbs, blog_samples)
 
