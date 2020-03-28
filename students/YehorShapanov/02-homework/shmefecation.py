@@ -1,6 +1,6 @@
 def find_vowel(word):
     for i,c in enumerate(word):
-        if c.lower() not in "bcdfghjklmnpqrstvwxyz":
+        if c.lower() in "aeuio":
             return i
     return -1
 
