@@ -12,6 +12,13 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 DATA_DIR = os.path.join(HERE, '..', '..', '..', 'tasks', '02-structural-linguistics', 'data')
 
 
+def parse_feats(feats_str):
+    return dict(
+        assignment.split('=', maxsplit=1)
+        for assignment in feats_str.split('|')
+    )
+
+
 def find_collocations(doc):
 
     for s in doc.sentences:
@@ -25,7 +32,10 @@ def find_collocations(doc):
                 print('Error:', w.pretty_print())
                 continue
             else:
-                if head.upos != 'PROPN':
+                if head.upos not in ('NOUN', 'PROPN'):
+                    continue
+                feats = parse_feats(head.feats)
+                if feats.get('Animacy') != 'Anim':
                     continue
                 yield (w.lemma, head.lemma)
 
@@ -44,11 +54,20 @@ def load_uk_text_lines():
 
 def process(doc):
 
-    stats = collections.Counter(find_collocations(doc))
+    collocations = find_collocations(doc)
+
+    stats = collections.Counter(collocations)
+    items = list(stats.items())
+
+    def sorting_key_fn(s):
+        (adj, anim_name), n = s
+        return (-n, anim_name, adj)
+
+    items = sorted(items, key=sorting_key_fn)
 
     print('=' * 80)
-    for (adj, propn), n in stats.most_common():
-        print('{}: {} {}'.format(n, adj, propn))
+    for (adj, anim_name), n in items:
+        print('{}: {} {}'.format(n, adj, anim_name))
 
 
 def main():
