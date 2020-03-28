@@ -50,10 +50,10 @@ def log_progress_iterator(name, n, iterable):
         if i % n == 0:
             current = time.monotonic()
             elapsed = dt.timedelta(seconds=(current - beg))
-            print(prefix + '... items processed:', i, 'elapsed:',elapsed)
+            print(prefix + '... items processed:', i, 'elapsed:', elapsed)
     end = time.monotonic()
     elapsed = dt.timedelta(seconds=(end - beg))
-    print(prefix + '... processing finished:', i, 'time:',elapsed)
+    print(prefix + '... processing finished:', i, 'time:', elapsed)
 
 
 def process_samples(nlp, interesting_verbs, samples):

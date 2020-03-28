@@ -176,7 +176,8 @@ def process_samples(nlp, samples):
             print('  Output:', headline)
             print('Expected:', expected_result)
             print()
-    print('Total samples: {}, Errors: {}, Success ratio: {}'.format(total, errors, (total-errors)/total))
+    success_ratio = (total - errors) / total
+    print('Total samples: {}, Errors: {}, Success ratio: {}'.format(total, errors, success_ratio))
 
 
 def main():
