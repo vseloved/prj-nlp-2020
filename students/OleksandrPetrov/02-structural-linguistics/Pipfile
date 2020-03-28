@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[requires]
+python_full_version = "3.8.2"
+
+[packages]
+spacy = "==2.2.4"
+en-core-web-sm = {file = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz"}
+en-core-web-md = {file = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-2.2.5/en_core_web_md-2.2.5.tar.gz"}
+spacy-wordnet = "==0.0.4"
+stanza = "==1.0.0"
+matplotlib = "==3.2.1"
+
+[dev-packages]
+pycodestyle = "*"
