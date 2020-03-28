@@ -5,9 +5,13 @@ from nltk.stem.porter import *
 from spacy.lemmatizer import Lemmatizer
 from spacy.lookups import Lookups
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_md")
 stemmer = PorterStemmer()
 def penn_to_c(tag):
+    if tag=="ADJ":
+        return tag
+    if tag=="ADV":
+        return tag
     if tag.startswith('J'):
         return "ADJ"
     elif tag.startswith('N'):
@@ -35,10 +39,10 @@ def get_sentiment(word,pos):
 
 def has_comparatives(doc):
     for token in doc:
-        _tag = penn_to_c(token.pos_)
-        if token.ent_type_ == '' and _tag in ("ADJ", "ADV"):
-            ending = token.text[-2:] 
-            if ending=="er" or ending=="st":
+        if token.ent_type_ == '':
+            if token.pos_=="ADJ" and (token.tag_=="JJR" or token.tag_=="JJS"):
+                return True
+            if token.pos_=="ADV" and (token.tag_=="RBR" or token.tag_=="RBS"):
                 return True
     return False
 
@@ -55,8 +59,6 @@ def validate_sentense(s):
     has_named_entities = len(doc.ents)>0
     is_positive_or_negative = score>0.5 or score<-0.5
     has_degrees_of_comparison = has_comparatives(doc)
-    if has_degrees_of_comparison:
-        print("Has degrees")
     return [has_named_entities, is_positive_or_negative, has_degrees_of_comparison]
 
 
