@@ -130,18 +130,6 @@ def generate_annotations(lines, suitable_indices, num_annotations):
     return all_annotations_by_id
 
 
-def cohens_kappa(a, b, c, d=0):
-    sum_all = a + b + c + d
-    p_o = (a + d) / (sum_all)
-
-    p_first = ((a + b) / sum_all) * ((a + c) / sum_all)
-    p_second = ((c + d) / sum_all) * ((b + d) / sum_all)
-    p_e = p_first + p_second
-
-    kappa = (p_o - p_e) / (1 - p_e)
-    return kappa
-
-
 def jaccard_coef(set_A, set_B):
     union_len = len(set_A.union(set_B))
     if union_len == 0:
@@ -165,19 +153,10 @@ def compare_two_annotators(first_annotations, second_annotations, annotation_typ
     else:
         first_set = make_set_of_annotations_by_type(first_annotations, annotation_type)
         second_set = make_set_of_annotations_by_type(second_annotations, annotation_type)
-    # num_agreed = len(first_set.intersection(second_set))
-    # num_first_only = len(first_set - second_set)
-    # num_second_only = len(second_set - first_set)
-    #
-    # return cohens_kappa(
-    #     a=num_agreed,
-    #     b=num_first_only,
-    #     c=num_second_only,
-    #     d=num_agreed
-    # )
     return jaccard_coef(first_set, second_set)
 
 if __name__=='__main__':
+    result_output = open('annotators_output.txt', 'w')
     lines = read_file(path)
     suitable_indices, num_annotations = extract_suitable_sentence_line_nums(lines)
     all_annotations_by_id = generate_annotations(lines, suitable_indices, num_annotations)
@@ -193,7 +172,10 @@ if __name__=='__main__':
                 )
                 metrics.append(metric)
                 if annot_type == 'ALL':
-                    print (f'Jaccard coef for {first_annontator_id} and {second_annotator_id} is {metric:0.3f}')
-        print(f'For error category "{annot_category}" mean Jaccard coef is {np.mean(metrics)}')
+                    print (
+                        f'Jaccard coef for {first_annontator_id} and {second_annotator_id} is {metric:0.3f}',
+                        file=result_output)
+        print(f'For error category "{annot_category}" mean Jaccard coef is {np.mean(metrics)}', file=result_output)
+    result_output.close()
 
 

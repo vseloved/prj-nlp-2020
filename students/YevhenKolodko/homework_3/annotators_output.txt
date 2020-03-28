@@ -1,0 +1,39 @@
+Jaccard coef for 0 and 1 is 0.162
+Jaccard coef for 0 and 2 is 0.156
+Jaccard coef for 0 and 3 is 0.052
+Jaccard coef for 0 and 4 is 0.008
+Jaccard coef for 1 and 2 is 0.154
+Jaccard coef for 1 and 3 is 0.051
+Jaccard coef for 1 and 4 is 0.005
+Jaccard coef for 2 and 3 is 0.127
+Jaccard coef for 2 and 4 is 0.012
+Jaccard coef for 3 and 4 is 0.050
+For error category "All error types" mean Jaccard coef is 0.05
+For error category "Verb tense" mean Jaccard coef is 0.0
+For error category "Verb modal" mean Jaccard coef is 0.0
+For error category "Missing verb" mean Jaccard coef is 0.0
+For error category "Verb form" mean Jaccard coef is 0.2
+For error category "Subject-verb-agreement" mean Jaccard coef is 0.0
+For error category "Article or Determiner" mean Jaccard coef is 0.047619047619047616
+For error category "Noun number" mean Jaccard coef is 0.043478260869565216
+For error category "Noun possesive" mean Jaccard coef is 0.0
+For error category "Pronoun form" mean Jaccard coef is 0.0
+For error category "Pronoun reference" mean Jaccard coef is 0.0
+For error category "Preposition" mean Jaccard coef is 0.16666666666666666
+For error category "Wrong collocation/idiom" mean Jaccard coef is 0.06382978723404255
+For error category "Acronyms" mean Jaccard coef is nan
+For error category "Word form" mean Jaccard coef is 0.0
+For error category "Tone" mean Jaccard coef is 0.0
+For error category "Runons, comma splice" mean Jaccard coef is 0.0
+For error category "Dangling modifier" mean Jaccard coef is nan
+For error category "Parallelism" mean Jaccard coef is 0.0
+For error category "Fragment" mean Jaccard coef is nan
+For error category "Subordinate clause" mean Jaccard coef is 0.0
+For error category "Incorrect sentence form" mean Jaccard coef is 0.0
+For error category "Adverb/adjective position" mean Jaccard coef is nan
+For error category "Link word/phrases" mean Jaccard coef is 0.0
+For error category "Punctuation, capitalization, spelling, typos" mean Jaccard coef is 0.025
+For error category "Local redundancy" mean Jaccard coef is 0.043478260869565216
+For error category "Citation" mean Jaccard coef is nan
+For error category "Other errors" mean Jaccard coef is 0.0
+For error category "Unclear meaning (cannot be corrected)" mean Jaccard coef is 0.0
