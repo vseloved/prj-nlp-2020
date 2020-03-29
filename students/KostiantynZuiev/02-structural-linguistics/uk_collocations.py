@@ -16,7 +16,7 @@ if __name__ == "__main__":
                     try:
                         possible_noun = morph.parse(tokens[i+1])
                         if "NOUN" in possible_noun[0].tag and "anim" in possible_noun[0].tag:
-                            phrase = f'{token} {tokens[i+1]}'.lower()
+                            phrase = f'{possible_adj[0].normal_form} {possible_noun[0].normal_form}'.lower()
                             if result_dict.get(phrase) is None:
                                 result_dict[phrase] = 1
                             else:

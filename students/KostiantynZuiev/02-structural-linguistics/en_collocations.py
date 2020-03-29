@@ -1,3 +1,4 @@
+import re
 import spacy
 
 nlp = spacy.load('en_core_web_md')
@@ -24,7 +25,7 @@ def collect_stat(text, result_dict):
             parent_verb = token
             if result_dict.get(parent_verb.lemma_) is None:
                 result_dict[parent_verb.lemma_] = {}
-            for t in doc:
+            for t in token.children:
                 if t.pos_ == "ADV" and t.text.endswith("ly") and t.head == parent_verb:
                     if result_dict[parent_verb.lemma_].get(t.text) is None:
                         result_dict[parent_verb.lemma_][t.text] = 1
@@ -52,9 +53,10 @@ if __name__ == "__main__":
         result_dict = {}
         i = 0
         for line in f:
-            result_dict = collect_stat(line, result_dict)
-            i += 1
-            print(i)
+            if re.search(r'.+?ly\b', line):
+                result_dict = collect_stat(line, result_dict)
+                i += 1
+                print(i)
         results = format_result(result_dict)
         with open('en_collocations_results.txt', 'w') as res_file:
             for result in results:

@@ -37,7 +37,8 @@ def format_headline(text):
             token_text = token.text.capitalize() if len(token.text) > 3 else token.text
         
         if token.pos_ in ['NOUN', 'PROPN', "PRON", "ADJ", "ADV"]:
-            token_text = token_text.capitalize()
+            if not token_text.isupper() and token_text != "n't":
+                token_text = token_text.capitalize()
         elif token.pos_ == "SCONJ" and token.dep_ != "prep":
             token_text = token_text.capitalize()
         elif token.pos_ == "DET" and token.tag_ == "PRP$":
