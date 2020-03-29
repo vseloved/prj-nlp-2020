@@ -1,2 +1,2 @@
-Test set result: 71/100
-Examiner headlines result: 588/5000
+Test set result: 75/100
+Examiner headlines result: 635/5000
