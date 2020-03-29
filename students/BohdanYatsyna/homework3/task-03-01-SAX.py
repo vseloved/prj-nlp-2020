@@ -4,6 +4,7 @@ from tqdm import tqdm
 import re
 import mwparserfromhell
 
+
 class WikiXmlHandler(xml.sax.handler.ContentHandler):
     """Content handler for Wiki XML data using SAX"""
 
@@ -19,8 +20,6 @@ class WikiXmlHandler(xml.sax.handler.ContentHandler):
         self.re_words = re.compile('(?<=\[\[)\w{1,}(?=\]\])')
         self.re_garbadge = re.compile('MediaWiki:')
 
-
-
     def characters(self, content):
         """Characters between opening and closing tags"""
         if self._current_tag:
@@ -34,9 +33,7 @@ class WikiXmlHandler(xml.sax.handler.ContentHandler):
                     self.is_synonym = False
                     return
                 synonyms = self.re_words.findall(content)
-                if len(synonyms): self._pages.update({self._values['title']:synonyms})
-
-
+                if len(synonyms): self._pages.update({self._values['title']: synonyms})
 
     def startElement(self, name, attrs):
         """Opening tag of element"""
@@ -52,6 +49,7 @@ class WikiXmlHandler(xml.sax.handler.ContentHandler):
         if name == 'page':
             self.is_synonym = False
 
+
 # Object for handling xml
 handler = WikiXmlHandler()
 # Parsing object
@@ -59,15 +57,12 @@ parser = xml.sax.make_parser()
 parser.setContentHandler(handler)
 
 # Iteratively process file
-data_path ="/Users/bogdan/Downloads/dewiktionary-20200301-pages-articles-multistream.xml"
+data_path = "/Users/bogdan/Downloads/dewiktionary-20200301-pages-articles-multistream.xml"
 
-num_lines = sum(1 for line in open(data_path,'r'))
+num_lines = sum(1 for line in open(data_path, 'r'))
 with open(data_path) as file:
-    for line in tqdm(file,total=num_lines):
+    for line in tqdm(file, total=num_lines):
         parser.feed(line)
-
-        #Stop when 3 articles have been found
-        #if len(handler._pages) > 2:
 
 with open('task-03-SAX.txt', 'w') as f:
     for key, value in handler._pages.items():
