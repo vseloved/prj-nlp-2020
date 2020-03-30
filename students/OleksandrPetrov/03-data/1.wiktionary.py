@@ -241,7 +241,7 @@ def process_wiktionary_arhive(filepath):
     lang = filepath.name[:2]
 
     if lang not in SYNONYMS_EXTRACTORS:
-        log.warning('language [%s] not supported, file skipped')
+        log.warning('language [%s] not supported, file skipped', lang)
         return
 
     extract_synonyms = SYNONYMS_EXTRACTORS[lang]
