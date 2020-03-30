@@ -1,9 +1,6 @@
 import xml.sax
-import subprocess
 from tqdm import tqdm
 import re
-import mwparserfromhell
-
 
 class WikiXmlHandler(xml.sax.handler.ContentHandler):
     """Content handler for Wiki XML data using SAX"""
