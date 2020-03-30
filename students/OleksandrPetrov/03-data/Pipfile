@@ -7,6 +7,10 @@ verify_ssl = true
 python_full_version = "3.8.2"
 
 [packages]
+wikitextparser = "==0.34.0"
+ruamel-yaml = "==0.16.10"
+coloredlogs = "==14.0"
+pycld2 = "==0.41"
 
 [dev-packages]
 pycodestyle = "*"
