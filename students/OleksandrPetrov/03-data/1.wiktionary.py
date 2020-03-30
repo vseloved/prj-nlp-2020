@@ -216,21 +216,21 @@ def extract_synonyms_de(page):
     return synonym_rows
 
 
-def extract_synonyms_ru(page):
-    log.warning('page: %s', page)
-    r = wikitextparser.parse(page.text)
-    for s in r.sections:
-        # if 'Синоним' not in s.title and 'Значен' not in s.title:
-        #     continue
-        log.debug('section: %s \n%s', s.title, s.contents)
-    # for t in r.templates:
-    #     log.debug('template: %s', t.name)
-    return []
+# def extract_synonyms_ru(page):
+#     log.warning('page: %s', page)
+#     r = wikitextparser.parse(page.text)
+#     for s in r.sections:
+#         # if 'Синоним' not in s.title and 'Значен' not in s.title:
+#         #     continue
+#         log.debug('section: %s \n%s', s.title, s.contents)
+#     # for t in r.templates:
+#     #     log.debug('template: %s', t.name)
+#     return []
 
 
 SYNONYMS_EXTRACTORS = {
     'de': extract_synonyms_de,
-    'ru': extract_synonyms_ru,
+    # 'ru': extract_synonyms_ru,
 }
 
 
