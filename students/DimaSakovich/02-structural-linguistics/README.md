@@ -53,3 +53,6 @@ Notebook with results [3-collocations.ipynb](3-collocations.ipynb)
 
 * English result ``collocations_en.json``
 * Ukrainian result ``collocations_uk.json``
+
+**Important!!!**
+Чомусь ``json`` не зберігає корректно весь ``dict``, тому краще перезапустити самостійно, щоб впевнитись в результаті
