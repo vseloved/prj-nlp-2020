@@ -1,0 +1,37 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX res: <http://dbpedia.org/resource/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT DISTINCT
+     ?member ?former_member
+     ?album_uri ?album
+     ?release_date
+     ?type
+     ?label
+WHERE {
+       ?album_uri dbo:artist res:Katatonia .
+       ?album_uri foaf:name ?album .
+       ?album_uri dbo:releaseDate ?release_date .
+       values ?band_uri { <http://dbpedia.org/resource/Katatonia> } .
+       ?band_uri dbo:activeYearsStartYear ?from .
+       ?band_uri dbo:bandMember ?member_uri .
+       ?member_uri rdfs:label ?member .
+       ?band_uri dbo:formerBandMember ?former_member_uri .
+       ?former_member_uri rdfs:label ?former_member .
+       
+       OPTIONAL {
+         ?album_uri dbo:recordLabel ?label_uri .
+         ?label_uri rdfs:label ?label .
+         FILTER (lang(?label) = 'en') .
+       }
+         OPTIONAL {
+         ?album_uri dbp:type ?type_uri .
+         BIND(REPLACE(str(?type_uri), "(\\w+).*", "$1") as ?type) .
+       }
+       
+       FILTER (lang(?member) = 'en') .
+       FILTER (lang(?former_member) = 'en') .
+}
+
+ORDER BY ?release_date
