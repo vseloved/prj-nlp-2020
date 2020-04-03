@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import logging
-import os
 import io
 import pathlib
 import bz2
@@ -21,8 +20,11 @@ import utils
 
 log = logging.getLogger('wiktionary')
 
-HERE = os.path.abspath(os.path.dirname(__file__))
-DATA_DIR = os.path.join(HERE, 'wikidumps')
+THIS_FILE = pathlib.Path(__file__)
+THIS_DIR = THIS_FILE.parent
+DATA_DIR = THIS_DIR.joinpath('wikidumps')
+OUT_DIR = THIS_DIR.joinpath('output')
+
 Mb = 10**6
 
 
@@ -236,7 +238,7 @@ SYNONYMS_EXTRACTORS = {
 
 def process_wiktionary_arhive(filepath):
 
-    log.info('input: %s', filepath.name)
+    log.info('input: %s', filepath)
 
     lang = filepath.name[:2]
 
@@ -303,12 +305,8 @@ def process_wiktionary_arhive(filepath):
     synonym_rows = sorted(synonym_rows, key=lambda r: r[0])
 
     outfilename = filepath.with_suffix('').with_suffix('.synonyms.jsonl').name
-    outdir = pathlib.Path('.').joinpath('output')
-    if not outdir.exists():
-        outdir.mkdir()
-    outfilepath = outdir.joinpath(outfilename)
+    outfilepath = OUT_DIR.joinpath(outfilename)
     log.info('output: %s', outfilepath)
-
     with io.open(outfilepath, 'wt', encoding='utf-8') as text_ostream:
         for sr in synonym_rows:
             sr_json = json.dumps(sr, ensure_ascii=False)
@@ -320,8 +318,7 @@ def process_wiktionary_arhive(filepath):
 
 def main():
     utils.custom_global_logging_setup()
-    logconfigpath = pathlib.Path(__file__).with_suffix('.logconfig.yaml')
-    utils.setup_logging(logconfigpath)
+    utils.setup_logging(THIS_FILE.with_suffix('.logconfig.yaml'))
 
     log.info('starting...')
 
@@ -329,7 +326,7 @@ def main():
         lang = filepath.name[:2]
         return lang == 'de'
 
-    filepaths = pathlib.Path(DATA_DIR).glob('*.bz2')
+    filepaths = DATA_DIR.glob('*.bz2')
 
     filepaths = filter(is_filepath_interesting, filepaths)
     filepaths = utils.log_iterator_progress('files', 1, filepaths, log=log)
