@@ -137,3 +137,36 @@ class BytesStreamFromChunks(io.RawIOBase):
 def make_stream_from_chunks(chunks_iterator):
     stream = BytesStreamFromChunks(chunks_iterator)
     return stream
+
+
+def arithmetic_mean(a):
+    return sum(a) / len(a)
+
+
+def harmonic_mean(a, b):
+    assert a >= 0 and b >= 0
+    if a == 0 or b == 0:
+        return 0
+    return 2 * a * b / (a + b)
+
+
+def median(a):
+    assert a
+    if len(a) == 1:
+        return a[0]
+    a = sorted(a)
+    m, r = divmod(len(a), 2)
+    if r == 1:
+        return a[m]
+    return arithmetic_mean((a[m], a[m + 1]))
+
+
+def f1_score(na, nb, nab):
+    assert nab >= 0
+    assert na >= nab and nb >= nab
+    pab, pba = 0, 0
+    if na != 0:
+        pba = nab / na
+    if nb != 0:
+        pab = nab / nb
+    return harmonic_mean(pab, pba)
