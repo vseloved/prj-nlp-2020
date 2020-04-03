@@ -198,11 +198,7 @@ def main():
             edits_a, edits_b = annotations[a], annotations[b]
             for t in pair_edits_transforms:
                 edits_a, edits_b = t(edits_a, edits_b)
-            if b == 4:
-                print('seq edits:', len(edits_b), edits_b)
             edits_a, edits_b = set(edits_a), set(edits_b)
-            if b == 4:
-                print('set edits:', len(edits_b), edits_b)
             edits_ab = edits_a & edits_b
             na, nb, nab = len(edits_a), len(edits_b), len(edits_ab)
             f1_score = utils.f1_score(na, nb, nab)
