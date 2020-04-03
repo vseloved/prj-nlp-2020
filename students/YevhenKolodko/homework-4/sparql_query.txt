@@ -1,0 +1,19 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX category: <http://dbpedia.org/resource/Category:>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT DISTINCT ?uri ?title ?year ?director_uri ?director_name ?actor_uri ?actor_name 
+WHERE {
+    ?uri dct:subject category:Best_Picture_Academy_Award_winners .
+    ?uri rdf:type <http://schema.org/Movie> .
+    ?uri <http://xmlns.com/foaf/0.1/name> ?title .
+    ?uri dbo:director ?director_uri .
+    ?director_uri foaf:name ?director_name .
+    OPTIONAL {?uri dct:subject ?cat . 
+              ?cat rdfs:label ?year . 
+              FILTER (regex (?year, '\\d+ films', 'i'))} .
+    ?uri dbo:starring ?actor_uri .
+    ?actor_uri foaf:name ?actor_name .
+}
