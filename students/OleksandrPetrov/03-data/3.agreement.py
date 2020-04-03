@@ -163,14 +163,21 @@ def main():
             return set(e.region.beg for e in edits_a if e.type is not None)
 
         positions_allowed = positions_saw(edits_a) & positions_saw(edits_b)
-        edits_a = [e for e in edits_a if e.region.beg in positions_allowed]
-        edits_b = [e for e in edits_b if e.region.beg in positions_allowed]
+        edits_a = [e for e in edits_a if e.region.beg in positions_allowed and e.type is not None]
+        edits_b = [e for e in edits_b if e.region.beg in positions_allowed and e.type is not None]
         return edits_a, edits_b
 
     @describe()
     def erase_all_edit_types(edits_a, edits_b):
-        edits_a = [m2format.Edit(e.region, e.tokens, None) for e in edits_a]
-        edits_b = [m2format.Edit(e.region, e.tokens, None) for e in edits_b]
+        NON_EXISTING_EDIT_TYPE = object()
+        edits_a = [m2format.Edit(e.region, e.tokens, NON_EXISTING_EDIT_TYPE) for e in edits_a]
+        edits_b = [m2format.Edit(e.region, e.tokens, NON_EXISTING_EDIT_TYPE) for e in edits_b]
+        return edits_a, edits_b
+
+    @describe()
+    def erase_all_tokens(edits_a, edits_b):
+        edits_a = [m2format.Edit(e.region, tuple(), e.type) for e in edits_a]
+        edits_b = [m2format.Edit(e.region, tuple(), e.type) for e in edits_b]
         return edits_a, edits_b
 
     def filter_by_edit_type(edit_type_predicate, edits_a, edits_b):
@@ -191,7 +198,11 @@ def main():
             edits_a, edits_b = annotations[a], annotations[b]
             for t in pair_edits_transforms:
                 edits_a, edits_b = t(edits_a, edits_b)
+            if b == 4:
+                print('seq edits:', len(edits_b), edits_b)
             edits_a, edits_b = set(edits_a), set(edits_b)
+            if b == 4:
+                print('set edits:', len(edits_b), edits_b)
             edits_ab = edits_a & edits_b
             na, nb, nab = len(edits_a), len(edits_b), len(edits_ab)
             f1_score = utils.f1_score(na, nb, nab)
@@ -219,9 +230,28 @@ def main():
             etf = functools.partial(filter_by_edit_type, lambda et: et == edit_type)
             return describe('edit.type == {}'.format(edit_type))(etf)
 
+        def make_error_type_neq_filter(edit_type):
+            etf = functools.partial(filter_by_edit_type, lambda et: et != edit_type)
+            return describe('edit.type != {}'.format(edit_type))(etf)
+
         error_type_filters = [make_error_type_filter(et) for et in error_types]
         for etf in error_type_filters:
             yield analyze(annotations, (filter_both_annotators_saw_token, etf))
+
+        etf_error = make_error_type_neq_filter(m2format.IDENTITY_CORRECTION_TYPE)
+
+        yield analyze(annotations, (
+            filter_both_annotators_saw_token,
+            etf_error,
+            erase_all_edit_types,
+        ))
+
+        yield analyze(annotations, (
+            filter_both_annotators_saw_token,
+            etf_error,
+            erase_all_edit_types,
+            erase_all_tokens,
+        ))
 
     results = generate_various_analysis(annotations)
     results = utils.log_iterator_progress('analysis', 1, results, log=log)
