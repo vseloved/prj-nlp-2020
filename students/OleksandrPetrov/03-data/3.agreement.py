@@ -160,7 +160,7 @@ def main():
     def filter_both_annotators_saw_token(edits_a, edits_b):
 
         def positions_saw(edits):
-            return set(e.region.beg for e in edits_a if e.type is not None)
+            return set(e.region.beg for e in edits if e.type is not None)
 
         positions_allowed = positions_saw(edits_a) & positions_saw(edits_b)
         edits_a = [e for e in edits_a if e.region.beg in positions_allowed and e.type is not None]
@@ -196,9 +196,12 @@ def main():
         annotators_ids = sorted(annotations.keys())
         for a, b in itertools.combinations(annotators_ids, 2):
             edits_a, edits_b = annotations[a], annotations[b]
+            # print(a, b, len(edits_a), len(edits_b))
             for t in pair_edits_transforms:
                 edits_a, edits_b = t(edits_a, edits_b)
+                # print(a, b, len(edits_a), len(edits_b), 'after:', t.description)
             edits_a, edits_b = set(edits_a), set(edits_b)
+            # print(a, b, len(edits_a), len(edits_b))
             edits_ab = edits_a & edits_b
             na, nb, nab = len(edits_a), len(edits_b), len(edits_ab)
             f1_score = utils.f1_score(na, nb, nab)
@@ -220,7 +223,7 @@ def main():
             for e in edits
             if e.type is not None
         )
-        error_types = sorted(error_types)
+        error_types = sorted(error_types, reverse=True)
 
         def make_error_type_filter(edit_type):
             etf = functools.partial(filter_by_edit_type, lambda et: et == edit_type)
@@ -229,10 +232,6 @@ def main():
         def make_error_type_neq_filter(edit_type):
             etf = functools.partial(filter_by_edit_type, lambda et: et != edit_type)
             return describe('edit.type != {}'.format(edit_type))(etf)
-
-        error_type_filters = [make_error_type_filter(et) for et in error_types]
-        for etf in error_type_filters:
-            yield analyze(annotations, (filter_both_annotators_saw_token, etf))
 
         etf_error = make_error_type_neq_filter(m2format.IDENTITY_CORRECTION_TYPE)
 
@@ -248,6 +247,11 @@ def main():
             erase_all_edit_types,
             erase_all_tokens,
         ))
+
+        error_type_filters = [make_error_type_filter(et) for et in error_types]
+        for etf in error_type_filters:
+            yield analyze(annotations, (filter_both_annotators_saw_token, etf))
+
 
     results = generate_various_analysis(annotations)
     results = utils.log_iterator_progress('analysis', 1, results, log=log)
