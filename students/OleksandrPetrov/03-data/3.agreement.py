@@ -101,7 +101,7 @@ def main():
     log.info('starting...')
 
     datafilepath = DATA_DIR.joinpath('official-2014.combined-withalt.m2')
-
+    log.info('input: %s', datafilepath)
     with io.open(datafilepath, 'rt', encoding='utf-8') as text_istream:
         sentence_annotations = m2format.parse(text_istream)
         sentence_annotations = list(sentence_annotations)
@@ -160,7 +160,7 @@ def main():
     def filter_both_annotators_saw_token(edits_a, edits_b):
 
         def positions_saw(edits):
-           return set(e.region.beg for e in edits_a if e.type is not None)
+            return set(e.region.beg for e in edits_a if e.type is not None)
 
         positions_allowed = positions_saw(edits_a) & positions_saw(edits_b)
         edits_a = [e for e in edits_a if e.region.beg in positions_allowed]
@@ -228,6 +228,7 @@ def main():
 
     outfilename = THIS_FILE.with_suffix('.results.yaml')
     outfilepath = OUT_DIR.joinpath(outfilename)
+    log.info('output: %s', outfilepath)
     with io.open(outfilepath, 'wt', encoding='utf-8') as text_ostream:
         yaml = ruamel.yaml.YAML(typ='safe', pure=True)
         yaml.dump_all(results, text_ostream)

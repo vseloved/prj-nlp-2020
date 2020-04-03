@@ -29,3 +29,4 @@ codestyle:  ## Check Python sources for PEP8 compliance
 run.all:  ## Run all tasks
 	@echo "Running tasks..."
 	@pipenv run python 1.wiktionary.py
+	@pipenv run python 3.agreement.py
