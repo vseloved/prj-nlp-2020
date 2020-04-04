@@ -5,6 +5,7 @@ import pathlib
 import io
 import functools
 import itertools
+import statistics
 
 import ruamel.yaml
 
@@ -207,8 +208,8 @@ def main():
             f1_score = utils.f1_score(na, nb, nab)
             f1s.append(f1_score)
             results['pairs'][(a, b)] = [round(f1_score, 4), na, nb, nab]
-        results['f1_a_mean'] = round(utils.arithmetic_mean(f1s), 4)
-        results['f1_median'] = round(utils.median(f1s), 4)
+        results['f1_a_mean'] = round(statistics.mean(f1s), 4)
+        results['f1_median'] = round(statistics.median(f1s), 4)
         return results
 
     def generate_various_analysis(annotations):
