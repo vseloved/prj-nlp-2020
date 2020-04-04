@@ -51,7 +51,7 @@ for entity in all_entities:
         for e in all_entities:
             if re.search(LABEL_REGEX.format(e, e), potential_album_page.content, flags=re.I):
                 potential_labels.add(e)
-print(potential_labels)
+
 filtered_labels = [l for l in potential_labels if not [i for i in potential_labels if l in i and l != i]]
 
 with open("albums_wikipedia.csv", "w") as f:
