@@ -1,19 +1,20 @@
 import { Page } from 'puppeteer';
-import { utils } from 'apify';
+import Apify, { utils } from 'apify';
 import { Article } from '../../types';
 
 export const pravdaComUaBaseUrl = 'https://www.pravda.com.ua/news';
+export const pravdaComUaPseudoUrls = [new Apify.PseudoUrl(`${pravdaComUaBaseUrl}/[.*]`)];
 
 export const pravdaComUaHandle = async (page: Page): Promise<Article> => {
-    const title = await page.$eval(`[class='post_news__title']`, e => e.textContent);
-    const date = await page.$eval(`[class='post_news__date']`, e => e.textContent);
+    const title = await page.$eval(`[class='post_news__title']`, (e) => e.textContent);
+    const date = await page.$eval(`[class='post_news__date']`, (e) => e.textContent);
     const content = utils.htmlToText(
-        await page.$eval(`[class='post_news__text']`, e => e.innerHTML)
+        await page.$eval(`[class='post_news__text']`, (e) => e.innerHTML)
     );
     const tags = await page.evaluate(() =>
         Array.from(
             document.querySelectorAll(`[class='post__tags__item']`),
-            element => element.textContent
+            (element) => element.textContent
         )
     );
 
@@ -21,6 +22,6 @@ export const pravdaComUaHandle = async (page: Page): Promise<Article> => {
         title,
         date,
         content,
-        tags
+        tags,
     };
 };

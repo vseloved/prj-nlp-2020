@@ -1,15 +1,16 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Article } from '../types';
+import { Article, Review } from '../types';
 
 const dataStoragePath = '../apify_storage/datasets/default';
-const resultFile = 'pravda.com.ua.json';
+// const resultFile = 'pravda.com.ua.json';
+const resultFile = 'rozetka.json';
 const datesFile = 'pravda.com.ua-dates.json';
 
 const getArticles = () => {
     const dataStoragePathAbs = path.resolve(__dirname, dataStoragePath);
     const dataFiles = fs.readdirSync(dataStoragePathAbs);
-    return dataFiles.map(f => {
+    return dataFiles.map((f) => {
         const fullPath = path.resolve(dataStoragePathAbs, f);
         const article = JSON.parse((fs.readFileSync(fullPath) as unknown) as string) as Article;
         return article;
@@ -34,18 +35,15 @@ const findDateRange = () => {
         вересня: '09',
         жовтня: '10',
         листопада: '11',
-        грудня: '12'
+        грудня: '12',
     };
 
     const articles = getArticles();
     const years: { [key: string]: number } = {};
     const res = articles
-        .map(article => {
+        .map((article) => {
             const date = article.date as string;
-            const dayDate = date
-                .split(',')[1]
-                .trimLeft()
-                .split(' ');
+            const dayDate = date.split(',')[1].trimLeft().split(' ');
             const day = dayDate[0].length === 1 ? `0${dayDate[0]}` : dayDate[0];
             const month = monthMap[dayDate[1].toLowerCase()];
             const year = dayDate[2];
@@ -57,7 +55,7 @@ const findDateRange = () => {
             return `${year}/${month}/${day}`;
         })
         .sort();
-    const disp = Object.keys(years).map(y => {
+    const disp = Object.keys(years).map((y) => {
         const perc = Number(years[y]) / articles.length;
         return { [y]: perc.toFixed(4) };
     });
@@ -65,6 +63,29 @@ const findDateRange = () => {
     fs.writeFileSync(path.resolve(__dirname, datesFile), JSON.stringify(res, null, 4));
 };
 
+const getReviews = () => {
+    const dataStoragePathAbs = path.resolve(__dirname, dataStoragePath);
+    const dataFiles = fs.readdirSync(dataStoragePathAbs);
+    return dataFiles.map((f) => {
+        const fullPath = path.resolve(dataStoragePathAbs, f);
+        const article = JSON.parse((fs.readFileSync(fullPath) as unknown) as string) as {
+            reviews: Review[];
+        };
+        return article;
+    });
+};
+
+export const mergeReviews = () => {
+    const reviews = getReviews();
+    const res = reviews.map((review) => review.reviews);
+
+    // @ts-ignore
+    const flat_res = res.flat();
+
+    fs.writeFileSync(path.resolve(__dirname, resultFile), JSON.stringify(flat_res, null, 4));
+};
+
 // main
 // merge()
-findDateRange();
+// findDateRange();
+mergeReviews();
