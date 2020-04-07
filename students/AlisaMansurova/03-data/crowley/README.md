@@ -19,8 +19,16 @@ $ yarn
 
 #### Run crawler
 
+-   pravda.com.ua
+
 ```
-yarn start
+yarn scrape:pravda
+```
+
+-   rozetka.com.ua
+
+```
+yarn scrape:rozetka
 ```
 
 It will store the data in `./apify_storage/datasets/default` directory

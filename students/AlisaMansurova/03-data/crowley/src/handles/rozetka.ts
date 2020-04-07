@@ -1,9 +1,5 @@
 import { Page } from 'puppeteer';
-import Apify, { utils } from 'apify';
 import { Review } from '../../types';
-
-export const rozetkaBaseUrl = 'https://rozetka.com.ua/ua/tv-photo-video/c80258/';
-export const rozetkaPseudoUrls = [new Apify.PseudoUrl(`[.*]`)];
 
 export const rozetkaHandle = async (page: Page): Promise<Review[]> => {
     const getShowMoreBtn = async () => {
@@ -12,7 +8,7 @@ export const rozetkaHandle = async (page: Page): Promise<Review[]> => {
         );
         if (showMoreBtn) {
             await showMoreBtn.click();
-            await page.waitFor(500);
+            await page.waitFor(1000);
             await getShowMoreBtn();
         }
     };
