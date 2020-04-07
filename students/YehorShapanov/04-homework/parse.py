@@ -22,6 +22,14 @@ for line in [l for l in sections if re_team_year.match(l)!=None]:
     team_years.append(re_team_year.search(line).groups(0))
 
 template = "{}_Formula_One_World_Championship"
+re_schumi = re.compile(r'Schumacher')
+re_ralf = re.compile(r'Ralf')
+def check_if_schumi_in_named_ents(s):
+    for t in s.ents:
+        if re_schumi.search(t.text):
+            if re_ralf.search(t.text)==None:
+                return True
+    return False
 
 def is_person(tag):
     if tag==None:
@@ -48,6 +56,9 @@ def sentence_about_winning(s):
     """
         return True if can extract from sentence that Michael won
     """
+    if not check_if_schumi_in_named_ents(s):
+        return False
+
     root = [token for token in s if token.head == token][0]
     if root.lemma_=="win":
         agent=find_token_with_dep(root, "agent")
@@ -99,15 +110,6 @@ def sentence_about_winning(s):
             if d and d.text in ["win", "victory"]:
                 return True
     return False
-
-# def sentence_about_second(s):
-#     """
-#         If can extract who took second place in race - return (True, First Last)
-#         else return (False, None)
-#     """
-#     w = [t for t in s if t.lemma_ in ["win", "take", "clinch"]]
-#     n = [t for t in s if t.ent_type_=="PERSON"]
-#     return (False, None)
 
 def get_full_name(token):
     if token.dep_=='compound':
@@ -273,7 +275,7 @@ def process_year(year):
             #If Michael wins this race - return who took second place
             #if unable to detect who took 2nd - return Unknown 
             #else return None
-            print("Processing race: {}".format(race_link))
+            #print("Processing race: {}".format(race_link))
             was_win, second = process_race(race_article.content)
             if was_win:
                 gp = re_gran_prix_link.search(race_link).group(1)
@@ -285,7 +287,42 @@ def process_year(year):
 
     return wins
 
+
+import itertools
+processed_years = set()
+def process_season(s):
+    a = [int("".join(list(g))) for a, g in itertools.groupby(s, key=str.isdigit) if a]
+    r=int(a[0])
+    wins=[]
+    if len(a)==2: 
+        end=int(a[1])
+        for i in range(r, end):
+            if i in processed_years:
+                print("===Year skipped===")
+                continue
+            print("===Processing year({}/{}): {}===".format(i-r+1, end-r+1, i))
+            wins.extend(process_year(i))
+            processed_years.add(i)
+    else:
+        if r in processed_years:
+            return []
+        print("===Processing year(1/1): {}===".format(r))
+        wins=process_year(r)
+        processed_years.add(r)
+
+    return wins
+
+#Process season articles by season 
+wins = []
+for team, season in team_years[1:]:
+    wins.extend(process_season(season))
+
+with open('processed_data.json', 'w') as f:
+    json.dump(wins, f)
+
+
 # Test
+# assert(False==sentence_about_winning(nlp("The 69-lap race was won by Williams driver Ralf Schumacher after starting from the second position")))
 # assert(True==sentence_about_winning(nlp("Michael Schumacher took his only win of the season, the second win of his career, while second place was enough for Alain Prost to clinch the championship, after Ayrton Senna's engine failed")))
 # assert((True, "Alain Prost")==sentence_about_second(nlp("Michael Schumacher took his only win of the season, the second win of his career, while second place was enough for Alain Prost to clinch the championship, after Ayrton Senna's engine failed")))
 # assert(True==sentence_about_winning(nlp("The 71-lap race was won by Michael Schumacher, driving a Benetton-Ford, after starting from second position.")))
@@ -340,39 +377,6 @@ def process_year(year):
 # print("# Test11")
 # res = process_year(2002)
 # print(len(res), 11)
-
-
-import itertools
-processed_years = set()
-def process_season(s):
-    a = [int("".join(list(g))) for a, g in itertools.groupby(s, key=str.isdigit) if a]
-    r=int(a[0])
-    wins=[]
-    if len(a)==2: 
-        end=int(a[1])
-        for i in range(r, end):
-            if i in processed_years:
-                print("===Year skipped===")
-                continue
-            print("===Processing year({}/{}): {}===".format(i-r+1, end-r+1, i))
-            wins.extend(process_year(i))
-            processed_years.add(i)
-    else:
-        if r in processed_years:
-            return []
-        print("===Processing year(1/1): {}===".format(r))
-        wins=process_year(r)
-        processed_years.add(r)
-
-    return wins
-
-#Process season articles by season 
-wins = []
-for team, season in team_years[1:]:
-    wins.extend(process_season(season))
-
-with open('processed_data.json', 'w') as f:
-    json.dump(wins, f)
 
 
 # ###
