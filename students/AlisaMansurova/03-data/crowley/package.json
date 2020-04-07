@@ -7,7 +7,8 @@
         "typescript": "3.8.3"
     },
     "scripts": {
-        "start": "APIFY_HEADLESS=1 ts-node index.ts"
+        "scrape:pravda": "APIFY_HEADLESS=1 ts-node scrapers/pravda.ts",
+        "scrape:rozetka": "APIFY_HEADLESS=1 ts-node scrapers/rozetka.ts"
     },
     "engines": {
         "node": "^10.17.0 || ^12.3.0"
