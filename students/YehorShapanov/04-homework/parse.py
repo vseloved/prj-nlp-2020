@@ -25,11 +25,14 @@ template = "{}_Formula_One_World_Championship"
 re_schumi = re.compile(r'Schumacher')
 re_ralf = re.compile(r'Ralf')
 def check_if_schumi_in_named_ents(s):
+    """ 
+    return MS entity
+    """
     for t in s.ents:
         if re_schumi.search(t.text):
             if re_ralf.search(t.text)==None:
-                return True
-    return False
+                return t
+    return None
 
 def is_person(tag):
     if tag==None:
@@ -56,11 +59,13 @@ def sentence_about_winning(s):
     """
         return True if can extract from sentence that Michael won
     """
-    if not check_if_schumi_in_named_ents(s):
+    if check_if_schumi_in_named_ents(s)==None:
         return False
 
-    root = [token for token in s if token.head == token][0]
-    if root.lemma_=="win":
+    verbs = [token for token in s if token.pos_ == 'VERB']
+    win = [token for token in verbs if token.lemma_=="win"]
+    if len(win):
+        root = win[0]
         agent=find_token_with_dep(root, "agent")
         nominal_subject=find_token_with_dep(root, ["nsubjpass", "nsubj"])
         prep=None
@@ -82,6 +87,12 @@ def sentence_about_winning(s):
                 pobj=dependency_dfs(root)
         is_schumacher=False 
         if not pobj:
+            if root.tag_=='VBD' and nominal_subject and nominal_subject.text=="Schumacher":
+                #try to find direct object
+                dobj=find_token_with_dep(root, "dobj")
+                if dobj and dobj.text=='position': #usualy people don't say `won first position`
+                    return False
+                return True
             return False
         if pobj.text=="Schumacher":
             is_schumacher=True
@@ -94,9 +105,11 @@ def sentence_about_winning(s):
                 name = get_full_name(nominal_subject)
                 if name==MS:
                     return True
-
-    if root.lemma_=="take":
+     
+    take = [token for token in verbs if token.lemma_=="take"]
+    if len(take):
         #(smb)->take->(smth)
+        root = take[0]
         nsubj=find_token_with_dep(root, "nsubj")
         if is_person(nsubj):
             is_schumacher=False 
@@ -109,6 +122,12 @@ def sentence_about_winning(s):
             d=find_token_with_dep(root, "dobj")
             if d and d.text in ["win", "victory"]:
                 return True
+
+    schumi_ent=check_if_schumi_in_named_ents(s)
+    #statistical experiment
+    if 'victory' in [v.lemma_ for v in schumi_ent.root.ancestors]:
+        return True          
+    
     return False
 
 def get_full_name(token):
@@ -312,16 +331,14 @@ def process_season(s):
 
     return wins
 
-#Process season articles by season 
-wins = []
-for team, season in team_years[1:]:
-    wins.extend(process_season(season))
-
-with open('processed_data.json', 'w') as f:
-    json.dump(wins, f)
-
-
 # Test
+# assert(True==sentence_about_winning(nlp("The race, contested over 62 laps, was the fourth race of the 2002 Formula One season and was won by Michael Schumacher driving a Ferrari.")))
+# assert(True==sentence_about_winning(nlp("Michael Schumacher won ahead of Jean Alesi in the Benetton and Giancarlo Fisichella in the Jordan.")))
+# assert(False==sentence_about_winning(nlp("The race is remembered for an incident involving the two title contenders Damon Hill and Michael Schumacher which forced both to retire and resulted in Schumacher winning the World Drivers' Championship.")))
+# assert(True==sentence_about_winning(nlp("The 72-lap race was won by Michael Schumacher for the Ferrari team, from a second position start.")))
+# assert(True==sentence_about_winning(nlp("Michael Schumacher won ahead of Jean Alesi in the Benetton and Giancarlo Fisichella in the Jordan.")))
+# assert(True==sentence_about_winning(nlp("This race, Michael Schumacher's first Ferrari victory, is generally regarded as one of his finest.")))
+# assert(True==sentence_about_winning(nlp("The 44-lap race was won by Michael Schumacher, driving a Benetton-Renault.")))
 # assert(False==sentence_about_winning(nlp("The 69-lap race was won by Williams driver Ralf Schumacher after starting from the second position")))
 # assert(True==sentence_about_winning(nlp("Michael Schumacher took his only win of the season, the second win of his career, while second place was enough for Alain Prost to clinch the championship, after Ayrton Senna's engine failed")))
 # assert((True, "Alain Prost")==sentence_about_second(nlp("Michael Schumacher took his only win of the season, the second win of his career, while second place was enough for Alain Prost to clinch the championship, after Ayrton Senna's engine failed")))
@@ -348,7 +365,7 @@ with open('processed_data.json', 'w') as f:
 
 # print("# Test4")
 # res = process_year(1995)
-# print(len(res), 9)
+# print(len(res), 9) # Spanish gp - no clear way on how to improve
 
 # print("# Test5")
 # res = process_year(1996)
@@ -378,19 +395,10 @@ with open('processed_data.json', 'w') as f:
 # res = process_year(2002)
 # print(len(res), 11)
 
+#Process season articles by season 
+wins = []
+for team, season in team_years[1:]:
+    wins.extend(process_season(season))
 
-# ###
-# Patrese finished third followed by Prost, Martin Brundle scoring the last points in the history of the Brabham team, and Stefano Modena in the Tyrrell.
-# o_O
-# "Mansell's win with Senna fifth meant that the title race was back on, but Senna still led by sixteen points as the teams headed on to Japan"
-# ###
-
-# With only two more races to go, Prost was the World Champion with 87 points but there was battle for second between Hill, Senna and Schumacher.
-# Hill was second with 62, Senna was third with 53 and Schumacher was fourth with 52.
-
-#The 71-lap race was won by Michael Schumacher, driving a Benetton-Ford, after starting from second position.
-
-
-# The 69-lap race was won from pole position by Michael Schumacher, driving a Benetton-Ford. Schumacher, 
-# returning from a two-race ban, took his eighth victory of the season by 24.6 seconds 
-# from Drivers' Championship rival Damon Hill in the Williams-Renault, with Mika Häkkinen third in a McLaren-Peugeot. 
+with open('processed_data.json', 'w') as f:
+    json.dump(wins, f)
