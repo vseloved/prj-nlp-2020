@@ -16,10 +16,13 @@ with open(results_data_file) as f:
 
 def validate_result(expected, actual):
     invalid_order = 0
+    expected_dates = [y['date'] for y in expected]
+    actual_dates = [y['date'] for y in actual]
+
     false_positives = len(
-        [x['events'] for x in actual if x['date'] not in (y['date'] for y in expected)])
+        [x['events'] for x in actual if x['date'] not in expected_dates])
     false_negatives = len(
-        [x['events'] for x in expected if x['date'] not in (y['date'] for y in actual)])
+        [x['events'] for x in expected if x['date'] not in actual_dates])
     true_pos = 0
 
     act_len = len(actual)
