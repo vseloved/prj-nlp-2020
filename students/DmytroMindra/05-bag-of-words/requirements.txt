@@ -1,0 +1,8 @@
+Scrapy
+requests
+stanza
+spacy
+spacy-langdetect
+langdetect
+langid
+sklearn
