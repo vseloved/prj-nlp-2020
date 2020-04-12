@@ -1,0 +1,9 @@
+-i https://pypi.org/simple
+coloredlogs==14.0
+humanfriendly==8.1
+pycld2==0.41
+regex==2020.2.20
+ruamel-yaml==0.16.10
+ruamel.yaml.clib==0.2.0 ; platform_python_implementation == 'CPython' and python_version < '3.9'
+wcwidth==0.1.9
+wikitextparser==0.34.0
