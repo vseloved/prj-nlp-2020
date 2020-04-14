@@ -4,19 +4,32 @@ import time
 
 DATA_FILE_PATH_TEMPLATE = '../data/raw_data/{}-{}.json'
 
-CATEGORY_ID = 80089
-PAGE_COUNT = 34
+# Monitors
+# CATEGORY_ID = 80089
+# Notebooks
+# CATEGORY_ID = 80004
+# Mbile Phones
+# CATEGORY_ID = 80003
+# CATEGORY_ID = 130309
+# CATEGORY_ID = 80172
+CATEGORY_ID = 80087
 
-URL = "https://product-api.rozetka.com.ua/v3/comments/get?front-type=xl&goods={}&page=1&sort=date&limit=10&lang=ru".format(
-    '1474207')
+
+
+
+PAGE_COUNT = 30
 
 LIST_CATEGORY_TEMPLATE = "https://xl-catalog-api.rozetka.com.ua/v2/goods/get?front-type=xl&category_id={}&page={}&sort=rank&lang=ua"
 PRODUCT_COMMENTS_TEMPLATE = "https://product-api.rozetka.com.ua/v3/comments/get?front-type=xl&goods={}&page={}&sort=date&limit=10&lang=ru"
 
+# the most reliable source of proxies:
+# https://free-proxy-list.net/anonymous-proxy.html
+
+
 proxies = \
     {
         "http": "",
-        "https": ""
+        "https": "",
     }
 
 
@@ -30,7 +43,7 @@ def get_product_ids():
         for id in r.json()['data']['ids']:
             ids.append(id)
 
-        with open('../data/product_ids.json', 'w', encoding='utf-8') as f:
+        with open('../data/product_ids_notebooks.json', 'w', encoding='utf-8') as f:
             json.dump(ids, f, ensure_ascii=False, indent=4)
 
 
@@ -58,7 +71,7 @@ def write_to_file(filename, text):
 
 
 def get_product_ids_from_file():
-    with open('../data/product_ids.json') as json_file:
+    with open('../data/product_ids_notebooks.json') as json_file:
         return json.load(json_file)
 
 
@@ -68,7 +81,7 @@ def make_http_request(url):
 
 if __name__ == '__main__':
 
-    # get_product_ids()
+    get_product_ids()
     failed_ids = []
     count = 0
     for id in get_product_ids_from_file():
