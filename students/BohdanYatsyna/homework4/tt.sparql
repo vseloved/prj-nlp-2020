@@ -1,0 +1,12 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+SELECT DISTINCT ?uri ?movie ?year ?star
+WHERE {
+        ?uri rdfs:label ?movie .
+        FILTER (lang(?movie) = 'en')
+        OPTIONAL {?uri dct:subject ?cat .
+                  ?cat rdfs:label ?year .
+                  FILTER (regex (?year, '\\d+ films', 'i'))} .
+        ?uri dbo:starring ?staruri .
+        ?staruri rdfs:label ?star .
+        FILTER (lang(?star) = 'en')
+}
