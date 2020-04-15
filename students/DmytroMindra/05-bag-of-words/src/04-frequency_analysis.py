@@ -51,17 +51,11 @@ def get_lemmas(text):
     for sentence in doc.sentences:
         for word in sentence.words:
             if word.pos != 'PUNCT':
-                lemmas.append(word.lemma)
+                text = word.lemma
+                lemmas.append(text)
+
     return " ".join(lemmas)
 
-def get_adj_lemmas(text):
-    doc = nlp(text)
-    lemmas = []
-    for sentence in doc.sentences:
-        for word in sentence.words:
-            if word.pos in ['ADJ','PART','VERB','NOUN']:
-                lemmas.append(word.lemma)
-    return " ".join(lemmas)
 
 def get_tokens(text):
     return text
@@ -163,16 +157,13 @@ if __name__ == '__main__':
 
     # uncomment to generate lemmatized data files for iteration 2
     # print('recalculate lemmatized datasets')
-    # recalculate_lemmatized_dataset(TRAINING_SET_PATH, LEMMATIZED_TRAINING_SET_PATH)
-    # recalculate_lemmatized_dataset(EVAL_SET_PATH, LEMMATIZED_EVAL_SET_PATH)
+    recalculate_lemmatized_dataset(TRAINING_SET_PATH, LEMMATIZED_TRAINING_SET_PATH)
+    recalculate_lemmatized_dataset(EVAL_SET_PATH, LEMMATIZED_EVAL_SET_PATH)
 
     # uncomment to generate tokenized data files for iteration 1
     # print('recalculate tokenized datasets')
     # recalculate_tokenized_dataset(TRAINING_SET_PATH,TOKENIZED_TRAINING_SET_PATH)
     # recalculate_tokenized_dataset(EVAL_SET_PATH,TOKENIZED_EVAL_SET_PATH)
-
-
-    # get_tone_dict()
 
     print ('0: Baseline:')
     execute_iteration(TOKENIZED_TRAINING_SET_PATH, TOKENIZED_EVAL_SET_PATH)
