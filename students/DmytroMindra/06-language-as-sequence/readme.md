@@ -21,3 +21,15 @@ Logistic regression on (token + lemma + pos + deprel)
    macro avg       0.75      0.51      0.51    121985
 weighted avg       0.97      0.98      0.97    121985
 ```
+
+## 3. Added more features
+```
+              precision    recall  f1-score   support
+
+       False       0.98      1.00      0.99     51560
+        True       0.57      0.11      0.19       910
+
+    accuracy                           0.98     52470
+   macro avg       0.78      0.56      0.59     52470
+weighted avg       0.98      0.98      0.98     52470
+```
