@@ -68,7 +68,6 @@ class RozetkaParser:
         for i in range(0, len(urls)):
             url = urls[i]
             try:
-
                 tmp_result = self.parse_url(url, driver)
 
                 pd.DataFrame(tmp_result).to_csv(csv_file, mode='a', header=False, index=False)
@@ -79,6 +78,10 @@ class RozetkaParser:
                 result['cons'] += tmp_result['cons']
                 result['rating'] += tmp_result['rating']
             except:
+                print("Exception here")
+                driver = webdriver.Chrome(executable_path="/home/dbabenko/_Dev/Tools/chromedriver",
+                                          chrome_options=self.chrome_options)
+
                 continue
 
         return result
@@ -96,6 +99,7 @@ class RozetkaParser:
         self.__sort_by_buyers(driver)
         self.__show_all_comments(driver)
 
+        print("Start parsing document: ")
         result = self.__parse_product_comments(driver)
         return result
 
@@ -107,25 +111,45 @@ class RozetkaParser:
         el.send_keys(Keys.ARROW_DOWN)
         el.send_keys(Keys.RETURN)
 
+
+    def __find_show_more_comments_button(self, driver):
+        buttons = driver.find_elements_by_tag_name('button')
+        for button in buttons:
+            if self.__check_button_class(button, "button button_size_medium product-comments__show-more"):
+                return button
+
+        return None
+
+    def __check_button_class(self, button_el, class_name):
+        try:
+            if button_el.get_attribute('class') == class_name:
+                return True
+        except:
+            return False
+        return False
+
     def __show_all_comments(self, driver):
+
+        show_more_comments_button = None
         while True:
             try:
-                try_again = False
+                if show_more_comments_button is None:
+                    show_more_comments_button = self.__find_show_more_comments_button(driver)
 
-                buttons = driver.find_elements_by_tag_name('button')
-                for button in buttons:
-                    if button.get_attribute('class') == "button button_size_medium product-comments__show-more":
-                        actions = ActionChains(driver)
-                        actions.move_to_element_with_offset(button, xoffset=0, yoffset=0)
-                        actions.perform()
-
-                        span = button.find_element_by_tag_name('span')
-                        span.click()
-                        try_again = True
-                        break
-                if try_again is False:
+                if show_more_comments_button is None:
                     break
-            except:
+
+                if show_more_comments_button.is_enabled() is False:
+                    break
+
+                actions = ActionChains(driver)
+                actions.move_to_element_with_offset(show_more_comments_button, xoffset=0, yoffset=0)
+                actions.perform()
+                span = show_more_comments_button.find_element_by_tag_name('span')
+                span.click()
+
+            except Exception as e:
+                print("Exception: ", e)
                 break
 
     def __parse_product_comments(self, driver):
@@ -143,15 +167,22 @@ class RozetkaParser:
                 if product_comment_el.tag_name != "div":
                     continue
 
+                print("product_comment_el.find_element_by_class_name('product-comment__inner')", "start")
                 inner_el = product_comment_el.find_element_by_class_name('product-comment__inner')
+                print("product_comment_el.find_element_by_class_name('product-comment__inner')", "end")
 
                 rate = None
+                print("inner_el.find_elements_by_tag_name('div')", "start")
                 divs = inner_el.find_elements_by_tag_name('div')
+                print("inner_el.find_elements_by_tag_name('div')", "end")
                 for div in divs:
                     if div.get_attribute('class') != 'product-comment__rating':
                         continue
 
+                    print("div.find_elements_by_tag_name('svg')", "start")
                     svgs = div.find_elements_by_tag_name('svg')
+                    print("div.find_elements_by_tag_name('svg')", "end")
+
                     if len(svgs) == 0:
                         continue
 
@@ -162,7 +193,9 @@ class RozetkaParser:
                 if rate is None:
                     continue
 
+                print("self.__parse_comment_text(product_comment_el)", "start")
                 title, pros, cons = self.__parse_comment_text(product_comment_el)
+                print("self.__parse_comment_text(product_comment_el)", "end")
 
                 result['title'].append(title)
                 result['pros'].append(pros)
@@ -299,18 +332,22 @@ def read_lines(file):
     return lines
 
 
-urls = read_lines('hard_urls.txt')
+urls = read_lines('data/hard_urls.txt')
 parser = RozetkaParser()
 
 start_time = time.time()
-result = parser.parse_urls(urls, 'rozetka-hard-comments.csv')
+result = parser.parse_urls(urls, 'data/rozetka-hard-comments.csv')
+pd.DataFrame(result).to_csv('data/rozetka-hard-comments-all.csv')
 
 print(time.time() - start_time)
+
+# result = parser.parse_urls(urls, 'rozetka-router-comments-all.csv')
+# print(len(tmp_result))
+
 # result = parser.parse_urls(urls)
 
 # print(result)
 
-pd.DataFrame(result).to_csv('rozetka-hard-comments_all.csv')
 
 
 
@@ -320,9 +357,9 @@ pd.DataFrame(result).to_csv('rozetka-hard-comments_all.csv')
 #
 # parser = RozetkaParser()
 #
-# urls = parser.acquire_urls("https://hard.rozetka.com.ua/hard/c80026/", 1, 34)
+# urls = parser.acquire_urls("https://rozetka.com.ua/routers/c80193/", 1, 34)
 #
-# write_lines_to_file('hard_urls.txt', urls)
+# write_lines_to_file('router_urls.txt', urls)
 #
 # print(urls)
 # print(len(urls))
