@@ -1,0 +1,39 @@
+Failed case # 1
+- Brazilian & Bikini Waxing How to Choose an Sf Bay Area Hair Removal Salon or Spa
+?                                             ^
+
++ Brazilian & Bikini Waxing How to Choose an SF Bay Area Hair Removal Salon or Spa
+?                                             ^
+
+Failed case # 2
+- Iphone 5 Release Date Ahead As Nokia Windows 8 Smartphones Interest Grows
+? ^^
+
++ iPhone 5 Release Date Ahead As Nokia Windows 8 Smartphones Interest Grows
+? ^^
+
+Failed case # 3
+- How It all Plays out on Church Street
+?        ^
+
++ How It All Plays out on Church Street
+?        ^
+
+Failed case # 4
+- Facebook Post Helps Police Nab Suspect Who Ripped off two Burbank Salons
+?                                                       ^
+
++ Facebook Post Helps Police Nab Suspect Who Ripped off Two Burbank Salons
+?                                                       ^
+
+Failed case # 5
+- 'Jackass 3D' Trailer Explodes Right in Your Face So Don't Try This at Home (Video)
+?                                                  ^
+
++ 'Jackass 3D' Trailer Explodes Right in Your Face so Don't Try This at Home (Video)
+?                                                  ^
+
+Passed : 95
+Failed : 5
+total : 100
+Total score on evalset 95/100 = 0.950%

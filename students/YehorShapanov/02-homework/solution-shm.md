@@ -1,0 +1,3 @@
+## Шміфікація
+
+Script `shmefecation.py`
