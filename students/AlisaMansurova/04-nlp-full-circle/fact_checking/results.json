@@ -1,0 +1,45 @@
+{
+    "matched_perc": 0.47,
+    "recall": 0.57,
+    "precicion": 0.6,
+    "false_pos_list": [
+        { "album": "The Complete Original Black Sabbath   ,", "release_years": "" },
+        { "album": "Bloody Sabbath", "release_years": "1975" },
+        { "album": "In", "release_years": "1975" },
+        { "album": "In the U.S.", "release_years": "1992" },
+        { "album": "Under", "release_years": "1994" },
+        { "album": "It", "release_years": "1995" },
+        { "album": "It is the by Black Sabbath Forbidden", "release_years": "1995" },
+        { "album": "I.R.S. Records", "release_years": "1996" },
+        { "album": "Ozzy Osbourne and Geezer Butler the Reunion", "release_years": "1998" },
+        { "album": "Iommi", "release_years": "2000" },
+        { "album": "Osbourne on Down to Earth", "release_years": "2001" },
+        { "album": "The Original Black Sabbath", "release_years": "2002" },
+        { "album": "The Best of Black Sabbath", "release_years": "2012" },
+        { "album": "It", "release_years": "|1995" }
+    ],
+    "false_neg_list": [
+        { "album": "Vol. 4", "release_years": "1972" },
+        { "album": "Headless Cross", "release_years": "1989" },
+        { "album": "The Ozzy Osbourne Years", "release_years": "1994" },
+        { "album": "Cross Purposes Live", "release_years": "1995" },
+        { "album": "The Sabbath Stones", "release_years": "1996" },
+        { "album": "Under Wheels of Confusion", "release_years": "1996" },
+        {
+            "album": "Symptom of the Universe: The Original Black Sabbath 1970–1978",
+            "release_years": "2002"
+        },
+        {
+            "album": "Black Box: The Complete Original Black Sabbath (1970–1978)",
+            "release_years": "2004"
+        },
+        { "album": "Greatest Hits 1970–1978", "release_years": "2006" },
+        { "album": "Live at Hammersmith Odeon", "release_years": "2007" },
+        { "album": "Black Sabbath: The Dio Years", "release_years": "2007" },
+        { "album": "The Rules of Hell", "release_years": "2008" },
+        { "album": "Iron Man: The Best of Black Sabbath", "release_years": "2012" },
+        { "album": "Live... Gathered in Their Masses", "release_years": "2013" },
+        { "album": "13", "release_years": "2013" },
+        { "album": "The End", "release_years": "2016" }
+    ]
+}

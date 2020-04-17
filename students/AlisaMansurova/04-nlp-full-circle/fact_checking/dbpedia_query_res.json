@@ -1,0 +1,333 @@
+{
+    "head": { "link": [], "vars": ["album_uri", "album", "release_years"] },
+    "results": {
+        "distinct": false,
+        "ordered": true,
+        "bindings": [
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Black_Sabbath_(album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Black Sabbath" },
+                "release_years": { "type": "literal", "value": "1970" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Paranoid_(album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Paranoid" },
+                "release_years": { "type": "literal", "value": "1970|1971" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Master_of_Reality"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Master of Reality" },
+                "release_years": { "type": "literal", "value": "1971" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Vol._4_(Black_Sabbath_album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Vol. 4" },
+                "release_years": { "type": "literal", "value": "1972" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Sabbath_Bloody_Sabbath"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Sabbath Bloody Sabbath" },
+                "release_years": { "type": "literal", "value": "1973|1974" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Sabotage_(Black_Sabbath_album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Sabotage" },
+                "release_years": { "type": "literal", "value": "1975" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/We_Sold_Our_Soul_for_Rock_'n'_Roll"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "We Sold Our Soul for Rock 'n' Roll"
+                },
+                "release_years": { "type": "literal", "value": "1975|1976" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Technical_Ecstasy"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Technical Ecstasy" },
+                "release_years": { "type": "literal", "value": "1976" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Never_Say_Die!"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Never Say Die!" },
+                "release_years": { "type": "literal", "value": "1978" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Heaven_and_Hell_(Black_Sabbath_album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Heaven and Hell" },
+                "release_years": { "type": "literal", "value": "1980" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Mob_Rules_(album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Mob Rules" },
+                "release_years": { "type": "literal", "value": "1981" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Born_Again_(Black_Sabbath_album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Born Again" },
+                "release_years": { "type": "literal", "value": "1983" }
+            },
+            {
+                "album_uri": { "type": "uri", "value": "http://dbpedia.org/resource/Seventh_Star" },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Seventh Star" },
+                "release_years": { "type": "literal", "value": "1986" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/The_Eternal_Idol"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "The Eternal Idol" },
+                "release_years": { "type": "literal", "value": "1987" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Headless_Cross"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Headless Cross" },
+                "release_years": { "type": "literal", "value": "1989" }
+            },
+            {
+                "album_uri": { "type": "uri", "value": "http://dbpedia.org/resource/Tyr_(album)" },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Tyr" },
+                "release_years": { "type": "literal", "value": "1990" }
+            },
+            {
+                "album_uri": { "type": "uri", "value": "http://dbpedia.org/resource/Dehumanizer" },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Dehumanizer" },
+                "release_years": { "type": "literal", "value": "1992" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/The_Ozzy_Osbourne_Years"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "The Ozzy Osbourne Years"
+                },
+                "release_years": { "type": "literal", "value": "1994" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Cross_Purposes"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Cross Purposes" },
+                "release_years": { "type": "literal", "value": "1994" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Cross_Purposes_Live"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Cross Purposes Live" },
+                "release_years": { "type": "literal", "value": "1995" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Forbidden_(album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Forbidden" },
+                "release_years": { "type": "literal", "value": "1995" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/The_Sabbath_Stones"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "The Sabbath Stones" },
+                "release_years": { "type": "literal", "value": "1996" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Under_Wheels_of_Confusion_(album)"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "Under Wheels of Confusion"
+                },
+                "release_years": { "type": "literal", "value": "1996" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Reunion_(Black_Sabbath_album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Reunion" },
+                "release_years": { "type": "literal", "value": "1998" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/The_Collection_(Black_Sabbath_album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "The Collection" },
+                "release_years": { "type": "literal", "value": "1999" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Symptom_of_the_Universe:_The_Original_Black_Sabbath_1970\u20131978"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "Symptom of the Universe: The Original Black Sabbath 1970\u20131978"
+                },
+                "release_years": { "type": "literal", "value": "2002" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Past_Lives_(Black_Sabbath_album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Past Lives" },
+                "release_years": { "type": "literal", "value": "2002" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Black_Box:_The_Complete_Original_Black_Sabbath_(1970\u20131978)"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "Black Box: The Complete Original Black Sabbath (1970\u20131978)"
+                },
+                "release_years": { "type": "literal", "value": "2004" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Greatest_Hits_1970\u20131978"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "Greatest Hits 1970\u20131978"
+                },
+                "release_years": { "type": "literal", "value": "2006" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Live_at_Hammersmith_Odeon"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "Live at Hammersmith Odeon"
+                },
+                "release_years": { "type": "literal", "value": "2007" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Black_Sabbath:_The_Dio_Years"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "Black Sabbath: The Dio Years"
+                },
+                "release_years": { "type": "literal", "value": "2007" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/The_Rules_of_Hell"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "The Rules of Hell" },
+                "release_years": { "type": "literal", "value": "2008" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Greatest_Hits_(Black_Sabbath)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "Greatest Hits" },
+                "release_years": { "type": "literal", "value": "2009" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Iron_Man:_The_Best_of_Black_Sabbath"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "Iron Man: The Best of Black Sabbath"
+                },
+                "release_years": { "type": "literal", "value": "2012" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/Live..._Gathered_in_Their_Masses"
+                },
+                "album": {
+                    "type": "literal",
+                    "xml:lang": "en",
+                    "value": "Live... Gathered in Their Masses"
+                },
+                "release_years": { "type": "literal", "value": "2013" }
+            },
+            {
+                "album_uri": {
+                    "type": "uri",
+                    "value": "http://dbpedia.org/resource/13_(Black_Sabbath_album)"
+                },
+                "album": { "type": "literal", "xml:lang": "en", "value": "13" },
+                "release_years": { "type": "literal", "value": "2013" }
+            },
+            {
+                "album_uri": { "type": "uri", "value": "http://dbpedia.org/resource/The_End_(EP)" },
+                "album": { "type": "literal", "xml:lang": "en", "value": "The End" },
+                "release_years": { "type": "literal", "value": "2016" }
+            }
+        ]
+    }
+}
