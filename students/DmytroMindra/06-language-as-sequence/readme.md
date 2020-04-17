@@ -33,3 +33,15 @@ weighted avg       0.97      0.98      0.97    121985
    macro avg       0.78      0.56      0.59     52470
 weighted avg       0.98      0.98      0.98     52470
 ```
+
+## 4. Added more data
+```
+              precision    recall  f1-score   support
+
+       False       0.98      1.00      0.99    839744
+        True       0.63      0.15      0.24     15608
+
+    accuracy                           0.98    855352
+   macro avg       0.81      0.58      0.62    855352
+weighted avg       0.98      0.98      0.98    855352
+```
