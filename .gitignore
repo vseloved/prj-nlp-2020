@@ -34,3 +34,8 @@ ipython_config.py
 
 # pyenv
 .python-version
+
+*.xml
+*.bz2
+#/students/DimaSakovich/06-language-as-sequence
+
