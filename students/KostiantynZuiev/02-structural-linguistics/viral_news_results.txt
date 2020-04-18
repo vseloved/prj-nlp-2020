@@ -1,0 +1,1 @@
+NER: 65.9%, Sentiment: 9.04%, POS: 4.7%
