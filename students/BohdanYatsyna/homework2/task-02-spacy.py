@@ -41,6 +41,10 @@ class pureHeader:
             # rule_rule_capFirstLast check
             if i == len(doc) - 1 or i == 0:
                 is_capitalize = True
+            # ule_rule_capFirstLast check ( for cases when we have ?!:.'" last token )
+            if len(doc) -2 > 0 and i == len(doc) - 2 and doc[i+1].pos_ == 'PUNCT':
+                modified_text += token.text.capitalize() + token.whitespace_
+                continue
 
             if i == 1:
                 if doc[0].text == '\'':
@@ -116,7 +120,7 @@ def accuracy(file):
 
     print('Header accuracy  {:2.2%}'.format(correct_headers / len(data)))
 
-
+# Header accuracy  90.00%
 accuracy('../tasks/02-structural-linguistics/data/headlines-test-set.json')
 
 modified_text = ""
