@@ -58,3 +58,37 @@ weighted avg       0.98      0.98      0.98    855352
    macro avg       0.90      0.66      0.73      4312
 weighted avg       0.97      0.97      0.97      4312
 ```
+
+## 6. Trying SGDClassifier and LogisticRegression with increased number of iterations
+
+```
+sgdc = SGDClassifier(loss='hinge', penalty='l2', alpha = 0.0001, random_state = 42,max_iter = 15000, tol = None, verbose=1)
+
+-- Epoch 15000
+Norm: 3.41, NNZs: 111719, Bias: -1.258978, T: 4113219336, Avg. loss: 0.033938
+Total training time: 20152.58 seconds.
+              precision    recall  f1-score   support
+
+       False       0.98      1.00      0.99      4166
+        True       0.89      0.27      0.42       146
+
+    accuracy                           0.97      4312
+   macro avg       0.93      0.64      0.70      4312
+weighted avg       0.97      0.97      0.97      4312
+```
+
+```
+LogisticRegression(random_state=42, solver="sag", multi_class="multinomial",
+                             max_iter=15000, verbose=1)
+
+convergence after 587 epochs took 2552 seconds
+[Parallel(n_jobs=1)]: Done   1 out of   1 | elapsed: 42.6min finished
+              precision    recall  f1-score   support
+
+       False       0.98      1.00      0.99      4166
+        True       0.90      0.36      0.52       146
+
+    accuracy                           0.98      4312
+   macro avg       0.94      0.68      0.75      4312
+weighted avg       0.98      0.98      0.97      4312
+```
