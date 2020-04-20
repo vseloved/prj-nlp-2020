@@ -10,7 +10,7 @@ from functools import reduce
 args = sys.argv
 chunk = args[1] if len(args) > 1 else None
 
-nlp = spacy.load("en_core_web_md")
+nlp = spacy.load('en_core_web_md')
 
 absDir = os.path.dirname(os.path.abspath(__file__))
 extracted_data_file_name = './extracted_data.json'
@@ -174,7 +174,8 @@ def tsv_to_json(content):
     return res
 
 
-# mnain
+""" main """
+
 train_tokens, train_labels = get_train_data(
     extracted_data_file, train_data_file)
 

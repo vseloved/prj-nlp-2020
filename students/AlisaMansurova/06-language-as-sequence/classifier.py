@@ -1,20 +1,13 @@
 
-import random
 import os
-import re
 import json
 import numpy as np
-import spacy
 import pandas
-from functools import reduce
-from sklearn.preprocessing import FunctionTransformer
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
-from sklearn.linear_model import LogisticRegression
-from sklearn.feature_extraction import DictVectorizer
 from sklearn.metrics import classification_report
-from sklearn.model_selection import cross_validate, cross_val_predict
+from sklearn.model_selection import cross_validate
 from sklearn.metrics import make_scorer, accuracy_score, precision_score, recall_score, f1_score
 
 absDir = os.path.dirname(os.path.abspath(__file__))
@@ -151,7 +144,7 @@ def get_features(tokens, extractors):
     return features
 
 
-def get_cross_validation_report(cls, X_train, y_train):
+def get_cross_validation_report(clf, X_train, y_train):
     scoring = {'accuracy': make_scorer(accuracy_score),
                'precision_true': make_scorer(precision_score, average=None, labels=[True]),
                'precision_false': make_scorer(precision_score, average=None, labels=[False]),
@@ -166,7 +159,7 @@ def get_cross_validation_report(cls, X_train, y_train):
                'f1_macro': make_scorer(f1_score, average='macro'),
                'f1_weighted': make_scorer(f1_score, average='weighted'),
                }
-    res = cross_validate(cls, X_train, y_train, scoring=scoring)
+    res = cross_validate(clf, X_train, y_train, scoring=scoring)
 
     def get_score(field):
         return round(res[field].mean(), 2)
@@ -198,12 +191,13 @@ def get_cross_validation_report(cls, X_train, y_train):
     print(pandas.DataFrame(data, labels, scores))
 
 
-def get_cross_validation_result(cls, train_tokens, feature_extractors):
+def get_cross_validation_result(clf, train_tokens, feature_extractors):
     train_features = get_features(train_tokens, feature_extractors)
-    get_cross_validation_report(cls, train_features, train_labels)
+    get_cross_validation_report(clf, train_features, train_labels)
 
 
-# main
+""" main """
+
 with open(train_tokens_file) as f:
     train_tokens = json.load(f)
 with open(train_labels_file) as f:
@@ -213,16 +207,34 @@ with open(ngrams_file) as f:
 
 
 train_features = get_features(train_tokens)
-cls = get_classifier()
+clf = get_classifier()
 
 feature_extractors = [word_feature_extractor]
-get_cross_validation_result(cls, train_tokens, feature_extractors)
+get_cross_validation_result(clf, train_tokens, feature_extractors)
 
 feature_extractors.append(adj_words_feature_extractor)
-get_cross_validation_result(cls, train_tokens, feature_extractors)
+get_cross_validation_result(clf, train_tokens, feature_extractors)
 
 feature_extractors.append(pos_feature_extractor)
-get_cross_validation_result(cls, train_tokens, feature_extractors)
+get_cross_validation_result(clf, train_tokens, feature_extractors)
+
+feature_extractors.append(adj_pos_feature_extractor)
+get_cross_validation_result(clf, train_tokens, feature_extractors)
 
 feature_extractors.append(shape_feature_extractor)
-get_cross_validation_result(cls, train_tokens, feature_extractors)
+get_cross_validation_result(clf, train_tokens, feature_extractors)
+
+feature_extractors.append(shape_feature_extractor)
+get_cross_validation_result(clf, train_tokens, feature_extractors)
+
+feature_extractors.append(ngrams_feature_extractor(ngrams))
+get_cross_validation_result(clf, train_tokens, feature_extractors)
+
+vect = DictVectorizer()
+train_features = get_features(train_tokens, feature_extractors)
+train_feat_vectorized = vect.fit_transform(train_features)
+clf = LogisticRegression(random_state=42, multi_class='multinomial',
+                         max_iter=100, solver='sag', n_jobs=50)
+clf.fit(train_feat_vectorized, train_labels)
+test_features = get_features(test_tokens, feature_extractors)
+print(classification_report(test_labels, clf.predict(vect.transform(test_features))))

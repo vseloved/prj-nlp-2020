@@ -3,7 +3,6 @@ import requests
 import json
 import os
 import sys
-import json
 
 args = sys.argv
 chunk = args[1] if len(args) > 1 else None
@@ -22,7 +21,6 @@ ngrams_file = os.path.join(absDir, ngrams_file_name)
 
 API_SEARCH_URL = 'https://api.phrasefinder.io/search?'
 
-ngrams_keys = ['tks', 'mc', 'vc', 'id', 'sc']
 
 with open(train_tokens_file) as f:
     train_tokens = json.load(f)
@@ -60,22 +58,16 @@ def get_ngrams(words):
             params = '&'.join('{}={}'.format(name, value)
                               for name, value in params.items())
             response = requests.get(API_SEARCH_URL + params)
-            # resp = json.loads(response.text)
             resp = response.text
-            # if resp.get('phrases'):
-            #     phrases = resp['phrases']
-            #     if phrases:
-            #         res = [{k: x[k] for k in ngrams_keys} for x in phrases]
-            #         ngrams.append(res)
-            # else:
-            #     print(f'Smth wrong with word {word}:', response.text)
 
             print('<<<<', i)
             f.write(resp)
-        # f.write(json.dumps([x for sub in ngrams for x in sub]))
 
+
+""" main """
 
 # get_words_for_ngrams(train_tokens)
+
 
 with open(unique_words_file) as f:
     words = f.readlines()
