@@ -45,3 +45,16 @@ weighted avg       0.98      0.98      0.98     52470
    macro avg       0.81      0.58      0.62    855352
 weighted avg       0.98      0.98      0.98    855352
 ```
+
+## 5. Trained the model on MASC corpus, and ran the evaluation on test data provided in run-on-test.json
+
+```
+              precision    recall  f1-score   support
+
+       False       0.98      1.00      0.99      4166
+        True       0.82      0.32      0.46       146
+
+    accuracy                           0.97      4312
+   macro avg       0.90      0.66      0.73      4312
+weighted avg       0.97      0.97      0.97      4312
+```

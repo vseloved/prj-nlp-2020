@@ -7,9 +7,13 @@ stanza.download('en')
 nlp = stanza.Pipeline('en', processors='tokenize, mwt, pos, lemma, depparse')
 
 RAW_SENTENCES_FILENAME = '../data/raw-data/stripped_masc_sentences.json'
-TOKENS_FILENAME = '../data/raw-data/tokens_dataset.json'
-LABELS_FILENAME = '../data/raw-data/labels_dataset.json'
+TOKENS_FILENAME = '../data/tokens_dataset.json'
+LABELS_FILENAME = '../data/labels_dataset.json'
+RUN_ON_TEST_RAW_FILENAME = '../../../../tasks/06-language-as-sequence/run-on-test.json'
+RUN_ON_TEST_FILENAME = '../data/raw-data/run-on-test.json'
 
+RUN_ON_TEST_TOKENS_FILENAME = '../data/run_on_test_tokens_dataset.json'
+RUN_ON_TEST_LABELS_FILENAME = '../data/run_on_test_labels_dataset.json'
 
 def decision(probability):
     return random() < probability
@@ -74,17 +78,26 @@ def extract_features(sentences):
             right_pos = ''
             is_right_upper = False
 
+            is_sentence_end = False
+
             if token_no > 0:
                 left_token = sentence.tokens[token_no - 1].text
                 left_pos = sentence.tokens[token_no - 1].words[0].pos
 
-            if token_no < len(sentence.tokens) - 2:
+            if token_no <= len(sentence.tokens) - 2:
                 right_token = sentence.tokens[token_no + 1].text
                 right_pos = sentence.tokens[token_no + 1].words[0].pos
 
                 if len(sentence.tokens[token_no + 1].text) > 0 and \
                         sentence.tokens[token_no + 1].text[0].isupper():
                     is_right_upper = True
+
+            if token_no == len(sentence.tokens) - 2 and right_token =='.':
+                is_sentence_end = True
+
+            if token_no == len(sentence.tokens) - 1 and text != '.':
+                is_sentence_end = True
+
 
             features = {'text': word.text,
                         'pos': word.pos,
@@ -96,7 +109,8 @@ def extract_features(sentences):
                         'left_pos': left_pos,
                         'right_token': right_token,
                         'right_pos': right_pos,
-                        'is_right_upper': is_right_upper
+                        'is_right_upper': is_right_upper,
+                        'is_sentence_end' : is_sentence_end
                         }
 
             label = False
@@ -130,21 +144,49 @@ def debug_extract_features():
     for i in range(len(labels)):
         print(tokens[i], labels[i])
 
-
-if __name__ == "__main__":
-    debug_extract_features()
-
-    with open(RAW_SENTENCES_FILENAME) as json_file:
+def prepare_run_on_test():
+    with open(RUN_ON_TEST_RAW_FILENAME) as json_file:
         data = json.load(json_file)
-
     labels = []
     tokens = []
-
     counter = 0
+    for sentence in data:
 
-    while len(data)>0:
+        temp_tokens = []
+        temp_labels = []
+        for token in sentence:
+            temp_tokens.append(token[0])
+            temp_labels.append(token[1])
 
-        batch_size = randrange(4)+1
+        dataset = extract_features([' '.join(temp_tokens)])
+
+        if len(temp_tokens) != len(dataset[0]) or len(dataset[0])!=len(temp_labels):
+            print('tokens:',len(temp_tokens))
+            print('labels:',len(temp_labels))
+            print('retokenized:',len(dataset[0]))
+
+        if len(temp_tokens) == len(dataset[0]) and len(dataset[0])==len(temp_labels):
+            tokens.append(dataset[0])
+            labels.append(temp_labels)
+
+        counter += 1
+        if counter % 10 == 0:
+            print('to go', len(data)-counter)
+
+    with open(RUN_ON_TEST_TOKENS_FILENAME, 'w') as outfile:
+        json.dump(tokens, outfile)
+    with open(RUN_ON_TEST_LABELS_FILENAME, 'w') as outfile:
+        json.dump(labels, outfile)
+
+def prepare_dataset():
+    with open(RAW_SENTENCES_FILENAME) as json_file:
+        data = json.load(json_file)
+    labels = []
+    tokens = []
+    counter = 0
+    while len(data) > 0:
+
+        batch_size = randrange(4) + 1
         batch = data[:batch_size]
         data = data[batch_size:]
         dataset = extract_features(batch)
@@ -153,9 +195,14 @@ if __name__ == "__main__":
         counter += 1
         if counter % 10 == 0:
             print('to go', len(data))
-
     with open(TOKENS_FILENAME, 'w') as outfile:
         json.dump(tokens, outfile)
-
     with open(LABELS_FILENAME, 'w') as outfile:
         json.dump(labels, outfile)
+
+
+if __name__ == "__main__":
+    # debug_extract_features()
+
+    prepare_dataset()
+#    prepare_run_on_test ()

@@ -20,7 +20,7 @@ def read_raw_data():
     # processing all 500k sentences would be painful
     # so let's start from 1%
     with open(RAW_SENTENCES_FILENAME, 'w') as outfile:
-        json.dump(data[:5000], outfile)
+        json.dump(data[:100000], outfile)
 
 
 if __name__ == "__main__":
