@@ -1,0 +1,32 @@
+
+version: 1
+disable_existing_loggers: False
+
+root:
+  level: TRACE
+  handlers: [console, file]
+
+loggers:
+  wiktionary:
+    level: TRACE
+
+formatters:
+  simple:
+    format: "%(asctime)s [%(name)-24s] %(levelname)-8s %(message)s"
+  simple_colored:
+    '()': utils.ColoredFormatter
+    format: "%(asctime)s [%(name)-24s] %(levelname)-8s %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: TRACE
+    formatter: simple_colored
+    stream: ext://sys.stderr
+  file:
+    class: logging.FileHandler
+    level: TRACE
+    formatter: simple
+    mode: wt
+    encoding: utf-8
+    filename: output/1.wiktionary.log
