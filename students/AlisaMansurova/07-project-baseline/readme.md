@@ -1,1 +1,1 @@
-https://github.com/lisss/good-omen/blob/a8d093b28dc39e411eff1bc940dbb9ff18bef311/data/README.md
+https://github.com/lisss/good-omen/blob/3324f4d23db6537fb4e65e2bf6cc405e26f83e75/data/README.md
