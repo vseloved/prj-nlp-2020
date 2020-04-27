@@ -156,10 +156,26 @@ def get_corpus(reviews):
         text = review['text']
         pros = review.get('pros')
         cons = review.get('cons')
+        
+        neut_texts = ['не знаю', 'незнаю', 'не купив', 'не купила',
+            'час покаже', 'поки не', 'ще не', 'поки що не', 'трохи', 'трошки', 'але '
+            ]
+        
+        rev_pros = None
+        rev_neut = None
+        rev_cons = None
 
         rev_text = {'text': text}
-        rev_pros = {'text': pros, 'sens': 'pos'} if pros else None
-        rev_cons = {'text': cons, 'sens': 'neg'} if cons else None
+        if pros:
+            if any([x for x in neut_texts if x in pros.lower()]):
+                rev_neut = {'text': pros, 'sens': 'neut'}
+            else:
+                rev_pros = {'text': pros, 'sens': 'pos'}
+        if cons:
+            if any([x for x in neut_texts if x in cons.lower()]):
+                rev_neut = {'text': cons, 'sens': 'neut'}
+            else:
+                rev_cons = {'text': cons, 'sens': 'neg'}
 
         if rating:
             if rating == 5:
@@ -175,19 +191,20 @@ def get_corpus(reviews):
 
         if rev_cons:
             res.append(rev_cons)
+            
+        if rev_neut:
+            res.append(rev_neut)
 
     pos = [x for x in res if x['sens'] == 'pos']
     neg = [x for x in res if x['sens'] == 'neg']
     neut = [x for x in res if x['sens'] == 'neut']
-    min_len = min(len(pos), len(neg), len(neut))
-    pos_f = pos[:min_len]
-    neg_f = neg[:min_len]
-    neut_f = neut[:min_len]
+    print('>> pos', len(pos))
+    print('>> neg', len(neg))
+    print('>> neut', len(neut))
 
-    res_normalized = pos_f + neg_f + neut_f
-    print('Lenght of each cohort:', min_len)
-    shuffle(res_normalized)
-    return res_normalized
+    res_all = pos + neg + neut
+    shuffle(res_all)
+    return res_all
 
 
 def divide_data(data):
@@ -250,13 +267,6 @@ def negatiaze_text(text):
     return res
 
 
-def filterize_text_q(text):
-    res = []
-    if text.endswith('?'):
-        return []
-    return negatiaze_text(text)
-
-
 def ngrammaze_text(text, additional_preproc=None):
     if additional_preproc:
         words = ' '.join(additional_preproc(text))
@@ -283,19 +293,60 @@ def get_classification_report(preprocess_fn, train_data, test_data, y_target):
     print(classification_report(y_target, test_predict))
 
 
-def get_cross_validation_report(preprocess_fn, X_train, y_train, X_test, y_target):
+def get_cross_validation_report(preprocess_fn, X_train, y_train):
     vect = CountVectorizer(tokenizer=preprocess_fn)
     cls_1 = Pipeline([('vect', vect), ('cls', MultinomialNB())])
-    cls_1.fit(X_train, y_train)
-    cls_1.predict
     scoring = {'accuracy': make_scorer(accuracy_score),
-               'precision': make_scorer(precision_score, average='macro'),
-               'recall': make_scorer(recall_score, average='macro'),
+               'precision_pos': make_scorer(precision_score, average=None, labels=['pos']),
+               'precision_neut': make_scorer(precision_score, average=None, labels=['neut']),
+               'precision_neg': make_scorer(precision_score, average=None, labels=['neg']),
+               'precision_macro': make_scorer(precision_score, average='macro'),
+               'precision_weighted': make_scorer(precision_score, average='weighted'),
+               'recall_pos': make_scorer(recall_score, average=None, labels=['pos']),
+               'recall_neut': make_scorer(recall_score, average=None, labels=['neut']),
+               'recall_neg': make_scorer(recall_score, average=None, labels=['neg']),
+               'recall_macro': make_scorer(recall_score, average='macro'),
+               'recall_weighted': make_scorer(recall_score, average='weighted'),
+               'f1_pos': make_scorer(f1_score, average=None, labels=['pos']),
+               'f1_neut': make_scorer(f1_score, average=None, labels=['neut']),
+               'f1_neg': make_scorer(f1_score, average=None, labels=['neg']),
                'f1_macro': make_scorer(f1_score, average='macro'),
-               'f1_weighted': make_scorer(f1_score, average='weighted')}
-    res = cross_validate(cls_1, X_test, y_target, return_train_score=True)
-    pp = pprint.PrettyPrinter(indent=4, compact=True)
-    pp.pprint(res)
+               'f1_weighted': make_scorer(f1_score, average='weighted'),
+               }
+    res = cross_validate(cls_1, X_train, y_train, scoring=scoring)
+    
+    def get_score(field):
+        return round(res[field].mean(), 2)
+    
+    accuracy = get_score('test_accuracy')
+    precision_pos = get_score('test_precision_pos')
+    precision_neut = get_score('test_precision_neut')
+    precision_neg = get_score('test_precision_neg')
+    recall_pos = get_score('test_recall_pos')
+    recall_neut = get_score('test_recall_neut')
+    recall_neg = get_score('test_recall_neg')
+    f1_pos = get_score('test_f1_pos')
+    f1_neut = get_score('test_f1_neut')
+    f1_neg = get_score('test_f1_neg')
+    precision_macro = get_score('test_precision_macro')
+    precision_weighted = get_score('test_precision_weighted')
+    recall_macro = get_score('test_recall_macro')
+    recall_weighted = get_score('test_recall_weighted')
+    f1_macro = get_score('test_f1_macro')
+    f1_weighted = get_score('test_f1_weighted')
+
+    scores = ['precision', 'recall', 'f1-score']
+    labels = ['pos', 'neut', 'neg', '', 'accuracy', 'macro avg', 'weighted avg']
+
+    data = np.array([[precision_pos, recall_pos, f1_pos],
+                     [precision_neut, recall_neut, f1_neut],
+                     [precision_neg, recall_neg, f1_neg],
+                     ['', '', ''],
+                     ['', '', accuracy],
+                     [precision_macro, recall_macro, f1_macro],
+                     [precision_weighted, recall_weighted, f1_weighted],
+                     ])
+    print(pandas.DataFrame(data, labels, scores))
 
 # main
 
