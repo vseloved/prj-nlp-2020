@@ -1,4 +1,6 @@
 ## Logistic Regression:
+
+```
               precision    recall  f1-score   support
 
         left       0.86      0.87      0.86      6371
@@ -9,10 +11,13 @@
     accuracy                           0.83     25820
    macro avg       0.83      0.83      0.83     25820
 weighted avg       0.83      0.83      0.83     25820
+```
 
 -> correct: 8717 out of 12574
 
 ## Feature Extraction Improvement & Logistic Rergression:
+
+```
         left       0.94      0.95      0.94      6371
       reduce       0.90      0.85      0.88      6875
        right       0.80      0.83      0.82      5996
@@ -21,10 +26,13 @@ weighted avg       0.83      0.83      0.83     25820
     accuracy                           0.88     25820
    macro avg       0.88      0.88      0.88     25820
 weighted avg       0.88      0.88      0.88     25820
+```
 
 -> correct: 9735 out of 12574
 
 ## Feature Extraction Improvement & XGBoost:
+
+```
               precision    recall  f1-score   support
 
         left       0.94      0.96      0.95      6371
@@ -35,10 +43,13 @@ weighted avg       0.88      0.88      0.88     25820
     accuracy                           0.89     25820
    macro avg       0.89      0.89      0.89     25820
 weighted avg       0.90      0.89      0.89     25820
+```
 
 -> І хоча XGBoost використовує всі ядра на відміну від логістичної регресії, але predict займає цілу вічність, тож результат не є адекватним.
 
 ## Adhoc Oracle & Logistic Regression:
+
+```
               precision    recall  f1-score   support
 
         left       0.93      0.95      0.94      6371
@@ -51,6 +62,7 @@ weighted avg       0.90      0.89      0.89     25820
    macro avg       0.85      0.86      0.86     25820
 weighted avg       0.87      0.86      0.86     25820
 
+```
 
 -> correct: 9771 out of 12574
 LAS: 77.7%
