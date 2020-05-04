@@ -184,6 +184,22 @@ def feature_extractor_dep_feats(stack, queue, relations):
     return feat
 
 
+def feature_extractor_pos_eq(stack, queue, _):
+    feat = {}
+
+    if stack:
+        top_stack = stack[-1]
+        if queue:
+            feat['s0-q0-pos-eq'] = top_stack['upostag'] == queue[0]['upostag']
+        if len(queue) > 1:
+            feat['s0-q1-pos-eq'] = top_stack['upostag'] == queue[1]['upostag']
+        if len(queue) > 2:
+            feat['s0-q2-pos-eq'] = top_stack['upostag'] == queue[2]['upostag']
+
+    return feat
+
+
+
 """ Parser """
 
 
