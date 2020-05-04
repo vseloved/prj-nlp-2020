@@ -6,6 +6,10 @@ RAW_SENTENCES_FILE = '../stripped_masc_sentences.json'
 
 
 def read_raw_data():
+    """
+    Reading the original file
+    Stripping it from the meta information and saving in json
+    """
     data = []
     with open(RAW_DATA_FILE) as in_file:
         reader = csv.DictReader(in_file, dialect='excel-tab')
