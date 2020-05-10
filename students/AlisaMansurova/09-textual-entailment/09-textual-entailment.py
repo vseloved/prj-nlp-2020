@@ -9,6 +9,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 import en_core_web_md
 from nltk.stem.porter import PorterStemmer
+from nltk import ngrams
 
 nlp = en_core_web_md.load()
 
@@ -76,18 +77,6 @@ def get_tokens_similarity(toks1, toks2):
     sim = [x.similarity(y)
            for x in setA for y in setB if x.has_vector and y.has_vector]
     return len(sim)/(len(universe))
-
-
-def get_ngrams(text):
-    res = []
-    for i in range(0, len(text), 3):
-        if i > 0 and i + 3 <= len(text):
-            res.append(text[i:i + 3])
-        elif i > 0 and i + 3 > len(text):
-            res.append(text[i:i + 3] + '</S>')
-        else:
-            res.append('<S>' + text[i:i + 3])
-    return res
 
 
 def chunks(lst, n):
@@ -286,20 +275,44 @@ def feature_extractor_spacy_sim(doc1, doc2):
 
 @normalize_sent
 def feature_extractor_ngrams(doc1, doc2):
-    def _ng_pos(doc):
-        return get_ngrams(' '.join([x.pos_ for x in doc]))
+    def _ng_lemma(doc, n):
+        if n == 3:
+            return [(x.lemma_, y.lemma_, z.lemma_) for (x, y, z) in (x for x in ngrams(doc, n))]
+        else:
+            return [(x.lemma_, y.lemma_) for (x, y) in (x for x in ngrams(doc, n))]
 
-    def _ng_dep(doc):
-        return get_ngrams(' '.join([x.dep_ for x in doc]))
+    def _ng_text(doc, n):
+        if n == 3:
+            return [(x.text, y.text, z.text) for (x, y, z) in (x for x in ngrams(doc, n))]
+        else:
+            return [(x.text, y.text) for (x, y) in (x for x in ngrams(doc, n))]
 
-    def _ng_lemma(doc):
-        return get_ngrams(' '.join([x.lemma_ for x in doc]))
+    def _ng_pos(doc, n):
+        if n == 3:
+            return [(x.pos_, y.pos_, z.pos_) for (x, y, z) in (x for x in ngrams(doc, n))]
+        else:
+            return [(x.pos_, y.pos_) for (x, y) in (x for x in ngrams(doc, n))]
+
+    def _ng_dep(doc, n):
+        if n == 3:
+            return [(x.dep_, y.dep_, z.dep_) for (x, y, z) in (x for x in ngrams(doc, n))]
+        else:
+            return [(x.dep_, y.dep_) for (x, y) in (x for x in ngrams(doc, n))]
 
     feats = {}
 
-    feats['ngr-pos'] = get_intersection(_ng_pos(doc1), _ng_pos(doc2))
-    feats['ngr-dep'] = get_intersection(_ng_dep(doc1), _ng_dep(doc2))
-    feats['ngr-lemma'] = get_intersection(_ng_lemma(doc1), _ng_lemma(doc2))
+    feats['ngr-2-pos'] = get_intersection(_ng_pos(doc1, 2), _ng_pos(doc2, 2))
+    feats['ngr-2-dep'] = get_intersection(_ng_dep(doc1, 2), _ng_dep(doc2, 2))
+    feats['ngr-2-lemma'] = get_intersection(
+        _ng_lemma(doc1, 2), _ng_lemma(doc2, 2))
+    feats['ngr-2-text'] = get_intersection(
+        _ng_text(doc1, 2), _ng_text(doc2, 2))
+    feats['ngr-3-pos'] = get_intersection(_ng_pos(doc1, 3), _ng_pos(doc2, 3))
+    feats['ngr-3-dep'] = get_intersection(_ng_dep(doc1, 3), _ng_dep(doc2, 3))
+    feats['ngr-3-lemma'] = get_intersection(
+        _ng_lemma(doc1, 3), _ng_lemma(doc2, 3))
+    feats['ngr-3-text'] = get_intersection(
+        _ng_text(doc1, 3), _ng_text(doc2, 3))
 
     return feats
 
@@ -347,15 +360,23 @@ def feature_extractor_neg(doc1, doc2):
 
 def feature_extractor_deps(doc1, doc2):
     def _inner_1(doc):
-        return [x.dep for x in doc]
+        return [(x.dep, x.head.dep) for x in doc]
 
     def _inner_2(doc):
-        return [x.head.dep for x in doc]
+        return [(x.dep, x.head.pos_) for x in doc]
+
+    def _inner_3(doc):
+        return [(x.pos_, x.head.pos_) for x in doc]
+
+    def _inner_4(doc):
+        return [(x.lemma_, x.head.lemma_) for x in doc]
 
     feats = {}
 
-    feats['dep'] = get_intersection(_inner_1(doc1), _inner_1(doc2))
-    feats['head-dep'] = get_intersection(_inner_2(doc1), _inner_2(doc2))
+    feats['head-dep'] = get_intersection(_inner_1(doc1), _inner_1(doc2))
+    feats['head-pos'] = get_intersection(_inner_2(doc1), _inner_2(doc2))
+    feats['dep-pos'] = get_intersection(_inner_3(doc1), _inner_3(doc2))
+    feats['dep-lemma'] = get_intersection(_inner_4(doc1), _inner_4(doc2))
 
     return feats
 
