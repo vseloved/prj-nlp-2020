@@ -48,9 +48,10 @@ def feachure_extractor(sent):
         features = dict()
         features['lema'] = word.lemma_
         features['pos'] = word.pos_
-        features["word-1"] = doc[i-1].text if i > 0 else "NONE"
-        features["word-2"] = doc[i-1].text if i > 0 else "NONE"
-
+        features["lemma-1"] = doc[i-1].lemma_ if i > 0 else "NONE"
+        features["lemma-2"] = doc[i-2].lemma_ if i-1 > 0 else "NONE"
+        features["lemma+1"] = doc[i+1].lemma_ if i+1 < len(doc) else "NONE"
+        features["lemma+2"] = doc[i+2].lemma_ if i+2 < len(doc) else "NONE"
         features['shape'] = shape(word.text)
         features["parent"] = doc[i].dep_ + "_" + doc[i].head.lemma_
         features["right-bigram"] = doc[i+1].text + "_" + doc[i+2].text if i < (len(doc) - 2) else "NONE"

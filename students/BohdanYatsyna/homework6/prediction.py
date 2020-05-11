@@ -102,10 +102,10 @@ X_train, X_val, y_train, y_val = train_test_split(features_vectorized, labels_da
 parameters = {
     'tfidf__use_idf': (True, False),
     'tfidf__norm': ('l1', 'l2'),
-    'clf__tol': (0.0001,),
+    'clf__tol': (0.0001,0.00001),
     'clf__solver': ('sag',),
     'clf__penalty': ('l2',),
-    'clf__max_iter': (1000,),
+    'clf__max_iter': (200,500, 1000,),
     'clf__random_state': (42,)
 
 }
