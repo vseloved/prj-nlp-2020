@@ -1,0 +1,1 @@
+https://github.com/OlegTheCat/show-dont-tell/blob/master/show-dont-tell-baseline.ipynb
