@@ -34,3 +34,4 @@ ipython_config.py
 
 # pyenv
 .python-version
+!/students/BohdanYatsyna/homework6/dataset.json
