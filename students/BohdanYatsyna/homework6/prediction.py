@@ -54,9 +54,9 @@ def benchmark(X_train, X_val, X_test, y_train, y_val, y_test, pipeline, paramete
         # test report
         print('### Test report')
         predicted_test = grid_search.predict(X_test)
-        clf_repport = classification_report(y_test, predicted_test)
-        print(clf_repport)
-        print(clf_repport, file=f)
+        clf_repport_test = classification_report(y_test, predicted_test)
+        print(clf_repport_test)
+        print(clf_repport_test, file=f)
 
         ## Confusion matrix print
         titles_options = [("Confusion matrix, without normalization", None),
@@ -71,12 +71,6 @@ def benchmark(X_train, X_val, X_test, y_train, y_val, y_test, pipeline, paramete
         print(disp.confusion_matrix, file=f)
         plt.show()
 
-        """Prints features with the highest coefficient values, per class"""
-        feature_names = vec.get_feature_names()
-        for i, class_label in enumerate(grid_search.classes_):
-            top10 = np.argsort(grid_search.coef_[i])[-10:]
-            print("%s: %s" % (class_label,
-                              " ".join(feature_names[j] for j in top10)))
 
 print("Load dataset....")
 ### загрузка данних
@@ -96,21 +90,16 @@ X_train, X_val, y_train, y_val = train_test_split(features_vectorized, labels_da
 
 X_test = vec.transform(dataset['test']['tokens'])
 y_test = dataset['test']['labels']
-
-X_train, X_val, y_train, y_val = train_test_split(features_vectorized, labels_dataset, test_size=0.33, random_state=42)
-
 parameters = {
-    'tfidf__use_idf': (True, False),
+    'tfidf__use_idf': (False, True),
     'tfidf__norm': ('l1', 'l2'),
-    'clf__tol': (0.0001,0.00001),
+    'clf__tol': (0.0001, 0.00001),
     'clf__solver': ('sag',),
     'clf__penalty': ('l2',),
-    'clf__max_iter': (200,500, 1000,),
-    'clf__random_state': (42,)
+    'clf__max_iter': (200, 500, 1000),
+    'clf__random_state': (12,)
 
 }
-# Побачити параметри для любого елемента пайплайну
-# print(pipeline['clf'].get_params().keys())
 
 pipeline = Pipeline([
     ('tfidf', TfidfTransformer()),
@@ -118,6 +107,3 @@ pipeline = Pipeline([
 ])
 
 grid_search = benchmark(X_train, X_val, X_test, y_train, y_val, y_test, pipeline, parameters)
-
-
-#print_top10(vec,pipeline['clf'],pipeline['clf'].classes_)

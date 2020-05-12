@@ -2,12 +2,14 @@ import csv
 import json
 from random import seed
 from random import randint
+import random
 import spacy
 import en_core_web_md
 from spacy.tokens import Doc
 from tqdm import tqdm, trange
 import numpy as np
 import re
+
 
 def shape(word):
     if re.match('[0-9]+(\.[0-9]*)?|[0-9]*\.[0-9]+$', word):
@@ -34,11 +36,13 @@ def shape(word):
         return 'contains-hyphen'
     return 'other'
 
+
 def get_rand_sent(buffer):
     if len(buffer) > 4:
         return randint(1, 4)
     else:
         return randint(1, len(buffer))
+
 
 def feachure_extractor(sent):
     feachure_sent = []
@@ -48,15 +52,22 @@ def feachure_extractor(sent):
         features = dict()
         features['lema'] = word.lemma_
         features['pos'] = word.pos_
-        features["lemma-1"] = doc[i-1].lemma_ if i > 0 else "NONE"
-        features["lemma-2"] = doc[i-2].lemma_ if i-1 > 0 else "NONE"
-        features["lemma+1"] = doc[i+1].lemma_ if i+1 < len(doc) else "NONE"
-        features["lemma+2"] = doc[i+2].lemma_ if i+2 < len(doc) else "NONE"
-        features['shape'] = shape(word.text)
+        features["lemma-1"] = doc[i - 1].lemma_ if i > 0 else "NONE"
+        features["lemma-2"] = doc[i - 2].lemma_ if i - 1 > 0 else "NONE"
+        features["lemma+1"] = doc[i + 1].lemma_ if i + 1 < len(doc) else "NONE"
+        features["lemma+2"] = doc[i + 2].lemma_ if i + 2 < len(doc) else "NONE"
+        features["pos-1"] = doc[i - 1].pos_ if i > 0 else "NONE"
+        features["pos-2"] = doc[i - 2].pos_ if i - 1 > 0 else "NONE"
+        features["pos+1"] = doc[i + 1].pos_ if i + 1 < len(doc) else "NONE"
+        features["pos+2"] = doc[i + 2].pos_ if i + 2 < len(doc) else "NONE"
+
+        features["shape"] = shape(word.text)
+        features["shape+1"] = shape(doc[i + 1].text) if i + 1 < len(doc) else "NONE"
         features["parent"] = doc[i].dep_ + "_" + doc[i].head.lemma_
-        features["right-bigram"] = doc[i+1].text + "_" + doc[i+2].text if i < (len(doc) - 2) else "NONE"
+        features["right-bigram"] = doc[i + 1].text + "_" + doc[i + 2].text if i < (len(doc) - 2) else "NONE"
         feachure_sent.append(features)
     return feachure_sent
+
 
 def generate_dataset_string(buff_list):
     gen_tokens_labels = {}
@@ -64,8 +75,9 @@ def generate_dataset_string(buff_list):
     for item in buff_list:
         doc = nlp(item)
 
-        first_cap = randint(0,1)
-        miss_point =randint(0,1)
+        first_cap = randint(0, 1)
+        miss_point = randint(0, 1)
+
         gen_tokens_labels['tokens'] = []
         gen_tokens_labels['labels'] = []
         extracted_features = feachure_extractor(doc)
@@ -75,14 +87,14 @@ def generate_dataset_string(buff_list):
             if not i and not first_cap:
                 gen_tokens_labels['tokens'].append(extracted_features[i])
                 gen_tokens_labels['labels'].append(False)
-            elif i== len(doc) -1 and doc[i].pos_ == 'PUNCT' and miss_point:
+            elif i == len(doc) - 1 and doc[i].text == "." and miss_point:
                 gen_tokens_labels['labels'][-1] = True
-                t=1
             else:
                 gen_tokens_labels['tokens'].append(extracted_features[i])
                 gen_tokens_labels['labels'].append(False)
 
     return gen_tokens_labels
+
 
 nlp = spacy.load("en_core_web_md")
 RAW_SENTENCES_FILE = '../stripped_masc_sentences.json'
@@ -97,19 +109,19 @@ print('Load Raw data...')
 with open(RAW_SENTENCES_FILE) as json_file:
     data = json.load(json_file)
 
-dataset['dev'] = {'tokens': [],'labels': []}
-dataset['test']= {'tokens': [],'labels': []}
+dataset['dev'] = {'tokens': [], 'labels': []}
+dataset['test'] = {'tokens': [], 'labels': []}
 
 print('Prepearing TEST dataset part...')
 with open(TEST_DATASET) as json_file:
     tt = json.load(json_file)
-    for t in tqdm(tt,desc= "Loading test tokens and labels"):
+    for t in tqdm(tt, desc="Loading test tokens and labels"):
         temp_sent = []
         temp_label = []
         for item in t:
             temp_sent.append(item[0])
             temp_label.append(item[1])
-        #doc_test = nlp(' '.join(temp_sent))
+        # doc_test = nlp(' '.join(temp_sent))
         doc_test = Doc(nlp.vocab, words=temp_sent)
         dataset['test']['tokens'].extend(feachure_extractor(doc_test))
         dataset['test']['labels'].extend(temp_label)
@@ -128,10 +140,6 @@ with tqdm(total=len(buffer), desc="Prepearing DEV dataset tokens and labels") as
         pbar.update(num_sent)
 
 print('Write to file dataset...')
-with open(DATASET_FILE,'w') as file:
+with open(DATASET_FILE, 'w') as file:
     json.dump(dataset, file)
 print('DONE')
-
-
-
-
