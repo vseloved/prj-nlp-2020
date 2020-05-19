@@ -11,6 +11,10 @@ import tokenize_uk
 from langdetect import detect
 import pymorphy2
 from collections import Counter
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import seaborn as sns
 
 morph = pymorphy2.MorphAnalyzer(lang='uk')
 
@@ -314,3 +318,57 @@ v_unk = nlp_uk('unk')[0].vector
 
 print_report(data, categories_grouped, v_unk, lowerize)
 print_report(uk_data, categories_grouped_uk, v_unk, lowerize)
+
+
+''' Visualization '''
+
+RS = 20150101
+
+
+def visualize(data, cats, v_unk, preprocessor):
+    claims_labeled = [(x, get_claim_label((x, y), cats)) for x, y in data]
+    all_labels = np.array([y for x, y in claims_labeled])
+
+    labs_set = [all_labels[all_labels == x] for x in set(all_labels)]
+    claim_vectors_labeled = np.array(
+        [(vectorize_sent(v_unk, x, preprocessor), y) for x, y in claims_labeled])
+    claim_vectors_grouped = [
+        claim_vectors_labeled[all_labels == x] for x in set(all_labels)]
+
+    claim_vectors_normalized = [x[0]
+                                for subl in claim_vectors_grouped for x in subl]
+
+    X = np.vstack(claim_vectors_normalized)
+    y = np.hstack(labs_set)
+
+    digits_proj = TSNE(random_state=RS).fit_transform(X)
+
+    scatter(digits_proj, y)
+
+
+def scatter(x, labels):
+    labels_set = list(set(labels))
+    colors = np.array([labels_set.index(x) for x in labels])
+    palette = np.array(sns.husl_palette(len(labels_set)))
+
+    f = plt.figure(figsize=(10, 10))
+    ax = plt.subplot(aspect='auto')
+    sc = ax.scatter(x[:, 0], x[:, 1], lw=0, s=40,
+                    c=palette[colors.astype(np.int)])
+    plt.xlim(-50, 50)
+    plt.ylim(-50, 50)
+    ax.axis('off')
+    ax.axis('tight')
+
+    legends = []
+    leg_labels_processed = []
+
+    for i in range(len(colors)):
+        if not labels[i] in leg_labels_processed:
+            rgb = palette[colors.astype(np.int)[i]]
+            legend = mpatches.Patch(color=rgb.tolist(), label=labels[i])
+            legends.append(legend)
+            leg_labels_processed.append(labels[i])
+    lgd = plt.legend(handles=legends, bbox_to_anchor=[1, 1], fontsize=12)
+    plt.savefig('./viz.png', dpi=120,
+                bbox_extra_artists=(lgd,), bbox_inches='tight')
