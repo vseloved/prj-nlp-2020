@@ -9,6 +9,8 @@ from spacy.tokens import Doc
 from tqdm import tqdm, trange
 import numpy as np
 import re
+from spacy.tokenizer import Tokenizer
+from spacy.pipeline import Tagger
 
 
 def shape(word):
@@ -50,56 +52,128 @@ def feachure_extractor(sent):
 
     for i, word in enumerate(doc):
         features = dict()
-        features['lema'] = word.lemma_
+        features['word'] = word.text
+        features['lemma'] = word.lemma_
         features['pos'] = word.pos_
+        features["shape"] = shape(word.text)
+
+        features['dep'] = word.dep_
+        features['head_word'] = word.head.text
+        features['head_lemma'] = word.head.lemma_
+        features['head_pos'] = word.head.pos_
+
+        # features["word-1"] = doc[i - 1].text if i > 0 else "NONE"
+        # features["word-2"] = doc[i - 2].text if i - 1 > 0 else "NONE"
+        # features["word+1"] = doc[i + 1].text if i + 1 < len(doc) else "NONE"
+        # features["word+2"] = doc[i + 2].text if i + 2 < len(doc) else "NONE"
+
         features["lemma-1"] = doc[i - 1].lemma_ if i > 0 else "NONE"
         features["lemma-2"] = doc[i - 2].lemma_ if i - 1 > 0 else "NONE"
         features["lemma+1"] = doc[i + 1].lemma_ if i + 1 < len(doc) else "NONE"
         features["lemma+2"] = doc[i + 2].lemma_ if i + 2 < len(doc) else "NONE"
+
         features["pos-1"] = doc[i - 1].pos_ if i > 0 else "NONE"
         features["pos-2"] = doc[i - 2].pos_ if i - 1 > 0 else "NONE"
         features["pos+1"] = doc[i + 1].pos_ if i + 1 < len(doc) else "NONE"
         features["pos+2"] = doc[i + 2].pos_ if i + 2 < len(doc) else "NONE"
 
-        features["shape"] = shape(word.text)
+        features["shape-1"] = shape(doc[i - 1].text) if i > 0 else "NONE"
+        features["shape-2"] = shape(doc[i - 2].text) if i - 1 > 0 else "NONE"
         features["shape+1"] = shape(doc[i + 1].text) if i + 1 < len(doc) else "NONE"
-        features["parent"] = doc[i].dep_ + "_" + doc[i].head.lemma_
-        features["right-bigram"] = doc[i + 1].text + "_" + doc[i + 2].text if i < (len(doc) - 2) else "NONE"
+        features["shape+2"] = shape(doc[i + 2].text) if i + 2 < len(doc) else "NONE"
+
+        features["dep-1"] = doc[i - 1].dep_ if i > 0 else "NONE"
+        features["dep-2"] = doc[i - 2].dep_ if i - 1 > 0 else "NONE"
+        features["dep+1"] = doc[i + 1].dep_ if i + 1 < len(doc) else "NONE"
+        features["dep+2"] = doc[i + 2].dep_ if i + 2 < len(doc) else "NONE"
+
+        features["head_pos-1"] = doc[i - 1].head.pos_ if i > 0 else "NONE"
+        features["head_pos-2"] = doc[i - 2].head.pos_ if i - 1 > 0 else "NONE"
+        features["head_pos+1"] = doc[i + 1].head.pos_ if i + 1 < len(doc) else "NONE"
+        features["head_pos+2"] = doc[i + 2].head.pos_ if i + 2 < len(doc) else "NONE"
+
+
+        #features["parent"] = doc[i].dep_ + "_" + doc[i].head.lemma_
+        #features["right-bigram"] = doc[i + 1].text + "_" + doc[i + 2].text if i < (len(doc) - 2) else "NONE"
         feachure_sent.append(features)
     return feachure_sent
 
 
-def generate_dataset_string(buff_list):
+def generate_sent_params(sent_num, debug=False):
+    lowercase_list = []
+    miss_point_list = []
+
+    old_miss_point = None
+
+    for i in range(sent_num):
+
+        if old_miss_point:
+            # ловеркейсим тільки коли у попередньому реченні пропущена крапка
+            lowercase = randint(0, 1)
+        else:
+            # якщо нема пропущеної крапки то не ловеркейсим
+            lowercase = 0
+
+        # крапка може бути пропущена у  реченнях крім останнього
+        miss_point = randint(0, 1) if i != sent_num - 1 else 0
+
+        lowercase_list.append(lowercase)
+        miss_point_list.append(miss_point)
+
+        old_miss_point = miss_point
+
+    if debug:
+        for i in range(sent_num):
+            print("Sent # {} misspoint {} lowercase {}".format(i, miss_point_list[i], lowercase_list[i]))
+
+    return lowercase_list, miss_point_list
+
+
+def generate_sent_string(buff_list, debug = False):
+    token_list = []
+    labels_list = []
+    lowercases, miss_points = generate_sent_params(len(buff_list), debug = debug)
+
+    for i, sent in enumerate(buff_list):
+
+        doc = nlp(sent)
+        tokens = [tok.text for tok in doc]
+        labels = [False for i in range(len(doc))]
+        if len(tokens) > 1:
+            if miss_points[i]:
+                del tokens[-1]
+                del labels[-1]
+                labels[-1] = True
+            if lowercases[i]:
+                tokens[0] = tokens[0].lower()
+
+        token_list.extend(tokens)
+        labels_list.extend(labels)
+    return token_list, labels_list
+
+
+def generate_dataset_string(buff_list, debug = False):
     gen_tokens_labels = {}
 
-    for item in buff_list:
-        doc = nlp(item)
+    tokens, labels = generate_sent_string(buff_list, debug)
+    doc = nlp(' '.join(tokens))
+    assert len(doc) == len(labels)
 
-        first_cap = randint(0, 1)
-        miss_point = randint(0, 1)
-
-        gen_tokens_labels['tokens'] = []
-        gen_tokens_labels['labels'] = []
-        extracted_features = feachure_extractor(doc)
-
-        for i in range(len(doc)):
-
-            if not i and not first_cap:
-                gen_tokens_labels['tokens'].append(extracted_features[i])
-                gen_tokens_labels['labels'].append(False)
-            elif i == len(doc) - 1 and doc[i].text == "." and miss_point:
-                gen_tokens_labels['labels'][-1] = True
-            else:
-                gen_tokens_labels['tokens'].append(extracted_features[i])
-                gen_tokens_labels['labels'].append(False)
+    gen_tokens_labels['tokens'] = feachure_extractor(doc)
+    gen_tokens_labels['labels'] = labels
 
     return gen_tokens_labels
 
 
 nlp = spacy.load("en_core_web_md")
-RAW_SENTENCES_FILE = '../stripped_masc_sentences.json'
+
+# white space tokenizer
+nlp.tokenizer = Tokenizer(nlp.vocab)
+
+RAW_SENTENCES_FILE = './stripped_masc_sentences.json'
 TEST_DATASET = './run-on-test.json'
 DATASET_FILE = './dataset.json'
+
 
 joined_sent_tokens = []
 joined_sent_labels = []
@@ -121,14 +195,15 @@ with open(TEST_DATASET) as json_file:
         for item in t:
             temp_sent.append(item[0])
             temp_label.append(item[1])
-        # doc_test = nlp(' '.join(temp_sent))
-        doc_test = Doc(nlp.vocab, words=temp_sent)
+        doc_test = nlp(' '.join(temp_sent))
         dataset['test']['tokens'].extend(feachure_extractor(doc_test))
         dataset['test']['labels'].extend(temp_label)
 
-seed(40)
 
 buffer = data
+### testing my sentence generator
+
+num_sent = get_rand_sent(buffer)
 
 with tqdm(total=len(buffer), desc="Prepearing DEV dataset tokens and labels") as pbar:
     while buffer:
@@ -143,5 +218,3 @@ print('Write to file dataset...')
 with open(DATASET_FILE, 'w') as file:
     json.dump(dataset, file)
 print('DONE')
-
-

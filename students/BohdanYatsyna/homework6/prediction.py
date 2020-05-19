@@ -90,15 +90,16 @@ X_train, X_val, y_train, y_val = train_test_split(features_vectorized, labels_da
 
 X_test = vec.transform(dataset['test']['tokens'])
 y_test = dataset['test']['labels']
+
 parameters = {
     'tfidf__use_idf': (False, True),
     'tfidf__norm': ('l1', 'l2'),
     'clf__tol': (0.0001, 0.00001),
     'clf__solver': ('sag',),
     'clf__penalty': ('l2',),
-    'clf__max_iter': (200, 500, 1000),
-    'clf__random_state': (12,)
-
+    'clf__max_iter': (1000,),
+    'clf__random_state': (42,),
+    'clf__multi_class': ('multinomial',)
 }
 
 pipeline = Pipeline([
