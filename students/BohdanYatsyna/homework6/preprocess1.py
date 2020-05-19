@@ -1,16 +1,10 @@
-import csv
 import json
-from random import seed
-from random import randint
-import random
-import spacy
-import en_core_web_md
-from spacy.tokens import Doc
-from tqdm import tqdm, trange
-import numpy as np
 import re
+from random import randint
+
+import spacy
 from spacy.tokenizer import Tokenizer
-from spacy.pipeline import Tagger
+from tqdm import tqdm
 
 
 def shape(word):
@@ -61,11 +55,6 @@ def feachure_extractor(sent):
         features['head_word'] = word.head.text
         features['head_lemma'] = word.head.lemma_
         features['head_pos'] = word.head.pos_
-
-        # features["word-1"] = doc[i - 1].text if i > 0 else "NONE"
-        # features["word-2"] = doc[i - 2].text if i - 1 > 0 else "NONE"
-        # features["word+1"] = doc[i + 1].text if i + 1 < len(doc) else "NONE"
-        # features["word+2"] = doc[i + 2].text if i + 2 < len(doc) else "NONE"
 
         features["lemma-1"] = doc[i - 1].lemma_ if i > 0 else "NONE"
         features["lemma-2"] = doc[i - 2].lemma_ if i - 1 > 0 else "NONE"
@@ -202,8 +191,6 @@ with open(TEST_DATASET) as json_file:
 
 buffer = data
 ### testing my sentence generator
-
-num_sent = get_rand_sent(buffer)
 
 with tqdm(total=len(buffer), desc="Prepearing DEV dataset tokens and labels") as pbar:
     while buffer:
