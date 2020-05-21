@@ -1,0 +1,17 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX res: <http://dbpedia.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT
+     ?album_uri ?album
+     (GROUP_CONCAT(DISTINCT ?year;separator='|') AS ?release_years)
+WHERE {
+       ?album_uri dbo:artist res:Black_Sabbath .
+       ?album_uri foaf:name ?album .
+       ?album_uri dbo:releaseDate ?release_date .
+       values ?band_uri { <http://dbpedia.org/resource/Black_Sabbath> } .
+       ?band_uri dbo:activeYearsStartYear ?from .
+       FILTER NOT EXISTS { ?album_uri dbo:album ?cc } .
+       BIND(REPLACE(?release_date, "(\\d*)-.*", "$1") as ?year) .
+}
+
+ORDER BY ?release_years

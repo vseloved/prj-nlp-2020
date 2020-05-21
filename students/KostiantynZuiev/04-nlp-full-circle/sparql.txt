@@ -1,0 +1,17 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?uri ?album ?genre ?year ?label
+WHERE {
+        ?uri dbo:artist dbr:Drudkh .
+        ?uri rdfs:label ?album .
+        ?uri dbo:genre ?genreuri .
+        ?genreuri rdfs:label ?genre .
+        FILTER (lang(?album) = 'en')
+        FILTER (lang(?genre) = 'en')
+        OPTIONAL {?uri dct:subject ?cat . 
+                  ?cat rdfs:label ?year . 
+                  FILTER (regex (?year, '\\d+', 'i'))} .
+        ?uri dbo:recordLabel ?labeluri .
+        ?labeluri rdfs:label ?label .
+        FILTER (lang(?label) = 'en')
+}
+
