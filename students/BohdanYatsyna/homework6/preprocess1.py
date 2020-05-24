@@ -1,9 +1,8 @@
-import csv
 import json
-from random import seed
 from random import randint
+from random import seed
+
 import spacy
-import en_core_web_md
 from tqdm import tqdm
 
 nlp = spacy.load("en_core_web_md")
@@ -17,8 +16,8 @@ dataset = {}
 with open(RAW_SENTENCES_FILE) as json_file:
     data = json.load(json_file)
 
-dataset['dev'] = {'tokens': [],'labels': []}
-dataset['test']= {'tokens': [],'labels': []}
+dataset['dev'] = {'tokens': [], 'labels': []}
+dataset['test'] = {'tokens': [], 'labels': []}
 
 with open(TEST_DATASET) as json_file:
     tt = json.load(json_file)
@@ -40,28 +39,30 @@ def get_rand_sent(buf):
     else:
         return randint(1, len(buffer))
 
+
 def generate_dataset_string(buff_list):
-    print('len {}   {}'.format(len(buff_list),buff_list))
+    print('len {}   {}'.format(len(buff_list), buff_list))
     gen_tokens_labels = {}
 
     for item in buff_list:
         doc = nlp(item)
-        first_cap = randint(0,1)
-        miss_point =randint(0,1)
+        first_cap = randint(0, 1)
+        miss_point = randint(0, 1)
         gen_tokens_labels['tokens'] = []
         gen_tokens_labels['labels'] = []
 
-        for i,token in enumerate(doc):
+        for i, token in enumerate(doc):
             if not i and not first_cap:
                 gen_tokens_labels['tokens'].append(token.text.lower())
                 gen_tokens_labels['labels'].append(False)
-            elif i== len(doc) -1 and token.pos_ == 'PUNCT' and miss_point:
+            elif i == len(doc) - 1 and token.pos_ == 'PUNCT' and miss_point:
                 gen_tokens_labels['labels'][-1] = True
             else:
                 gen_tokens_labels['tokens'].append(token.text)
                 gen_tokens_labels['labels'].append(False)
 
     return gen_tokens_labels
+
 
 buffer = data
 while tqdm(buffer):
@@ -71,8 +72,5 @@ while tqdm(buffer):
     dataset['dev']['tokens'].append(joined_sent_tokens_labels['tokens'])
     dataset['dev']['labels'].append(joined_sent_tokens_labels['labels'])
 
-with open(DATASET_FILE,'w') as file:
+with open(DATASET_FILE, 'w') as file:
     json.dump(dataset, file)
-
-
-
