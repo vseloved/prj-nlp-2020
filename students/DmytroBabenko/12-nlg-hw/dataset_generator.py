@@ -1,11 +1,13 @@
 import numpy as np
 from tensorflow.keras.utils import Sequence
 
-#ythis class was copied from https://towardsdatascience.com/keras-data-generators-and-how-to-use-them-b69129ed779c and fit for our task
+
+# ythis class was copied from https://towardsdatascience.com/keras-data-generators-and-how-to-use-them-b69129ed779c and fit for our task
 class DataGenerator(Sequence):
     """Generates data for Keras
     Sequence based data generator. Suitable for building data generator for training and prediction.
     """
+
     def __init__(self, input_texts, target_texts,
                  input_token_index, target_token_index,
                  max_encoder_seq_length, num_encoder_tokens,
@@ -48,22 +50,24 @@ class DataGenerator(Sequence):
         indexes = self.indexes[index * self.batch_size:(index + 1) * self.batch_size]
 
         encoder_input_data, decoder_input_data, decoder_target_data = self.__create_zero_data()
-
         for i, idx in enumerate(indexes):
             input_text = self.input_texts[idx]
             target_text = self.target_texts[idx]
-            for t, char in enumerate(input_text):
-                encoder_input_data[i, t, self.input_token_index[char]] = 1.
-            encoder_input_data[i, t + 1:, self.input_token_index[' ']] = 1.
-            for t, char in enumerate(target_text):
+            for t in range(min(self.max_encoder_seq_length, len(input_text))):
+                char = input_text[t]
+                encoder_input_data[i, t, self.get_input_token_value(char)] = 1.
+            encoder_input_data[i, t + 1:, self.get_input_token_value(' ')] = 1.
+
+            for t in range(min(self.max_decoder_seq_length, len(target_text))):
+                char = target_text[t]
                 # decoder_target_data is ahead of decoder_input_data by one timestep
-                decoder_input_data[i, t, self.target_token_index[char]] = 1.
+                decoder_input_data[i, t, self.get_target_token_value(char)] = 1.
                 if t > 0:
                     # decoder_target_data will be ahead by one timestep
                     # and will not include the start character.
-                    decoder_target_data[i, t - 1, self.target_token_index[char]] = 1.
-            decoder_input_data[i, t + 1:, self.target_token_index[' ']] = 1.
-            decoder_target_data[i, t:, self.target_token_index[' ']] = 1.
+                    decoder_target_data[i, t - 1, self.get_target_token_value(char)] = 1.
+            decoder_input_data[i, t + 1:, self.get_target_token_value(' ')] = 1.
+            decoder_target_data[i, t:, self.get_target_token_value(' ')] = 1.
 
         X = [encoder_input_data, decoder_input_data]
         y = decoder_target_data
@@ -89,8 +93,8 @@ class DataGenerator(Sequence):
             dtype='float32')
         t = 0
         for t, char in enumerate(text):
-            encoder_input_item[t, self.input_token_index[char]] = 1.
-        encoder_input_item[t + 1:, self.input_token_index[' ']] = 1.
+            encoder_input_item[t, self.get_input_token_value(char)] = 1.
+        encoder_input_item[t + 1:, self.get_input_token_value(' ')] = 1.
 
         return encoder_input_item
 
@@ -100,4 +104,20 @@ class DataGenerator(Sequence):
         self.indexes = np.arange(len(self.input_texts))
         # if self.shuffle == True:
         #     np.random.shuffle(self.indexes)
+
+    def get_input_token_value(self, token):
+        return self.__get_token_value(token, self.input_token_index)
+
+    def get_target_token_value(self, token):
+        return self.__get_token_value(token, self.target_token_index)
+
+    @staticmethod
+    def __get_token_value(token, index):
+        if token in index:
+            return index[token]
+
+        return index['oov']
+
+
+
 
