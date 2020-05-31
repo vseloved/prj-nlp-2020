@@ -1,0 +1,38 @@
+pipeline: ['tfidf', 'clf']
+
+
+{'tfidf__use_idf': (False, True), 'tfidf__norm': ('l1', 'l2'), 'clf__tol': (0.0001, 1e-05), 'clf__solver': ('sag',), 'clf__penalty': ('l2',), 'clf__max_iter': (1000,), 'clf__random_state': (42,), 'clf__multi_class': ('multinomial',)}
+
+
+Best score: 0.991
+	clf__max_iter: 1000
+	clf__multi_class: 'multinomial'
+	clf__penalty: 'l2'
+	clf__random_state: 42
+	clf__solver: 'sag'
+	clf__tol: 0.0001
+	tfidf__norm: 'l2'
+	tfidf__use_idf: True
+
+
+              precision    recall  f1-score   support
+
+       False       0.99      1.00      1.00    798488
+        True       0.90      0.21      0.34      8546
+
+    accuracy                           0.99    807034
+   macro avg       0.94      0.60      0.67    807034
+weighted avg       0.99      0.99      0.99    807034
+
+              precision    recall  f1-score   support
+
+       False       0.98      1.00      0.99      4542
+        True       0.95      0.26      0.41       155
+
+    accuracy                           0.98      4697
+   macro avg       0.96      0.63      0.70      4697
+weighted avg       0.97      0.98      0.97      4697
+
+Normalized confusion matrix
+[[9.99559665e-01 4.40334654e-04]
+ [7.35483871e-01 2.64516129e-01]]
