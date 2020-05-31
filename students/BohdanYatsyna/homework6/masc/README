@@ -1,0 +1,1112 @@
+MASC WORD SENSE SENTENCE CORPUS, TSV VERSION 1.0
+==========================================================================
+Synopsis: The MASC Word Sense Sentence corpus is distributed as a set of
+three *tsv files (tab-separated format) that contain the sentences,
+annotation labels, and senses that comprise the sentence corpus:
+    (1) the annotation labels (masc_annotations.tsv), 
+    (2) the WordNet word senses (masc_senses.tsv), and
+    (3) the word token-sentence pairs, or instances (masc_sentences.tsv).
+A total of 116 distinct lemmas were selected; for each lemma,
+approximately 1000 example sentences were taken from the MASC corpus;
+and for each word in its sentence context, a trained annotator
+assigned a WordNet sense (WordNet version 3.1) as the annotation
+label.  The following README describes the data in detail.
+
+==========================================================================
+Table of Contents
+1. Version Notes
+2. Description of Annotation Task
+3. Data Files and Format
+4. Interannotator Agreement Tables 
+5. Author, MASC PIs and Acknowledgements
+6. References
+7. Appendices
+==========================================================================
+1. Version Notes:  This set of files in *tsv format is an alternate and
+parallel version of the MASC word sense sentence corpus, identical in
+content to the version in standoff GrAF format. This release contains all
+the data collected as of the end of March, 2012. (Annotations for a few
+words were added in the fall of 2013.)
+
+An additional increment of over four hundred sentences is currently planned,
+and will be incorporated in future releases. This increment will include 
+example sentences that appear in less standard contexts (i.e., outside of
+sentence tags) that were identified after the bulk of the annotation had
+been completed.  
+
+We invite corrections to the corpus, and will include corrections in
+future releases.  Send corrections with complete details about error
+and the download where the error was discovered to anc@anc.org.
+==========================================================================
+2. Description of Annotation Task
+
+Much of the information in this section is taken from Passonneau et al.,
+2012b, but the information here is more up-to-date.
+---------------------------------------------------------------------------
+The MASC Word Sense Sentence corpus consists of examples of words in their
+sentence contexts that have been annotated with a sense label (or in rare
+cases multiple sense labels) by trained annotators. This section describes
+the annotation materials (words, senses, sentences, instances, annotators,
+annotation tool) and process (rounds), and provides information on the size
+of the corpus.  The following table provides some summary statistics about
+the size of the dataset.
+
+                    Counts of Words, Texts
+                    Labels, etc.
+                     --------------------
+               MASC Words Types       116
+                 Sentence paths     8,481	
+                 Sentence texts    75,285 
+   Word count of sentence texts 2,099,436
+   MASC Word/Sentence Instances    85,632
+       Available WordNet Senses       835
+        Assigned WordNet Senses       763 (singleton sense)
+Sets of WordNet Senses Assigned**     336 (non-singleton sense combinations)
+  Distinct Labels (Annotations)   133,140
+
+   ---------------
+   *The count of label values includes 4 variants of "none of the above" 
+   - see details below.  For later rounds, annotators could assign two or
+   three senses to the same instance; technically, each combination of
+   senses could be considered a distinct set-valued label value, but the 
+   counts in the above table only consider account the distinct WordNet
+   senses and "none of the above" values.
+   **See Appendix 2 for the combinations of senses assigned.
+--------------------------------------------------------------------------
+Words
+
+A set of 116 words consisting of 46 nouns, 29 adjectives and 41 verbs
+was included.  Words were selected by the four MASC PIs (see section 4
+below), primarily by Christiane Fellbaum, one of the architects of
+WordNet, and Collin Baker, the FrameNet project manager.  One of the
+criteria was to select words as test cases for aligning WordNet senses
+with FrameNet lexical units [de Melo et al., 2012]. The other criteria
+were 1) to achieve a rough balance between the number of nouns and
+verbs, with somewhat fewer adjectives in the earlier rounds, and more
+in later rounds; 2) to include words with more than three or four
+senses but generally fewer than twenty, although nine words have
+between 20 and 32 senses; 3) to include words with at least one
+thousand instances in MASC; 4) to select words used in many of the
+MASC genres. (NOTE: the word 'familiar' (adj) was annotated in both
+rounds 3 and 7, so the sum of the number of words per round is 1 more
+than the total number of words.)
+
+Each type of word form is represented as a string consisting of the word
+stem affixed with a hyphen and a single character representing the part of
+speech (n, j, v for noun, adjective, verb, respectively).
+
+--------------------------------------------------------------------------
+WordNet Senses and Other Labels
+
+For simplicity and transparency, the senses are represented in the
+corpus with the WordNet 3.1 cardinal sense number. It should be noted
+that these are somewhat arbitrary and can change across versions
+(sense 1, sense 2, ..., sense N), while the underlying WordNet
+identifier (e.g., demolish%2:36:00::) does not.  The senses.tsv file
+represents the link between the WordNet sense number and the WordNet
+unique identifier, as well as other information.
+
+--------------------------------------------------------------------------
+Sentences
+--------------------------------------------------------------------------
+All MASC word sense sentences are from the MASC corpus or, where MASC
+does not contain 1000 instances, the OANC. MASC currently contains
+nineteen genres of spoken and written language data in roughly equal
+amounts. Because it is drawn from the OANC, all MASC data represents
+contemporary American English produced since 1990.
+
+The MASC word sense sentence corpus includes sense-tags for
+approximately 1000 occurrences of each of the 116 words chosen by the
+WordNet and FrameNet teams.  The data include the path and location of
+each sentence in the original MASC or OANC document from which it was
+taken.
+
+The word sense corpus contains 85,632 sentence instances: a sentence
+with more than one annotated word is counted once for each word it
+contains. For this reason, the number of distinct sentences (N=75,285)
+is less than the number of sentence instances. The ratio of
+sentence-word instances (85,632) to distinct sentence texts (75,285)
+gives 1.14 annotated words per sentence.
+
+--------------------------------------------------------------------------
+Annotators and Training
+
+At the time of this README, sixteen undergraduates, four at Columbia
+University and twelve at Vassar College, had performed the word sense
+annotation. Most performed several rounds (3.4 on average).  All were
+trained prior to performing any annotation using guidelines created by
+Christiane Fellbaum. Annotators used the SATANiC (Sense Annotation
+Tool for the ANC) graphical user interface (see below).  Each word was
+considered a distinct annotation task, with its distinct sense
+inventory.  Prior to annotation of a round, the annotators for the
+round did a trial annotation to review the sense inventory in
+discussions with each other and with Christiane Fellbaum.  Dr.
+Fellbaum would revise the inventory if needed, and the revisions would
+be used for the annotation and become part of WordNet 3.1. The trial
+round also constituted training in the sense inventories for the words
+in a given round.
+
+--------------------------------------------------------------------------
+Annotation Tool: SATANiC (Sense Annotation Tool for the ANC)
+
+The Sense Annotation Tool for the American National Corpus (SATANiC)
+was developed during the course of the MASC word sense annotation
+project by Keith Suderman, and updated several times. A screenshot of
+the tool appears in (Passonneau et al., 2009; Passonneau et al.,
+2012a).  SATANiC connects directly to the ANC repository, so annotators
+can check out or commit their work.  It displays the WordNet sense
+glosses for each word, plus four variants of "none of the above."
+--------------------------------------------------------------------------
+Annotation Rounds
+
+Each annotation round of approximately 10 words began with a
+pre-annotation sample of 50 sentences per word annotated by up to four
+annotators. This served as the basis for reconsideration of the
+current WordNet sense inventory. Where deemed appropriate, revisions
+to the WordNet sense inventory were made and used to annotate 1000
+sentences per word. All revisions are included in subsequent versions
+of WordNet.  Of the 1000 sentences per word, 900 were annotated by at
+least one annotator. The remaining subset of 100 sentences was
+annotated by all the annotators in order to assess annotator
+reliability, and was also annotated for FrameNet frame elements by the
+FrameNet team (see de Melo et al. 2012).
+
+In general, the higher the round number, the later in time the round
+was done. Procedures evolved over time, and annotators often
+participated in multiple rounds.
+
+Appendix 3 lists the words annotated in each of the 11 rounds.
+
+==========================================================================
+3. Data Files and Format
+==========================================================================
+All data files are in tab-separated format (*.tsv). The corpus
+consists of the following three files:
+
+    (1) the annotation labels (masc_annotations.tsv), 
+    (2) the WordNet word senses (masc_senses.tsv), and
+    (3) the sentences (masc_sentences.tsv).
+
+There are also additional files for computing interannotator
+agreement. These consist of instances that were multiply annotated for
+each of 113 of the 116 words in the MASC word sense corpus.  (Note:
+Three words in round 7 do not have such tables: easy-j, face-n,
+use-v.) For efficiency and convenience, the data is separated into
+three files that are partly normalized to minimize redundancy. For
+example, there are two distinct combinations of attributes to uniquely 
+specify an instance of a given word in its sentence context: 1. a path 
+and sentence start position to identify the location of the sentence 
+in the original MASC or OANC document from which it was taken; 2. a 
+unique identifier for the sentence.  Instead of including all three 
+attribute tuples in the annotations.tsv file, only the unique sentence 
+instance identifier is included there. The sentences.tsv file then has 
+a row for each instance. 
+
+Below is a list giving the name of each *.tsv file, a general
+description of the contents, and the name and contents of each column.
+
+masc_annotations.tsv
+	Description: This file contains the word sense annotations. There
+	is one row for each annotation label.  Most of the time, there will
+	be no more than one row representing the same sentence and same
+	annotator; however, there were a certain number of cases where the
+	same annotator was presented with the same sentence on two separate
+	occasions, and assigned different labels.  For these cases, there
+	is a separate row for each time the annotator assigned a label to the
+	same sentence.
+
+	Round             The round number; see Appendix 2.
+	WordPos		  A string giving the MASC word lemma and part of speech 
+	                     (n, j, v for noun, adjective, and verb, respectively).
+	SentenceId	  A unique identifier assigned to the MASC word-sentence instance.
+	AnnotatorId	  A unique identifier for the annotator.
+	SenseId		  The WordNet sense number used in WordNet 3.1, or a
+	                     two digit string starting in "4" that represents
+			     one of four "none of the above" labels. These are
+			     47 (glob, or collocation), 46 (no appropriate sense),
+			     45 (wrong part of speech), 44 (not enough context).
+			     The sense number is a cardinal number that corresponds
+			     roughly to sense frequency. The unique sense WordNet
+			     sense identifier is a string with multiple fields that 
+			     can be found in the senses.tsv file.
+
+masc_senses.tsv
+	Description: This file contains the WordNet 3.1 senses for each of the
+	116 MASC words. 
+
+	WordPos            A string giving the MASC word lemma and part of speech 
+	                     (n, j, v for noun, adjective, and verb, respectively).
+	Round              The annotation round number; see appendix 3.
+	SenseId		   The WordNet sense number used in WordNet 3.1. The sense number
+			     is cardinal number that roughly corresponds to sense
+			     frequency. 
+	WordNetId	   The unique sense WordNet sense identifier; a string with 
+	                     multiple fields.
+	SenseDef	   The WordNet 3.1 gloss for the sense.  
+	WordNetSynonyms    The WordNet 3.1 synsets.
+	SenseExamples*	   Optional: one or more example usages, each in a new
+			     tab-separated column
+
+masc_sentences.tsv
+	Description: This file contains the sentence texts for the annotated
+	instances of MASC words, and a MASC path that can be used to retrieve
+	the source document.
+
+	WordPos            A string giving the MASC word lemma and part of speech 
+	                     (n, j, v for noun, adjective, and verb, respectively).
+	DocPath            A path to the MASC document the sentence is taken from.
+	SentenceId         A unique identifier assigned to the MASC word-sentence instance.
+	SentenceStart	   The character position within the MASC document where the
+	                     sentence begins.
+	WordStart	   The character position in the sentence at the start of 
+                             the word token.  
+	WordEnd            The character position in the sentence at the end of 
+                             the word token.  
+	Text               The text of the sentence.
+
+alpha/agreement.tsv
+	Description: This file gives the interannotator agreement for each
+	word, computed using one of the 113 tables described below as
+	<lemma>-<pos>-agreement-table.tsv.  There are three rows
+	for each MASC word that respectively give the value for Krippendorff's 
+	alpha using a set-based distance metric (masi; see Passonneau, 2006), 
+	or using a nominal (i.e., categorical) distance metric, or that
+	report pairwise agreement.
+
+	Round	           The annotation round number; see appendix 3.
+	WordPos            A string giving the MASC word lemma and part of speech 
+	                     (n, j, v for noun, adjective, and verb, respectively).
+	NumAnnotators      The number of annotators who annotated each instance.
+	NumInstances	   The number of instances that were multiply annotated.
+	NumValues	   The number of distinct annotation values.
+	AgreementMetric	   One of three agreement metrics: Krippendorff's alpha
+			     with the masi distance metric; Krippendorff's alpha
+			     with the nominal distance metric; pairwise agreement.
+	AgreementValue	   The value of the agreement metric.
+
+113 alpha/<lemma>-<pos>-agreement-table.tsv
+        Description: 113 files that contain multiply annotated instances of
+	MASC words for computing interannotator agreement. The first row
+	is a header giving the annotator ids.  Each next row gives in column
+	1 the unique identifier assigned to the MASC word-sentence instance
+	followed by the annotation label assigned by each next annotator to
+	that instance.
+
+==========================================================================
+4. Interannotator Agreement Tables
+
+There are 113 tables that contain the multiply-annotated instances for
+each of 113 words annotated for the word sense sentence corpus. (Note:
+Three words in round 7 do not have such tables: easy-j, face-n,
+use-v.)  As described in section 2, when annotators were assigned to
+do the 100-sentence subset for a given word, not all annotators
+completed all 100 sentences. For some words, there is a trade-off
+between selecting a smaller number of sentences annotated by a larger
+number of annotators, versus a smaller set of annotators who did a
+larger number of sentences in common.  Choosing a different subset of
+instances that were annotated in common can lead to different
+agreement results.  We opted to include the maximum number of
+annotators, except where this led to a much smaller number of
+sentence instances.  For maximum transparency of the results we
+present, the tables used for computing agreement are included.
+
+Each agreement table is a *.tsv file in the following format. The
+first row is a header: it has an empty first column, and each next
+column contains the annotator id for each next annotator in the set of
+I annotators who did the multiply annotated instances (i \in
+{1,...,I}).  The remaining J rows represent the annotation labels
+assigned to each instance (j \in {1,...,J}). Each of these rows has
+the sentence identifier in column 1. Each cell value in columns i to I
+of these rows represents the annotation label assigned by the i_th
+annotator to the j_th sentence.
+
+A summary table, agreement.tsv, presents three interannotator
+agreement metrics for the 113 agreement tables: pairwise agreement,
+and two versions of Krippendoff's Alpha (Krippendorff, 1980).  The
+"nominal" or categorical version treats each comparison of the labels
+assigned by a pair of annotators to the same instance as being in
+complete agreement or complete disagreement.  A second version of
+Alpha is included that can assign partial credit for cases where
+annotators assigned a set of word sense labels to an instance. It uses
+MASI, a set-based distance metric that assigns partial credit to two
+sets of labels that have a non-null intersection (Passonneau 2006).
+For each word that has an agreement table, there are three rows in the
+summary table, one for each of the three metrics.  The table has 7
+columns: 1. the annotation round; 2. the lemma, part-of-speech tuple,
+the number of annotators, the number of instances annotated in common,
+the agreement metric, and the result.  The three values of the
+"metric" column are masi (for Krippendorff's alpha with the MASI
+distance metric), nominal (for Krippendorff's alpha using categorical
+comparison of annotation values), and agreement (for pairwise
+agreement).
+
+==========================================================================
+5. Author, Team and Acknowledgements
+
+This README was written by Rebecca J. Passonneau, June 2013, and
+revised July 2013 based on comments from Nancy Ide. Boyi Xie reviewed
+and corrected the README, and verified and assembled the data
+packages. Final revised README prepared June 2014.
+
+The MASC team:
+
+Nancy Ide, Vassar College (ide@cs.vassar.edu)
+Collin Baker, ICSI (collinb@ICSI.Berkeley.EDU)
+Christiane Fellbaum, Princeton University (fellbaum@Princeton.EDU)
+Rebecca J. Passonneau, Columbia University (becky@ccls.columbia.edu)
+
+Creation of the MASC resource was supported by the National Science 
+Foundation, CRI-0708952 and CRI-1059312. 
+
+==========================================================================
+6. References
+--------------------------------------------------------------------------
+
+Ide, Nancy; Baker, Collin; Fellbaum, Christiane; Passonneau, Rebecca
+   J. 2010. The Manually annotated sub-corpus: A Community resource for
+   and by the people. Proceedings of the Association for Computational
+   Linguistics, Uppsala, Sweden, July 11-16.
+
+Krippendorff, Klaus. 1980. Content Analysis: An Introduction to Its
+   Methodology. Sage Publications: Beverly Hills, CA.
+
+de Melo, Gerard; Baker, Collin; Ide, Nancy; Passonneau, Rebecca J.;
+   Fellbaum, Christiane. 2012. Empirical comparisons of MASC word sense
+   annotations. Proceedings of the 8th International Conference on
+   Language Resources and Evaluation (LREC). Istanbul, Turkey. May 23-25,
+   2012.
+
+Passonneau, Rebecca J.; Bhardwaj, Vikas; Salleb-Aouissi, Ansaf; Ide, Nancy. 2012a. 
+    Multiplicity and word sense: evaluating and learning from multiply labeled
+    word sense annotations. Language Resources and Evaluation 46(2):219-252.
+
+Passonneau, Rebecca J.; Baker, Collin; Fellbaum, Christiane; Ide,
+    Nancy. 2012b. The MASC word sense sentence corpus.  Proceedings of the
+    8th International Conference on Language Resources and Evaluation
+    (LREC). Istanbul, Turkey. May 23-25, 2012.
+
+Passonneau, Rebecca J.; Salleb-Aouissi, Ansaf; Ide, Nancy. 2009. Making sense of 
+    word sense variation. Proceedings of the NAACL-HLT 2009 Workshop on Semantic 
+    Evaluations: Recent Achievements and Future Directions (SEW-2009), pages 2-9.
+    Boulder, Colorado, June 4, 2009.
+
+Passonneau, Rebecca J. 2006. Measuring agreement on set-valued items
+    (MASI) for semantic and pragmatic annotation. Proceedings of the
+    Fifth International Conference on Language Resources and
+    Evaluation (LREC).  Genoa, Italy.  May 24-26, 2006.
+==========================================================================
+7. Appendices
+
+   Appendix 1: List of Words Annotated for the MASC word sense sentence corpus
+   Appendix 2: Combinations of WordNet Senses Assigned
+   Appendix 3: MASC Rounds
+   Appendix 4: Number of instances for each MASC word
+--------------------------------------------------------------------------
+Appendix 1: List of Words Annotated for the MASC word sense sentence corpus
+
+This table lists all the lemmas for MASC words in alphabetical order with
+part of speech and number of WordNet 3.1 senses.
+
+
+lemma	pos     senses
+able	j	4
+absence	n	4
+add	v	6
+appear	v	7
+ask	v	7
+become	v	4
+benefit	n	3
+board	n	9
+book	n	11
+book	v	4
+byzantine	j	3
+chance	n	5
+color	n	8
+combination	n	7
+common	j	9
+control	n	11
+cool	j	6
+curious	j	3
+dark	j	10
+date	n	8
+demolish	v	3
+development	n	9
+different	j	4
+easy	j	12
+entitle	v	3
+exercise	n	5
+exercise	v	5
+face	n	13
+fair	j	10
+familiar	j	4
+family	n	8
+find	v	16
+fold	v	5
+force	n	10
+forget	v	4
+frighten	v	1
+full	j	8
+function	n	7
+great	j	6
+greek	j	1
+help	v	8
+high	j	7
+history	n	5
+hit	v	16
+image	n	9
+influence	n	5
+island	n	2
+juice	n	4
+justify	v	5
+kill	v	15
+know	v	11
+land	n	11
+late	j	7
+launch	v	6
+legendary	j	2
+level	n	8
+life	n	14
+live	v	7
+long	j	9
+lose	v	11
+mature	v	6
+maturity	n	3
+meet	v	13
+name	v	9
+normal	j	4
+number	n	12
+officer	n	4
+order	v	9
+paper	n	7
+part	n	12
+particular	j	6
+people	n	4
+player	n	5
+poor	j	5
+power	n	9
+quiet	j	6
+rapid	j	2
+rate	n	4
+read	v	11
+recommend	v	3
+refer	v	7
+rip	v	4
+rule	v	7
+say	v	11
+sense	n	5
+serve	v	15
+severe	j	6
+show	v	12
+sight	n	7
+smart	j	7
+sound	n	8
+state	n	8
+strike	n	6
+strike	v	22
+strong	j	10
+succeed	v	2
+success	n	4
+successful	j	1
+succession	n	5
+suggest	v	4
+suspicious	j	2
+tell	v	8
+time	n	10
+trace	n	6
+trace	v	8
+transfer	v	9
+true	j	12
+try	v	9
+use	v	6
+wait	v	4
+warm	j	10
+way	n	12
+win	v	4
+window	n	8
+work	n	7
+write	v	10
+--------------------------------------------------------------------------
+Appendix 2: Combinations of WordNet Senses Assigned
+
+add-v 1 2
+add-v 1 3
+add-v 1 6
+add-v 3 6
+appear-v 6 7
+ask-v 1 2
+ask-v 1 3
+ask-v 1 4
+ask-v 1 5
+ask-v 1 7
+ask-v 2 4
+become-v 1 2
+become-v 2 3
+board-n 3 5
+book-n 1 2
+book-v 2 4
+byzantine-j 1 2
+chance-n 1 4
+chance-n 1 4 5
+chance-n 1 5
+chance-n 3 4
+chance-n 3 5
+chance-n 4 5
+color-n 1 2
+color-n 1 7
+common-j 1 4
+common-j 4 5
+control-n 1 2
+control-n 1 9
+cool-j 1 2
+cool-j 1 3
+cool-j 2 3
+cool-j 5 7
+dark-j 1 9
+dark-j 2 4
+dark-j 4 9
+date-n 5 6
+demolish-v 1 2
+different-j 1 2
+different-j 1 3
+different-j 1 4
+easy-j 1 10
+easy-j 1 12
+easy-j 1 2
+easy-j 1 2 12
+easy-j 1 7
+easy-j 1 8
+easy-j 2 5
+easy-j 3 7
+exercise-n 1 3
+exercise-n 3 4
+exercise-n 3 5
+exercise-v 1 3
+face-n 1 11
+face-n 1 13
+face-n 1 2
+face-n 1 3
+face-n 1 5
+face-n 1 6
+face-n 1 6 8
+face-n 1 8
+face-n 3 5
+face-n 6 13
+face-n 6 8
+familiar-j 1 2
+familiar-j 2 4
+familiar-j 3 4
+family-n 1 2
+family-n 1 2 4
+family-n 1 2 8
+family-n 2 4
+family-n 2 5
+family-n 2 7
+family-n 2 8
+family-n 4 7
+find-v 1 6
+find-v 1 7
+find-v 2 3
+find-v 3 7
+find-v 7 10
+force-n 1 2
+force-n 1 3
+force-n 1 5
+force-n 1 5 7
+force-n 1 7
+force-n 1 8
+force-n 3 5
+force-n 3 5 6
+force-n 3 6
+force-n 3 7
+force-n 4 5
+force-n 4 5 8
+force-n 4 8
+force-n 5 7
+force-n 5 8
+force-n 6 7
+force-n 7 8
+forget-v 1 2
+forget-v 2 3
+forget-v 2 4
+great-j 1 2
+great-j 2 3
+great-j 2 4
+great-j 3 4
+help-v 1 3
+help-v 3 6
+high-j 1 3
+hit-v 3 10
+image-n 1 3
+image-n 1 3 6
+image-n 1 4
+image-n 1 5
+image-n 1 8
+image-n 2 3
+image-n 2 8
+image-n 3 9
+juice-n 2 3
+justify-v 1 2
+justify-v 1 3
+late-j 1 6
+level-n 1 4
+life-n 10 11
+life-n 1 2
+life-n 1 2 3
+life-n 1 3
+life-n 1 8
+life-n 1 9
+life-n 2 12
+life-n 2 3
+life-n 2 4 8 9
+life-n 2 5
+life-n 2 8 10
+life-n 3 13
+life-n 3 5
+life-n 3 5 12
+life-n 3 6
+life-n 3 6 12
+life-n 3 7
+life-n 3 8
+life-n 4 10
+life-n 4 11
+life-n 4 13
+life-n 4 5
+life-n 4 8
+life-n 5 7
+life-n 7 14
+life-n 7 8
+live-v 1 2
+live-v 1 3
+live-v 1 4
+live-v 1 5
+live-v 2 5
+live-v 5 6
+lose-v 1 10
+lose-v 1 3
+lose-v 1 4
+lose-v 1 4 5 10
+lose-v 1 5
+lose-v 5 10
+mature-v 1 4
+maturity-n 1 2
+meet-v 1 2
+meet-v 1 5
+meet-v 1 6
+meet-v 2 5
+meet-v 2 5 6
+meet-v 2 5 7
+meet-v 2 6
+meet-v 2 7
+meet-v 6 8
+number-n 1 7
+number-n 4 8
+officer-n 1 3
+officer-n 1 4
+part-n 1 12
+part-n 1 2
+part-n 1 2 9
+part-n 1 3
+part-n 1 3 5
+part-n 1 4
+part-n 1 5
+part-n 1 5 9
+part-n 1 6
+part-n 1 6 12
+part-n 1 8 9
+part-n 1 9
+part-n 2 13
+part-n 2 3 13
+part-n 2 5
+part-n 3 5
+part-n 3 5 9
+part-n 3 9
+part-n 4 6
+part-n 5 9
+part-n 6 12
+part-n 8 12
+people-n 1 2
+people-n 1 2 4
+people-n 1 3
+people-n 1 4
+people-n 2 3
+people-n 2 4
+player-n 1 5
+poor-j 1 2
+poor-j 1 4
+poor-j 2 3
+poor-j 2 5
+poor-j 3 4
+poor-j 4 5
+power-n 1 3
+power-n 1 4
+power-n 1 4 7
+power-n 1 7
+power-n 1 8
+power-n 2 7
+power-n 3 4
+power-n 3 5
+power-n 3 7
+power-n 5 8
+power-n 7 9
+rapid-j 1 2
+rate-n 1 2
+rate-n 1 4
+rate-n 2 4
+read-v 1 11
+read-v 1 3
+read-v 1 6
+rip-v 1 2
+rip-v 1 3
+rip-v 1 4
+rip-v 1 5
+sense-n 2 4
+serve-v 1 3
+serve-v 2 10
+serve-v 2 13
+serve-v 4 10
+serve-v 4 7
+serve-v 4 7 8
+serve-v 4 8
+serve-v 5 6
+serve-v 6 10
+serve-v 7 10
+serve-v 7 8
+severe-j 1 5
+severe-j 4 5
+sight-n 4 5
+smart-j 1 2
+smart-j 1 3
+smart-j 1 4
+sound-n 1 2
+sound-n 1 3
+sound-n 1 4
+sound-n 1 5
+sound-n 1 6
+sound-n 3 5
+sound-n 3 6
+sound-n 7 8
+state-n 2 6
+state-n 3 4
+strike-n 1 2
+strike-v 13 16
+strike-v 1 4
+strike-v 1 5
+strike-v 3 4
+strong-j 1 3
+strong-j 1 3 5 6
+strong-j 1 3 6
+strong-j 1 5 6
+strong-j 1 6
+strong-j 2 5
+strong-j 2 5 6
+strong-j 2 6
+strong-j 3 5
+strong-j 3 5 6
+strong-j 3 6
+strong-j 5 6
+succession-n 1 2
+succession-n 1 5
+success-n 1 2
+success-n 2 3
+suggest-v 2 3
+suggest-v 3 4
+suspicious-j 1 2
+trace-n 1 2
+trace-n 1 3
+trace-n 2 3
+trace-v 1 3
+trace-v 1 5
+trace-v 4 5
+transfer-v 1 2
+transfer-v 1 2 5
+transfer-v 1 8
+transfer-v 2 3
+transfer-v 2 3 4
+transfer-v 2 4
+transfer-v 2 4 8
+transfer-v 2 5
+transfer-v 2 5 7
+transfer-v 2 6
+transfer-v 2 7
+transfer-v 2 8
+transfer-v 3 7
+transfer-v 4 5
+transfer-v 4 7
+transfer-v 4 8
+transfer-v 5 7
+transfer-v 7 9
+try-v 1 2
+try-v 2 4
+try-v 3 5
+use-v 1 4
+use-v 1 5
+wait-v 2 3
+warm-j 1 2
+warm-j 1 3
+warm-j 2 6
+way-n 1 2
+way-n 1 4
+way-n 1 5
+way-n 5 7
+way-n 6 7
+way-n 6 8
+way-n 7 8
+way-n 7 9
+win-v 1 2
+win-v 1 4
+win-v 1 5
+win-v 2 5
+write-v 1 2
+write-v 1 4
+write-v 1 5
+write-v 2 3
+write-v 2 5
+write-v 2 7
+write-v 2 8
+write-v 5 7
+
+--------------------------------------------------------------------------
+Appendix 3. MASC Rounds
+
+round-1	demolish-v
+round-1	development-n
+round-1	history-n
+round-1	influence-n
+round-1	launch-v
+round-1	legendary-j
+round-1	name-n
+round-1	order-n
+round-1	rule-v
+round-1	successful-j
+round-2	fair-j
+round-2	know-v
+round-2	land-n
+round-2	long-j
+round-2	quiet-j
+round-2	say-v
+round-2	show-v
+round-2	tell-v
+round-2	time-n
+round-2	work-n
+round-3	chance-n
+round-3	cool-j
+round-3	familiar-j
+round-3	forget-v
+round-3	juice-n
+round-3	justify-v
+round-3	player-n
+round-3	rapid-j
+round-3	rip-v
+round-3	try-v
+round-4	curious-j
+round-4	entitle-v
+round-4	exercise-n
+round-4	exercise-v
+round-4	mature-v
+round-4	maturity-n
+round-4	officer-n
+round-4	rate-n
+round-4	smart-j
+round-4	succeed-v
+round-4	succession-n
+round-4	success-n
+round-4	suspicious-j
+round-5	become-v
+round-5	byzantine-j
+round-5	force-n
+round-5	greek-j
+round-5	island-n
+round-5	part-n
+round-5	people-n
+round-5	power-n
+round-5	transfer-v
+round-5	write-v
+round-6	add-v
+round-6	color-n
+round-6	date-n
+round-6	image-n
+round-6	lose-v
+round-6	meet-v
+round-6	read-v
+round-6	warm-j
+round-6	window-n
+round-6	win-v
+round-7	easy-j
+round-7	face-n
+round-7	familiar-j
+round-7	frighten-v
+round-7	poor-j
+round-7	serve-v
+round-7	sight-n
+round-7	sound-n
+round-7	strike-n
+round-7	strike-v
+round-7	trace-n
+round-7	trace-v
+round-7	use-v
+round-8	ask-v
+round-8	different-j
+round-8	family-n
+round-8	great-j
+round-8	life-n
+round-8	live-v
+round-8	number-n
+round-8	state-n
+round-8	suggest-v
+round-8	way-n
+round-9	appear-v
+round-9	fold-v
+round-9	full-j
+round-9	hit-v
+round-9	kill-v
+round-9	late-j
+round-9	level-n
+round-9	normal-j
+round-9	paper-n
+round-9	sense-n
+round-10	board-n
+round-10	book-n
+round-10	book-v
+round-10	common-j
+round-10	control-n
+round-10	find-v
+round-10	help-v
+round-10	high-j
+round-10	particular-j
+round-10	wait-v
+round-11	able-j
+round-11	absence-n
+round-11	benefit-n
+round-11	combination-n
+round-11	dark-j
+round-11	function-n
+round-11	recommend-v
+round-11	refer-v
+round-11	severe-j
+round-11	strong-j
+round-11	true-j
+round-7a	easy-j
+round-7a	face-n
+round-7a	use-v
+
+--------------------------------------------------------------------------
+Appendix 4.  Number of instances for each MASC word
+
+able-j	990
+absence-n	992
+add-v	1080
+appear-v	989
+ask-v	994
+become-v	1153
+benefit-n	991
+board-n	988
+book-n	976
+book-v	62
+byzantine-j	117
+chance-n	983
+color-n	823
+combination-n	992
+common-j	995
+control-n	994
+cool-j	54
+curious-j	302
+dark-j	542
+date-n	986
+demolish-v	54
+development-n	223
+different-j	775
+easy-j	1045
+entitle-v	310
+exercise-n	765
+exercise-v	397
+face-n	1105
+fair-j	472
+familiar-j	867
+family-n	990
+find-v	973
+fold-v	785
+force-n	1029
+forget-v	953
+frighten-v	19
+full-j	989
+function-n	967
+great-j	769
+greek-j	611
+help-v	976
+high-j	992
+history-n	178
+hit-v	866
+image-n	807
+influence-n	125
+island-n	1076
+juice-n	131
+justify-v	268
+kill-v	986
+know-v	967
+land-n	976
+late-j	988
+launch-v	109
+legendary-j	100
+level-n	995
+life-n	989
+live-v	771
+long-j	987
+lose-v	822
+mature-v	441
+maturity-n	92
+meet-v	789
+name-n	273
+normal-j	982
+number-n	774
+officer-n	1042
+order-n	224
+paper-n	981
+part-n	1195
+particular-j	986
+people-n	1584
+player-n	916
+poor-j	1029
+power-n	1107
+quiet-j	244
+rapid-j	665
+rate-n	1130
+read-v	792
+recommend-v	824
+refer-v	976
+rip-v	88
+rule-v	107
+say-v	988
+sense-n	988
+serve-v	1044
+severe-j	671
+show-v	990
+sight-n	488
+smart-j	439
+sound-n	880
+state-n	772
+strike-n	549
+strike-v	524
+strong-j	985
+succeed-v	488
+success-n	1014
+successful-j	100
+succession-n	118
+suggest-v	774
+suspicious-j	153
+tell-v	762
+time-n	969
+trace-n	125
+trace-v	384
+transfer-v	848
+true-j	960
+try-v	992
+use-v	1370
+wait-v	914
+warm-j	355
+way-n	770
+win-v	794
+window-n	794
+work-n	970
+write-v	1209
+TOTAL		85,632
+
