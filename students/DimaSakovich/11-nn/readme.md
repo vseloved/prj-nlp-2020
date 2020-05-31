@@ -1,1 +1,0 @@
-project link: https://github.com/kotestyle/stt_uk
