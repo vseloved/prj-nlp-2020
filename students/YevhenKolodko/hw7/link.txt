@@ -1,0 +1,1 @@
+https://github.com/polkaYK/subjective-neutralizer/blob/master/first_model_on_paragraphs.ipynb
