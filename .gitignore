@@ -37,4 +37,5 @@ ipython_config.py
 
 *.xml
 *.bz2
-*.json.gz
+#/students/DimaSakovich/06-language-as-sequence
+
