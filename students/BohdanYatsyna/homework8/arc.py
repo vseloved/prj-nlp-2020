@@ -14,8 +14,6 @@ class Actions(str, Enum):
 
 
 class Configuration:
-    #TODO it is sharred variables - its wrong
-    #buffer, stack, deps, features, labels = [], [], [], [], []
 
     def __init__(self, tree, oracle, feature_extractor, vectorizer=None, parse=True):
         self.features, self.labels = [], []
