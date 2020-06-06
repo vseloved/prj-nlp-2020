@@ -26,7 +26,6 @@ if __name__ == '__main__':
 
     train_gold = arc.filter_non_projective(train_trees)
     test_gold = arc.filter_non_projective(test_trees)
-    #model = arc.Classifier({},actions_list)
 
     # define oracle and feature extractor
     oracle = arc.Oracle()
@@ -51,17 +50,17 @@ if __name__ == '__main__':
     predicted = lrc.predict(test_features_vectorized)
     print(classification_report(test_labels, predicted))
 
-    # total, tp, full_match = 0, 0, 0
-    # for tree in test_trees:
-    #     tree = [t for t in tree if type(t["id"])==int]
-    #     golden = [(node["id"], node["head"]) for node in tree]
-    #     predicted = dep_parse(tree, lrc, vec, log=False)
-    #     total += len(tree)
-    #     tp += len(set(golden).intersection(set(predicted)))
-    #     if set(golden) == set(predicted):
-    #         full_match += 1
+    total, tp, full_match = 0, 0, 0
+    for tree in tqdm(test_trees,desc="Evaluating test trees"):
+        tree = [t for t in tree if type(t["id"])==int]
+        golden = [(node["id"], node["head"]) for node in tree]
+        predicted = arc.Configuration(tree, lrc, feature_extractor, vec)
+        total += len(tree)
+        tp += len(set(golden).intersection(set(predicted.deps)))
+        if set(golden) == set(predicted.deps):
+            full_match += 1
 
-    # print("Total:", total)
-    # print("Correctly defined:", tp)
-    # print("UAS:", round(tp/total, 2))
-    # print("Full match:", round(full_match/len(test_trees), 2))
+    print("Total:", total)
+    print("Correctly defined:", tp)
+    print("UAS:", round(tp/total, 2))
+    print("Full match:", round(full_match/len(test_trees), 2))

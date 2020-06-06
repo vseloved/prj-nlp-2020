@@ -159,6 +159,7 @@ predicted = lrc.predict(test_features_vectorized)
 print(classification_report(test_labels, predicted))
 
 total, tp, full_match = 0, 0, 0
+
 for tree in test_trees:
     tree = [t for t in tree if type(t["id"])==int]
     golden = [(node["id"], node["head"]) for node in tree]

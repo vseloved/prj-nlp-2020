@@ -50,7 +50,8 @@ def get_features_labels(name, trees, oracle, feature_extractor):
     except:
         features, labels = [],[]
         for tree in tqdm(trees, desc="Loading " + name + " dataset"):
-            conf = arc.Configuration([t for t in tree if type(t["id"]) == int], oracle, feature_extractor)
+            tokens = [t for t in tree if type(t["id"]) == int]
+            conf = arc.Configuration(tokens, oracle, feature_extractor)
             features += conf.features
             labels += conf.labels
 

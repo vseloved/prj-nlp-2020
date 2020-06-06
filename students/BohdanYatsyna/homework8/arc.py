@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from collections import defaultdict
 from enum import Enum
 
 ROOT = OrderedDict([('id', 0), ('form', 'ROOT'), ('lemma', 'ROOT'), ('upostag', 'ROOT'),
@@ -15,68 +14,54 @@ class Actions(str, Enum):
 
 
 class Configuration:
-    arcs, buffer, stack, deps, features, labels = [], [], [], [], [], []
-    sentence = None
+    #TODO it is sharred variables - its wrong
+    #buffer, stack, deps, features, labels = [], [], [], [], []
 
-    def __init__(self, buf, s):
-        self.buffer = buf
-        self.sentence = s
-        self.stack, deps = [ROOT], []
-
-    def __init__(self, tree, oracle, feature_extractor):
+    def __init__(self, tree, oracle, feature_extractor, vectorizer=None, parse=True):
         self.features, self.labels = [], []
-        self.stack, self.buffer, deps = [ROOT], tree[:], []
+        self.stack, self.buffer, self.deps = [ROOT], tree[:], []
+        self.oracle = oracle
+        self.feature_extractor = feature_extractor
+        if parse: self.parse(vectorizer)
+
+    def shift(self):
+        self.stack.append(self.buffer.pop(0))
+
+    def reduce(self):
+        self.stack.pop()
+
+    def arc_right(self):
+        self.deps.append((self.buffer[0]["id"], self.stack[-1]["id"]))
+        self.stack.append(self.buffer.pop(0))
+
+    def arc_left(self):
+        self.deps.append((self.stack[-1]["id"], self.buffer[0]["id"]))
+        self.stack.pop()
+
+    def parse(self, vectorizer=None):
         while self.buffer or self.stack:
-            action = oracle.predict(self)
-            self.features.append(feature_extractor(self))
+
+            if vectorizer == None:
+                action = self.oracle.predict(self)
+            else:
+                action = Actions(self.oracle.predict(vectorizer.transform(self.feature_extractor(self)))[0])
+
+            self.features.append(self.feature_extractor(self))
             self.labels.append(action.value)
+
             if action == Actions.SHIFT:
-                self.stack.append(self.buffer.pop(0))
+                self.shift()
             elif action == Actions.REDUCE:
-                self.stack.pop()
+                self.reduce()
             elif action == Actions.LEFT:
-                self.deps.append((self.stack[-1]["id"], self.buffer[0]["id"]))
-                self.stack.pop()
+                self.arc_left()
             elif action == Actions.RIGHT:
-                self.deps.append((self.buffer[0]["id"], self.stack[-1]["id"]))
-                self.stack.append(self.buffer.pop(0))
+                self.arc_right()
             else:
                 print("Unknown action.")
 
 
-class GoldConfiguration:
-    def __init__(self):
-        self.heads = {}
-        self.deps = defaultdict(lambda: [])
-
-
-class Classifier:
-    def __init__(self, weights, labels):
-        self.weights = weights
-        self.labels = labels
-
-    def score(self, fv):
-
-        scores = dict((label, 0) for label in self.labels)
-
-        for k, v in fv.items():
-
-            if v == 0:
-                continue
-            if k not in self.weights:
-                continue
-
-            wv = self.weights[k]
-
-            for label, weight in wv.items():
-                scores[label] += weight * v
-
-        return scores
-
-
 class Oracle:
-    predict = None
-
     def __init__(self):
         self.predict = self.stat_predict
 
