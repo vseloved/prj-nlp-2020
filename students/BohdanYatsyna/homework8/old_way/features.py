@@ -3,7 +3,7 @@ import pickle
 
 from tqdm import tqdm
 
-from students.BohdanYatsyna.homework8 import arc
+from students.BohdanYatsyna.homework8.old_way import arc
 
 
 def extract(conf: arc.Configuration):

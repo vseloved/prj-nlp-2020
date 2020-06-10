@@ -114,7 +114,7 @@ def extract_features(stack, queue):
 
 
 
-PATH = "."
+PATH = ".."
 
 with open(PATH + "/uk_iu-ud-train.conllu", "r") as f:
     train_trees = parse(f.read())

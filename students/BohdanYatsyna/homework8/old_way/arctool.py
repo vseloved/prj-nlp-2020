@@ -6,9 +6,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, accuracy_score
 from tqdm import tqdm
 
-import students.BohdanYatsyna.homework8.arc as arc
-import students.BohdanYatsyna.homework8.features as features
-import students.BohdanYatsyna.homework8.fileio as fileio
+import students.BohdanYatsyna.homework8.old_way.arc as arc
+import students.BohdanYatsyna.homework8.old_way.features as features
+import students.BohdanYatsyna.homework8.old_way.fileio as fileio
 
 if __name__ == '__main__':
 
