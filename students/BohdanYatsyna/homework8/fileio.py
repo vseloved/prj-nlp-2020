@@ -10,8 +10,8 @@ def read_conll_deps(f):
         sentence = []
         for token in tree:
             if token['head'] -1 == -1:
-                sentence.append((token['form'].lower(),token['upos'], len(tree), token['deprel']))
+                sentence.append((token['form'].lower(),token['upos'], len(tree), token['deprel'], token['lemma']))
             else:
-                sentence.append((token['form'].lower(),token['upos'], token['head'] -1, token['deprel']))
+                sentence.append((token['form'].lower(),token['upos'], token['head'] -1, token['deprel'], token['lemma']))
         sentences.append(sentence)
     return sentences

@@ -154,12 +154,10 @@ class GreedyDepParser:
         while not GreedyDepParser.terminal(conf):
             n += 1
             legal_transitions = self.legal(conf)
-            # print('LEGAL ', ' '.join([self.LUT[p] for p in legal_transitions]))
             features = self.fx(conf)
             scores = self.model.score(features)
             t_p = max(legal_transitions, key=lambda p: scores[p])
             zero_cost = self.dyn_oracle(gold_conf, conf, legal_transitions)
-            # print(str(n) + ' [ ' + ' '.join([self.LUT[z] for z in zero_cost]) + ' ]')
 
             if len(zero_cost) == 0:
                 raise Exception('no zero cost')
@@ -529,11 +527,11 @@ if __name__ == '__main__':
     import wandb
 
     parser = argparse.ArgumentParser(description="Sample program showing training and testing dependency parsers")
-    parser.add_argument('--parser', help='Parser type (eager|hybrid) (default: eager)', default='hybrid')
-    parser.add_argument('--train', help='CONLL training file', default='../uk_iu-ud-train.conllu')
-    parser.add_argument('--test', help='CONLL testing file', default='../uk_iu-ud-test.conllu')
+    parser.add_argument('--parser', help='Parser type (eager|hybrid) (default: eager)', default='eager')
+    parser.add_argument('--train', help='CONLL training file', default='./uk_iu-ud-train.conllu')
+    parser.add_argument('--test', help='CONLL testing file', default='./uk_iu-ud-test.conllu')
     parser.add_argument('--fx', help='Feature extractor', default='ex')
-    parser.add_argument('--n', help='Number of passes over training data', default=1, type=int)
+    parser.add_argument('--n', help='Number of passes over training data', default=50, type=int)
     parser.add_argument('-v', action='store_true')
     opts = parser.parse_args()
 
@@ -553,11 +551,6 @@ if __name__ == '__main__':
     # Defaults
     feature_extractor = fx.ex
     Parser = ArcEagerDepParser
-    
-    if opts.fx == 'baseline':
-        print('Selecting baseline feature extractor')
-        feature_extractor = fx.ex
-
     
     if opts.parser == 'hybrid':
         print('Using arc-hybrid parser')
@@ -593,28 +586,7 @@ if __name__ == '__main__':
         if set(gold_arcs) == set(arcs):
             full_match += 1
 
-    print("Total:", all_arcs)
-    print("Correctly defined:", correct_arcs)
-    print("UAS:", round(correct_arcs / all_arcs, 4))
-    print("Full match:", round(full_match / len(test), 2))
-
-    clf_report = classification_report(test_labels, predicted_labels, output_dict=True)
-
-    data = []
-    for r in clf_report:
-        if type(clf_report[r]) == float:
-            data += [[r, '', '', round(clf_report[r],4), '']]
-        else:
-            data += [[r, str(round(clf_report[r]['precision'], 4)), str(round(clf_report[r]['recall'], 4)),
-                      str(round(clf_report[r]['f1-score'], 4)), str(round(clf_report[r]['support'], 4))]]
-
-    wandb.log({"examples": wandb.Table(data=data, columns=["name", "precision", "recall", "f1-score", "support"])})
-    wandb.log({"Total:": total,
-               "Correctly defined": tp,
-               "UAS": round(tp / total, 3),
-               "Full match": round(full_match / len(test_trees), 3),
-               "accuracy_score": accuracy_score(test_labels, predicted_labels)})
-
-    # visualize model
-    wandb.sklearn.plot_confusion_matrix(test_labels, predicted_labels, model.classes_)
-    wandb.log({'pr': wandb.plots.precision_recall(test_labels, predicted_probas, actions_list)})
+    wandb.log({"Total:": all_arcs,
+               "Correctly defined": correct_arcs,
+               "UAS": round(correct_arcs / all_arcs, 4),
+               "Full match": round(full_match / len(test), 3)})
