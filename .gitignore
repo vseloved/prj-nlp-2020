@@ -34,25 +34,7 @@ ipython_config.py
 
 # pyenv
 .python-version
-students/YehorShapanov/08-homework/amr-bank.txt
-students/YehorShapanov/08-homework/snli_1.0.zip
-students/YehorShapanov/08-homework/Untitled.ipynb
-students/YehorShapanov/08-homework/snli_1.0/Icon\r
-students/YehorShapanov/08-homework/snli_1.0/README.txt
-students/YehorShapanov/08-homework/snli_1.0/snli_1.0_dev.jsonl
-students/YehorShapanov/08-homework/snli_1.0/snli_1.0_dev.txt
-students/YehorShapanov/08-homework/snli_1.0/snli_1.0_test.jsonl
-students/YehorShapanov/08-homework/snli_1.0/snli_1.0_test.txt
-students/YehorShapanov/08-homework/snli_1.0/snli_1.0_train.jsonl
-students/YehorShapanov/08-homework/snli_1.0/snli_1.0_train.txt
-students/YehorShapanov/09-homework/results/best_snapshot_devacc_80.64417801259907_devloss_0.6750204563140869__iter_34000_model.pt
-students/YehorShapanov/09-homework/results/snapshot_acc_88.2414_loss_0.347391_iter_47000_model.pt
-students/YehorShapanov/10-homework/news.cased.tokenized.word2vec.300d
-students/YehorShapanov/10-homework/news.cased.tokenized.word2vec.300d.bz2
-students/YehorShapanov/10-homework/А-13.json
-students/YehorShapanov/10-homework/А-13.json.gz
-students/YehorShapanov/10-homework/images/digits_tsne-generated.png
-students/YehorShapanov/12-homework/opusparcus_v2/en-dev.txt
-students/YehorShapanov/12-homework/opusparcus_v2/en-test.txt
-students/YehorShapanov/12-homework/opusparcus_v2/en-train-100K.txt
-students/YehorShapanov/12-homework/opusparcus_v2/README.txt
+
+*.xml
+*.bz2
+*.json.gz
