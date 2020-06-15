@@ -1,0 +1,17 @@
+program: text-entailment.py
+method: grid
+metric:
+  name: accuracy_score
+  goal: maximize
+parameters:
+  solver:
+    values: ['saga']  # ['lbfgs','sag','saga', 'newton-cg']
+  model:
+    values: ['log', 'knn', 'dtree', 'rtree', 'svm', 'nb', 'gbc', 'adaboost', 'sgd']
+  tfidf:
+    values: [ 0, 1 ]
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - ${args}
