@@ -12,6 +12,6 @@ parameters:
     values: [0]  # [0,1]
 command:
   - ${env}
-  - ${interpreter}
+  - python3 #  - ${interpreter}
   - ${program}
   - ${args}
