@@ -15,17 +15,19 @@ def get_sentences(nlp, data, batch_size, n_jobs, label, name):
 
     try:
 
+        f_processed_sent1, f_processed_sent2, f_labels = [], [], []
+
         print("Loading " + name + " sent1 from file")
         with open(data_dir + name + '_sent1.pickle', 'rb') as f:
-            processed_sent1 = pickle.load(f)
+            f_processed_sent1 = pickle.load(f)
         print("Loading " + name + " sent2 from file")
         with open(data_dir + name + '_sent2.pickle', 'rb') as f:
-            processed_sent2 = pickle.load(f)
+            f_processed_sent2 = pickle.load(f)
         print("Loading " + name + " labels from file")
         with open(data_dir + name + '_labels.pickle', 'rb') as f:
-            labels = pickle.load(f)
+            f_labels = pickle.load(f)
     except:
-        print("Data")
+        print("Data can't be loaded")
         sent_list1 = map(operator.itemgetter('sentence1'), tqdm(data, desc=f'{label} Getting list of sentence1'))
         processed_sent1 = list(nlp.pipe(sent_list1, n_process=n_jobs, batch_size=batch_size))
 
@@ -34,11 +36,13 @@ def get_sentences(nlp, data, batch_size, n_jobs, label, name):
 
         labels = list(map(operator.itemgetter('gold_label'), tqdm(data, desc=f'{label} Getting list of gold labels')))
 
-        for i, l in tqdm(enumerate(labels), desc='Removing \'-\' class'):
+        f_processed_sent1, f_processed_sent2, f_labels = [], [], []
+        for i, l in enumerate(tqdm(labels, desc='Removing \'-\' class')):
             if l not in ['contradiction', 'entailment', 'neutral']:
-                processed_sent1.pop(i)
-                processed_sent2.pop(i)
-                labels.pop(i)
+                continue
+            f_processed_sent1.append(processed_sent1[i])
+            f_processed_sent2.append(processed_sent2[i])
+            f_labels.append(labels[i])
 
         if not os.path.exists(data_dir):
             os.mkdir(data_dir)
@@ -46,16 +50,16 @@ def get_sentences(nlp, data, batch_size, n_jobs, label, name):
 
         # dump calculated data to file
         with open(data_dir + name + '_sent1.pickle', 'wb') as f:
-            pickle.dump(processed_sent1, f)
+            pickle.dump(f_processed_sent1, f, protocol=-1)
 
         with open(data_dir + name + '_sent2.pickle', 'wb') as f:
-            pickle.dump(processed_sent2, f)
+            pickle.dump(f_processed_sent2, f, protocol=-1)
 
         with open(data_dir + name + '_labels.pickle', 'wb') as f:
-            pickle.dump(labels, f)
+            pickle.dump(f_labels, f, protocol=-1)
 
     finally:
-        return processed_sent1, processed_sent2, labels
+        return f_processed_sent1, f_processed_sent2, f_labels
 
 
 def transform_texts(batch_id, texts):

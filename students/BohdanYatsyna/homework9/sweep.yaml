@@ -5,11 +5,11 @@ metric:
   goal: maximize
 parameters:
   solver:
-    values: ['saga']  # ['lbfgs','sag','saga', 'newton-cg']
+    values: ['sag']  # ['lbfgs','sag','saga', 'newton-cg']
   model:
-    values: ['log', 'knn', 'dtree', 'rtree', 'svm', 'nb', 'gbc', 'adaboost', 'sgd']
+    values: ['log', 'knn', 'dtree', 'rtree', 'gbc', 'adaboost', 'sgd']  # out of models - 'svm', 'nb'
   tfidf:
-    values: [ 0, 1 ]
+    values: [0]  # [0,1]
 command:
   - ${env}
   - ${interpreter}

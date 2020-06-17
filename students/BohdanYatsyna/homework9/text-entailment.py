@@ -74,7 +74,7 @@ def train_model(cls, X_train, y_train, X_test, y_test, name, wandb):
 
 
 config_defaults = {
-    'solver': 'lbfgs',
+    'solver': 'sag',
     'model': 'log',
     'tfidf': 0
 }
@@ -85,9 +85,9 @@ if __name__ == '__main__':
     parser.add_argument('--train_file', help='Train file location ', default="snli_1.0/snli_1.0_train.jsonl")
     parser.add_argument('--dev_file', help='Train file location ', default="snli_1.0/snli_1.0_dev.jsonl")
     parser.add_argument('--test_file', help='Train file location ', default="snli_1.0/snli_1.0_test.jsonl")
-    parser.add_argument('--proba', help='If True - app work as sample with cutted data', default=True)
+    parser.add_argument('--proba', help='If True - app work as sample with cutted data', default=False)
     parser.add_argument('--n_jobs', help='Number of workers (default=1) use all cores', default=1)
-    parser.add_argument('--solver', help='type of solver for model (default=lbfgs)', default='lbfgs')
+    parser.add_argument('--solver', help='type of solver for model (default=sag)', default='sag')
     parser.add_argument('--model', help='model type', default='log')
     parser.add_argument('--tfidf', help='Use TF-IDF True/False (default=False)', default=False)
 
@@ -95,7 +95,7 @@ if __name__ == '__main__':
 
     opts = parser.parse_args()
 
-    wandb.init(project="homework9", config=config_defaults)
+    wandb.init(name="Added feature VERB and removed stop words", config=config_defaults)
     wandb.config.solver = opts.solver
     wandb.config.model = opts.model
     wandb.compat.tfidf = opts.tfidf
