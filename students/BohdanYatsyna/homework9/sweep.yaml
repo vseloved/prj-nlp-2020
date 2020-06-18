@@ -8,8 +8,8 @@ parameters:
     values: ['sag']  # ['lbfgs','sag','saga', 'newton-cg']
   model:
     values: ['log', 'knn', 'dtree', 'rtree', 'gbc', 'adaboost', 'sgd']  # out of models - 'svm', 'nb'
-  tfidf:
-    values: [0]  # [0,1]
+  norm:
+    values: [0,1]  # [0,1]
 command:
   - ${env}
   - python3 #  - ${interpreter}

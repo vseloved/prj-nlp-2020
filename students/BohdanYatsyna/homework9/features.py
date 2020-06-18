@@ -1,27 +1,36 @@
 def exctract(sent1, sent2):
     features = {}
 
-    # processed_tokens_sent1 = []
-    # for tok in sent1:
-    #     tok.
-    #     processed_tokens_sent1.append()
-    # tokens_sent1
+    # TODO
+    # леми
+    # іменники
+    # дієслова
+    # числівники
+    # нормалізація
+
+    features['lemma-coverage-threshold'] = lemma_coverage_treshold(sent1, sent2)
     features['sim-lemma'] = similarity_lemma(sent1, sent2)
     features['sim-verb'] = similaity_verb(sent1, sent2)
 
-    # if text_hyp_sim_verb:
-    #     features['text-hyp-sim-verb'] = text_hyp_sim_verb
-
-    # features['text-len'] = len(text_sent_tokens)
-    # features['hyp-len'] = len(hypothesis_sent_tokens)
+    features['text-len'] = len(sent1)
+    features['hyp-len'] = len(sent2)
 
     return features
+
+def lemma_coverage_treshold(sent1, sent2):
+    lemmas1 = set([(token.lemma_,token._.is_negative) for token in sent1 if not token.is_stop])
+    lemmas2 = set([(token.lemma_,token._.is_negative) for token in sent2 if not token.is_stop])
+    matched = lemmas1.intersection(lemmas2)
+    if len(lemmas2) == 0:
+        return 0
+    else:
+        return len(matched) / len(lemmas2)
 
 
 def similarity_lemma(sent1, sent2):
     ## added removing stop words (if not token.is_stop)
-    lemmas1 = set([token.lemma_ for token in sent1 if not token.is_stop])
-    lemmas2 = set([token.lemma_ for token in sent2 if not token.is_stop])
+    lemmas1 = set([(token.lemma_,token._.is_negative) for token in sent1 if not token.is_stop])
+    lemmas2 = set([(token.lemma_,token._.is_negative) for token in sent2 if not token.is_stop])
 
     matched = lemmas1.intersection(lemmas2)
 

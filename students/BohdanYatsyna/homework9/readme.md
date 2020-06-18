@@ -16,6 +16,8 @@ contradiction       0.41      0.68      0.51       648
 
 додавання TD-IDF в пайплайн однозначно погіршувало результат до ```accuracy = 0.33```
 
+додав нормалізацію, видалив стоп слова
+
 added verbs and removed stop words
 
 
