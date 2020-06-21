@@ -122,10 +122,12 @@ def get_synonyms_and_antonyms(word):
 
 
 def meteor_calc(lemmas1, lemmas2):
+    if len(lemmas1) == 0 or len(lemmas2) == 0: return 0
     return single_meteor_score(" ".join(lemmas1), " ".join(lemmas2))
 
 
 def wer_calc(lemmas1, lemmas2):
+    if len(lemmas1) == 0 or len(lemmas2) == 0: return 0
     return 1 - wer(" ".join(lemmas1), " ".join(lemmas2))
 
 
