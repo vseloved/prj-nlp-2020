@@ -30,10 +30,10 @@ def wandb_classification_report(clf, X_dev, X_test, y_dev, y_test, wandb):
 
 
     wandb.log({"examples": wandb.Table(data=data_dev, columns=["name", "precision", "recall", "f1-score", "support"])})
-    wandb.log({"dev accuracy_score": accuracy_score(y_dev, dev_y_pred)})
+    wandb.log({"dev_accuracy_score": accuracy_score(y_dev, dev_y_pred)})
 
     wandb.log({"examples": wandb.Table(data=data_test, columns=["name", "precision", "recall", "f1-score", "support"])})
-    wandb.log({"test accuracy_score": accuracy_score(y_test, test_y_pred)})
+    wandb.log({"test_accuracy_score": accuracy_score(y_test, test_y_pred)})
 
     # visualize model
     #wandb.sklearn.plot_classifier(clf, X_train, X_test, y_train, y_test, dev_y_pred, y_probas, clf.classes_, True, name, feature_names=None)

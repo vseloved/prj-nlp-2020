@@ -177,31 +177,6 @@ if __name__ == '__main__':
     }
 
     wandb.init(project='homework9', name="Synonyms and added couple of scores", config=config_wandb)
-    # wandb.config.solver = opts.solver
-    # wandb.config.model = opts.model
-    # wandb.compat.norm = opts.norm
-    # # features
-    # wandb.config.f_lemma = opts.f_lemma
-    # wandb.config.f_lemma_verb = opts.f_lemma_verb
-    # wandb.config.f_lemma_noun = opts.f_lemma_noun
-    # wandb.config.f_lemma_adj = opts.f_lemma_adj
-    # wandb.config.f_lemma_adv = opts.f_lemma_adv
-    # wandb.config.f_noun_prases = opts.f_noun_prases
-    # wandb.config.f_ner = opts.f_ner
-    # wandb.config.f_bleu_avg = opts.f_bleu_avg
-    # wandb.config.f_bleu_1 = opts.f_bleu_1
-    # wandb.config.f_bleu_2 = opts.f_bleu_2
-    # wandb.config.f_bleu_3 = opts.f_bleu_3
-    # wandb.config.f_bleu_4 = opts.f_bleu_4
-    # wandb.config.f_rouge1 = opts.f_rouge1
-    # wandb.config.f_rouge2 = opts.f_rouge2
-    # wandb.config.f_rougel = opts.f_rougel
-    # wandb.config.f_wer = opts.f_wer
-    # wandb.config.f_sim_lema = opts.f_sim_lema
-    # wandb.config.f_sim_verb = opts.f_sim_verb
-    # wandb.config.f_len_sent1 = opts.f_len_sent1
-    # wandb.config.f_len_sent2 = opts.f_len_sent2
-    # wandb.config.f_syn = opts.f_syn
 
     # measure execution time
     start_time = datetime.now()
