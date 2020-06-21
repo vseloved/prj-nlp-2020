@@ -1,13 +1,13 @@
 program: text-entailment.py
 method: grid
 metric:
-  name: test accuracy_score
+  name: test_accuracy_score
   goal: maximize
 parameters:
   solver:
     values: ['sag']  # ['lbfgs','sag','saga', 'newton-cg']
   model:
-    values: ['log', 'knn', 'dtree', 'rtree', 'gbc', 'adaboost', 'sgd']  # out of models - 'svm', 'nb'
+    values: ['gbc']  # out of models - 'svm', 'nb'  || ['log', 'knn', 'dtree', 'rtree', 'gbc', 'adaboost', 'sgd']
   norm:
     values: [0,1]  # [0,1]
   f_lemma:
