@@ -110,7 +110,7 @@ if __name__ == '__main__':
     parser.add_argument('--dev_file', help='Train file location ', default="snli_1.0/snli_1.0_dev.jsonl")
     parser.add_argument('--test_file', help='Train file location ', default="snli_1.0/snli_1.0_test.jsonl")
     parser.add_argument('--proba', help='If True - app work as sample with cutted data', default=False)
-    parser.add_argument('--n_jobs', help='Number of workers (default=1) use all cores', default=8)
+    parser.add_argument('--n_jobs', help='Number of workers (default=1) use all cores', default=4)
     parser.add_argument('--solver', help='type of solver for model (default=sag)', default='sag')
     parser.add_argument('--model', help='model type', default='gbc')
     parser.add_argument('--norm', help='Normalizer On/Off (default=False)', default=False)
