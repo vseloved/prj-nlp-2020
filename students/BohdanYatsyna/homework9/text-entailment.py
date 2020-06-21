@@ -77,10 +77,10 @@ def train_model(cls, wandb):
     return clf
 
 
-config_defaults = {
+config_wandb = {
     'solver': 'sag',
     'model': 'gbc',
-    'norm': False,
+    'norm': 0,
     'f_lemma_verb': 1,
     'f_lemma_noun': 1,
     'f_lemma_adj': 1,
@@ -150,32 +150,58 @@ if __name__ == '__main__':
 
     opts = parser.parse_args()
 
-    wandb.init(project='homework9', name="Synonyms and added couple of scores", config=config_defaults, allow_val_change=True)
-    wandb.config.solver = opts.solver
-    wandb.config.model = opts.model
-    wandb.compat.norm = opts.norm
-    # features
-    wandb.config.f_lemma = opts.f_lemma
-    wandb.config.f_lemma_verb = opts.f_lemma_verb
-    wandb.config.f_lemma_noun = opts.f_lemma_noun
-    wandb.config.f_lemma_adj = opts.f_lemma_adj
-    wandb.config.f_lemma_adv = opts.f_lemma_adv
-    wandb.config.f_noun_prases = opts.f_noun_prases
-    wandb.config.f_ner = opts.f_ner
-    wandb.config.f_bleu_avg = opts.f_bleu_avg
-    wandb.config.f_bleu_1 = opts.f_bleu_1
-    wandb.config.f_bleu_2 = opts.f_bleu_2
-    wandb.config.f_bleu_3 = opts.f_bleu_3
-    wandb.config.f_bleu_4 = opts.f_bleu_4
-    wandb.config.f_rouge1 = opts.f_rouge1
-    wandb.config.f_rouge2 = opts.f_rouge2
-    wandb.config.f_rougel = opts.f_rougel
-    wandb.config.f_wer = opts.f_wer
-    wandb.config.f_sim_lema = opts.f_sim_lema
-    wandb.config.f_sim_verb = opts.f_sim_verb
-    wandb.config.f_len_sent1 = opts.f_len_sent1
-    wandb.config.f_len_sent2 = opts.f_len_sent2
-    wandb.config.f_syn = opts.f_syn
+    config_wandb = {
+        'solver': opts.solver,
+        'model': opts.model,
+        'norm': opts.norm,
+        'f_lemma_verb': opts.f_lemma_verb,
+        'f_lemma_noun': opts.f_lemma_noun,
+        'f_lemma_adj': opts.f_lemma_adj,
+        'f_lemma_adv': opts.f_lemma_adv,
+        'f_noun_prases': opts.f_noun_prases,
+        'f_ner': opts.f_ner,
+        'f_bleu_avg': opts.f_bleu_avg,
+        'f_bleu_1': opts.f_bleu_1,
+        'f_bleu_2': opts.f_bleu_2,
+        'f_bleu_3': opts.f_bleu_3,
+        'f_bleu_4': opts.f_bleu_4,
+        'f_rouge1': opts.f_rouge1,
+        'f_rouge2': opts.f_rouge2,
+        'f_rougel': opts.f_rougel,
+        'f_wer': opts.f_wer,
+        'f_sim_lema': opts.f_sim_lema,
+        'f_sim_verb': opts.f_sim_verb,
+        'f_len_sent1': opts.f_len_sent1,
+        'f_len_sent2': opts.f_len_sent2,
+        'f_syn': opts.f_syn,
+    }
+
+    wandb.init(project='homework9', name="Synonyms and added couple of scores", config=config_wandb)
+    # wandb.config.solver = opts.solver
+    # wandb.config.model = opts.model
+    # wandb.compat.norm = opts.norm
+    # # features
+    # wandb.config.f_lemma = opts.f_lemma
+    # wandb.config.f_lemma_verb = opts.f_lemma_verb
+    # wandb.config.f_lemma_noun = opts.f_lemma_noun
+    # wandb.config.f_lemma_adj = opts.f_lemma_adj
+    # wandb.config.f_lemma_adv = opts.f_lemma_adv
+    # wandb.config.f_noun_prases = opts.f_noun_prases
+    # wandb.config.f_ner = opts.f_ner
+    # wandb.config.f_bleu_avg = opts.f_bleu_avg
+    # wandb.config.f_bleu_1 = opts.f_bleu_1
+    # wandb.config.f_bleu_2 = opts.f_bleu_2
+    # wandb.config.f_bleu_3 = opts.f_bleu_3
+    # wandb.config.f_bleu_4 = opts.f_bleu_4
+    # wandb.config.f_rouge1 = opts.f_rouge1
+    # wandb.config.f_rouge2 = opts.f_rouge2
+    # wandb.config.f_rougel = opts.f_rougel
+    # wandb.config.f_wer = opts.f_wer
+    # wandb.config.f_sim_lema = opts.f_sim_lema
+    # wandb.config.f_sim_verb = opts.f_sim_verb
+    # wandb.config.f_len_sent1 = opts.f_len_sent1
+    # wandb.config.f_len_sent2 = opts.f_len_sent2
+    # wandb.config.f_syn = opts.f_syn
 
     # measure execution time
     start_time = datetime.now()
