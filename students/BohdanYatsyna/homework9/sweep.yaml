@@ -54,5 +54,5 @@ command:
   - ${env}
   - python3 #  - ${interpreter}
   - ${program}
-  - "--n_jobs 12"
+  - "--n_jobs 24"
   - ${args}
