@@ -10,8 +10,6 @@ parameters:
     values: ['gbc']  # out of models - 'svm', 'nb'  || ['log', 'knn', 'dtree', 'rtree', 'gbc', 'adaboost', 'sgd']
   norm:
     values: [0,1]  # [0,1]
-  f_lemma:
-    values: [0,1]
   f_lemma_verb:
     values: [0,1]
   f_lemma_noun:

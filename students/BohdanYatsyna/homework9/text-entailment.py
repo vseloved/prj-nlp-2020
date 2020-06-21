@@ -81,7 +81,6 @@ config_defaults = {
     'solver': 'sag',
     'model': 'gbc',
     'norm': False,
-    'f_lemma': 1,
     'f_lemma_verb': 1,
     'f_lemma_noun': 1,
     'f_lemma_adj': 1,
@@ -151,7 +150,7 @@ if __name__ == '__main__':
 
     opts = parser.parse_args()
 
-    wandb.init(project='homework9', name="Synonyms and added couple of scores", config=config_defaults)
+    wandb.init(project='homework9', name="Synonyms and added couple of scores", config=config_defaults, allow_val_change=True)
     wandb.config.solver = opts.solver
     wandb.config.model = opts.model
     wandb.compat.norm = opts.norm

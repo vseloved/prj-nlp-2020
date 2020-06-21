@@ -17,8 +17,7 @@ def exctract(sent1, sent2, config):
     features = {}
 
     # lemma + pos + negated coverage treshhold
-    if config.f_lemma:
-        features['lemma-coverage-threshold'] = lemma_coverage_treshold(lemmas_pos_neg1, lemmas_pos_neg2)
+    features['lemma-coverage-threshold'] = lemma_coverage_treshold(lemmas_pos_neg1, lemmas_pos_neg2)
     if config.f_lemma_verb:
         features['lemma-verb-coverage-threshold'] = lemma_coverage_treshold(lemmas_pos_neg1, lemmas_pos_neg2, [VERB])
     if config.f_lemma_noun:
