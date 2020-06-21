@@ -24,6 +24,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from tqdm import tqdm
+import nltk
 
 
 def get_model(model_name):
@@ -139,6 +140,7 @@ if __name__ == '__main__':
 
 
 
+    nltk.download('wordnet')
 
     spacy.prefer_gpu()
 
@@ -149,7 +151,7 @@ if __name__ == '__main__':
 
     opts = parser.parse_args()
 
-    wandb.init(project='homework9', name="Added feature VERB and removed stop words", config=config_defaults)
+    wandb.init(project='homework9', name="Synonyms and added couple of scores", config=config_defaults)
     wandb.config.solver = opts.solver
     wandb.config.model = opts.model
     wandb.compat.norm = opts.norm
