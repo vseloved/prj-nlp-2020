@@ -22,7 +22,8 @@ def exctract(sent1, sent2, config):
     if config.f_lemma_verb:
         features['lemma-verb-coverage-threshold'] = lemma_coverage_treshold(lemmas_pos_neg1, lemmas_pos_neg2, [VERB])
     if config.f_lemma_noun:
-        features['lemma-noun-coverage-threshold'] = lemma_coverage_treshold(lemmas_pos_neg1, lemmas_pos_neg2, [PROPN, NOUN])
+        features['lemma-noun-coverage-threshold'] = lemma_coverage_treshold(lemmas_pos_neg1, lemmas_pos_neg2,
+                                                                            [PROPN, NOUN])
     if config.f_lemma_adj:
         features['lemma-adj-coverage-threshold'] = lemma_coverage_treshold(lemmas_pos_neg1, lemmas_pos_neg2, [ADJ])
     if config.f_lemma_adv:
@@ -64,7 +65,7 @@ def exctract(sent1, sent2, config):
     if config.f_wer:
         features['1-wer'] = 1 - wer_calc(lemmas1, lemmas2)
     # meteor
-    #features['meteor'] = meteor_calc(lemmas1, lemmas2)
+    # features['meteor'] = meteor_calc(lemmas1, lemmas2)
     # synonyms
     if config.f_sim_lema:
         features['sim-lemma'] = similarity_lemma(lemmas_pos_neg1, lemmas_pos_neg2)
@@ -141,7 +142,15 @@ def rouge_calc(lemmas1, lemmas2):
 
 
 def bleu_calculation(lemmas1, lemmas2, weights=(0.25, 0.25, 0.25, 0.25)):
-    return sentence_bleu(lemmas1, lemmas2, weights)
+    bleu_rank = 0
+    if len(lemmas1) == 0 or len(lemmas2) == 0: return 0
+
+    try:
+        bleu_rank = sentence_bleu(lemmas1, lemmas2, weights)
+    except:
+        bleu_rank = 0
+
+    return bleu_rank
 
 
 def ner_coverage(sent1, sent2):
