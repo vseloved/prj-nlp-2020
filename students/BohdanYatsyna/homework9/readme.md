@@ -28,8 +28,14 @@ added verbs and removed stop words
 
 для запуску программи один раз запустити ```text-entailment.py```
 
-для запуску серії експериментів на wandb sweep:
+для запуску серії експериментів на wandb sweep для підбору фічей:
 ```
-wandb sweep sweep.yaml
+wandb sweep sweep_pc_feature_variation.yaml
+wandb agent <generated link copied from console after pervious command>
+```
+
+для запуску серії експериментів на wandb sweep для підбору моделей:
+```
+wandb sweep sweep_pc_model_variation.yaml
 wandb agent <generated link copied from console after pervious command>
 ```
