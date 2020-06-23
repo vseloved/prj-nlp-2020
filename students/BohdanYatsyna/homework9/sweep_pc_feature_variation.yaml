@@ -9,7 +9,7 @@ parameters:
   model:
     values: ['gbc']  # out of models - 'svm', 'nb'  || ['log', 'knn', 'dtree', 'rtree', 'gbc', 'adaboost', 'sgd']
   norm:
-    values: [0,1]  # [0,1]
+    values: [0]  # [0,1]
   f_lemma_verb:
     values: [0,1]
   f_lemma_noun:
@@ -37,19 +37,19 @@ parameters:
   f_rouge2:
     values: [0,1]
   f_rougel:
-    values: [0,1]
+    values: [0]
   f_wer:
-    values: [0,1]
+    values: [1]
   f_sim_lema:
-    values: [0,1]
+    values: [1]
   f_sim_verb:
-    values: [0,1]
+    values: [1]
   f_len_sent1:
     values: [0,1]
   f_len_sent2:
     values: [0,1]
   f_syn:
-    values: [0,1]
+    values: [1]
 command:
   - ${env}
   - python3 #  - ${interpreter}
