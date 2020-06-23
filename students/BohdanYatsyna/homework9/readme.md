@@ -28,7 +28,20 @@ added verbs and removed stop words
 зробив частину 
 експериментів з параметрами
 rougel требба викинути - негативна фіча
-f_wer, f_sim_lema, f_sim_verb
+f_wer, f_sim_lema, f_sim_verb, f_syn
+
+```
+               precision    recall  f1-score   support 
+
+contradiction       0.49      0.61      0.54      3237 
+   entailment       0.65      0.60      0.62      3368 
+      neutral       0.50      0.42      0.46      3219 
+
+     accuracy                           0.54      9824 
+    macro avg       0.55      0.54      0.54      9824 
+ weighted avg       0.55      0.54      0.54      9824 
+```
+https://app.wandb.ai/yatsinaba/prj-nlp-2020-students_BohdanYatsyna_homework9/sweeps/komb4cnw?workspace=user-
 
 
 
