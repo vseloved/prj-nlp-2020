@@ -23,15 +23,15 @@ parameters:
   f_ner:
     values: [1]
   f_bleu_avg:
-    values: [0,1]
+    values: [0]
   f_bleu_1:
-    values: [0,1]
+    values: [0]
   f_bleu_2:
-    values: [0,1]
+    values: [0]
   f_bleu_3:
-    values: [0,1]
+    values: [0]
   f_bleu_4:
-    values: [0,1]
+    values: [0]
   f_rouge1:
     values: [1]
   f_rouge2:

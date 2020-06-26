@@ -8,6 +8,48 @@ parameters:
     values: ['sag']  # ['lbfgs','sag','saga', 'newton-cg']
   model:
     values: ['log', 'knn', 'dtree', 'rtree', 'gbc', 'adaboost', 'sgd']
+  norm:
+    values: [0]  # [0,1]
+  f_lemma_verb:
+    values: [1]
+  f_lemma_noun:
+    values: [1]
+  f_lemma_adj:
+    values: [1]
+  f_lemma_adv:
+    values: [1]
+  f_noun_prases:
+    values: [1]
+  f_ner:
+    values: [1]
+  f_bleu_avg:
+    values: [0]
+  f_bleu_1:
+    values: [0]
+  f_bleu_2:
+    values: [0]
+  f_bleu_3:
+    values: [0]
+  f_bleu_4:
+    values: [0]
+  f_rouge1:
+    values: [1]
+  f_rouge2:
+    values: [1]
+  f_rougel:
+    values: [0]
+  f_wer:
+    values: [1]
+  f_sim_lema:
+    values: [1]
+  f_sim_verb:
+    values: [1]
+  f_len_sent1:
+    values: [1]
+  f_len_sent2:
+    values: [1]
+  f_syn:
+    values: [1]
 command:
   - ${env}
   - python3 #  - ${interpreter}

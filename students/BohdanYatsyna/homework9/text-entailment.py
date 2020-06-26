@@ -176,7 +176,7 @@ if __name__ == '__main__':
         'f_syn': opts.f_syn,
     }
 
-    wandb.init(project='homework9', name="features variation - 6 fixed params", config=config_wandb)
+    wandb.init(project='homework9', name="Model variation - All features selected", config=config_wandb)
 
     # measure execution time
     start_time = datetime.now()
