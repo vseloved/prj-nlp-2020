@@ -43,6 +43,20 @@ contradiction       0.49      0.61      0.54      3237
 ```
 https://app.wandb.ai/yatsinaba/prj-nlp-2020-students_BohdanYatsyna_homework9/sweeps/komb4cnw?workspace=user-
 
+ще трохи експериментів
+https://app.wandb.ai/yatsinaba/prj-nlp-2020-students_BohdanYatsyna_homework9/sweeps/o871gaj7?workspace=user-yatsinaba
+кращий результат
+```
+               precision    recall  f1-score   support 
+
+contradiction       0.50      0.60      0.54      3237 
+   entailment       0.67      0.61      0.64      3368 
+      neutral       0.51      0.46      0.48      3219 
+
+     accuracy                           0.56      9824 
+    macro avg       0.56      0.55      0.55      9824 
+ weighted avg       0.56      0.56      0.56      9824 
+```
 
 
 для запуску программи один раз запустити ```text-entailment.py```

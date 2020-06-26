@@ -63,8 +63,6 @@ def exctract(sent1, sent2, config):
     # Word accuracy
     if config.f_wer:
         features['1-wer'] = 1 - wer_calc(lemmas1, lemmas2)
-    # meteor
-    # features['meteor'] = meteor_calc(lemmas1, lemmas2)
     # synonyms
     if config.f_sim_lema:
         features['sim-lemma'] = similarity_lemma(lemmas_pos_neg1, lemmas_pos_neg2)
@@ -118,12 +116,6 @@ def get_synonyms_and_antonyms(word):
                 continue
 
     return set(synonyms), set(antonyms)
-
-
-def meteor_calc(lemmas1, lemmas2):
-    if len(lemmas1) == 0 or len(lemmas2) == 0: return 0
-    return single_meteor_score(" ".join(lemmas1), " ".join(lemmas2))
-
 
 def wer_calc(lemmas1, lemmas2):
     if len(lemmas1) == 0 or len(lemmas2) == 0: return 0
