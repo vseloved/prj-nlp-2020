@@ -49,16 +49,16 @@ class KerasSimilarityShim(object):
 def get_embeddings(vocab, nr_unk=100):
     # the extra +1 is for a zero vector representing sentence-final padding
     num_vectors = max(lex.rank for lex in vocab) + 2
-    num_vectors = vocab.vectors_length +1
+    num_vectors = len(vocab) + 1
     # create random vectors for OOV tokens
     oov = np.random.normal(size=(nr_unk, vocab.vectors_length))
     oov = oov / oov.sum(axis=1, keepdims=True)
 
     vectors = np.zeros((num_vectors + nr_unk, vocab.vectors_length), dtype="float32")
     vectors[1 : (nr_unk + 1),] = oov
-    for lex in vocab:
+    for i, lex in enumerate(vocab):
         if lex.has_vector and lex.vector_norm > 0:
-            vectors[nr_unk + lex.rank + 1] = lex.vector / lex.vector_norm
+            vectors[nr_unk + i + 1] = lex.vector / lex.vector_norm
 
     return vectors
 

@@ -6,6 +6,7 @@ import sys
 from tqdm import tqdm
 from kerras_entailment import build_model
 from spacy_hook import get_embeddings, KerasSimilarityShim
+import wandb
 
 try:
     import cPickle as pickle
@@ -21,21 +22,17 @@ import importlib
 from keras import backend as K
 
 
-def set_keras_backend(backend):
-    if K.backend() != backend:
-        os.environ["KERAS_BACKEND"] = backend
-        importlib.reload(K)
-        assert K.backend() == backend
-    if backend == "tensorflow":
-        K.get_session().close()
-        cfg = K.tf.ConfigProto()
-        cfg.gpu_options.allow_growth = True
-        K.set_session(K.tf.Session(config=cfg))
-        K.clear_session()
-
-
-#set_keras_backend("tensorflow")
-
+# def set_keras_backend(backend):
+#     if K.backend() != backend:
+#         os.environ["KERAS_BACKEND"] = backend
+#         importlib.reload(K)
+#         assert K.backend() == backend
+#     if backend == "tensorflow":
+#         K.get_session().close()
+#         cfg = K.tf.ConfigProto()
+#         cfg.gpu_options.allow_growth = True
+#         K.set_session(K.tf.Session(config=cfg))
+#         K.clear_session()
 
 def train(train_loc, dev_loc, shape, settings):
     train_texts1, train_texts2, train_labels = read_snli(train_loc)
@@ -180,7 +177,7 @@ def main(
         dropout=0.2,
         learn_rate=0.001,
         batch_size=1024,
-        nr_epoch=10,
+        nr_epoch=20,
         entail_dir="both",
 ):
     shape = (max_length, nr_hidden, 3)
@@ -193,13 +190,11 @@ def main(
     }
 
     if mode == "train":
+        wandb.init(magic=True)
         if train_loc == None or dev_loc == None:
             print("Train mode requires paths to training and development data sets.")
             sys.exit(1)
         train(train_loc, dev_loc, shape, settings)
-
-        correct, total = evaluate(dev_loc, shape)
-        print(correct, "/", total, correct / total)
 
     elif mode == "evaluate":
         if dev_loc == None:
