@@ -1,0 +1,4 @@
+joblib==0.14.1
+spacy==2.2.4
+tqdm==4.46.0
+scikit_learn==0.23.1
