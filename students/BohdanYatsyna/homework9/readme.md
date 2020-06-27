@@ -85,6 +85,10 @@ contradiction       0.51      0.61      0.55      3237
 
 NN реалізовуєтся на основі цього Decomposable Attention Model - https://arxiv.org/pdf/1606.01933.pdf
 для запусуску нейромережевої версії ```nnsolution/__main__.py```
+кращий результат 0.784 dev acc
+
+тут результати кращої ітерації 
+https://app.wandb.ai/yatsinaba/prj-nlp-2020-bogdan-students_BohdanYatsyna_homework9_nnsolution/runs/35987n9v?workspace=user-yatsinaba
 
 
 для запуску серії експериментів на wandb sweep для підбору фічей:
